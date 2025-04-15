@@ -3,10 +3,30 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 interface NotFoundProps {
   message?: string;
+  styles?: {
+    primaryColor?: string; // for button background
+    secondaryColor?: string; // for secondary buttons
+    textColor?: string;
+    backgroundColor?: string;
+    borderColor?: string;
+    inputFocusColor?: string;
+  };
 }
 
-const NotFound: React.FC<NotFoundProps> = ({ message = "Page not found" }) => {
+const NotFound: React.FC<NotFoundProps> = ({
+  message = "Page not found",
+  styles = {},
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const {
+    primaryColor = "#0055FF",
+    secondaryColor = "#E0EBFF",
+    textColor = "white",
+    backgroundColor = "#ffffff",
+    borderColor = "#cbd5e0",
+    inputFocusColor = "#0055FF",
+  } = styles;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,31 +36,53 @@ const NotFound: React.FC<NotFoundProps> = ({ message = "Page not found" }) => {
       )}`;
     }
   };
+
   return (
-    <div style={containerStyle}>
+    <div
+      style={{
+        ...containerStyle,
+        backgroundColor,
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
       <DotLottieReact
         style={animationStyle}
         autoplay
         loop
         src="https://lottie.host/d1f4afd3-53fc-429b-838e-93f7070b4c62/hQBV6RREpn.lottie"
       />
-      <h1 style={titleStyle}>404</h1>
+      <h1 style={{ ...titleStyle, color: primaryColor }}>404</h1>
       <p style={textStyle}>{message}</p>
+
       <form style={searchContainerStyle} onSubmit={handleSearch}>
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for jobs..."
-          style={inputStyle}
+          style={{
+            ...inputStyle,
+            borderColor,
+          }}
         />
-        <button type="submit" style={searchButtonStyle} onClick={handleSearch}>
+        <button
+          type="submit"
+          style={{
+            ...searchButtonStyle,
+            backgroundColor: secondaryColor,
+            color: primaryColor,
+          }}
+        >
           Search
         </button>
       </form>
 
       <button
-        style={homeButtonStyle}
+        style={{
+          ...homeButtonStyle,
+          backgroundColor: primaryColor,
+          color: textColor,
+        }}
         onClick={() => (window.location.href = "/")}
       >
         Return Home
@@ -48,14 +90,15 @@ const NotFound: React.FC<NotFoundProps> = ({ message = "Page not found" }) => {
 
       <style>{`
         input:focus-visible {
-          outline: 2px solid #0055FF !important;
-          border-color: #0055FF;
+          outline: 2px solid ${inputFocusColor} !important;
+          border-color: ${inputFocusColor};
         }
       `}</style>
     </div>
   );
 };
 
+// Shared styles
 const searchContainerStyle: React.CSSProperties = {
   display: "flex",
   position: "relative",
@@ -69,7 +112,7 @@ const inputStyle: React.CSSProperties = {
   flex: 1,
   padding: "0.75rem",
   borderRadius: "4px",
-  border: "1px solid #cbd5e0",
+  border: "1px solid",
   fontSize: "1rem",
 };
 
@@ -78,8 +121,6 @@ const searchButtonStyle: React.CSSProperties = {
   height: "100%",
   right: "0",
   padding: "0.75rem 1.5rem",
-  backgroundColor: "#E0EBFF",
-  color: "#0055FF",
   border: "none",
   borderRadius: "0 4px 4px 0",
   cursor: "pointer",
@@ -90,8 +131,6 @@ const searchButtonStyle: React.CSSProperties = {
 const homeButtonStyle: React.CSSProperties = {
   marginTop: "2rem",
   padding: "0.75rem 1.5rem",
-  backgroundColor: "#0055FF",
-  color: "white",
   border: "none",
   borderRadius: "4px",
   cursor: "pointer",
@@ -104,8 +143,6 @@ const containerStyle: React.CSSProperties = {
   justifyContent: "center",
   minHeight: "100vh",
   textAlign: "center",
-  backgroundColor: "#fff",
-  fontFamily: "Arial, sans-serif",
 };
 
 const animationStyle: React.CSSProperties = {
@@ -117,7 +154,6 @@ const titleStyle: React.CSSProperties = {
   fontSize: "3rem",
   fontWeight: "bold",
   margin: "0",
-  color: "#0055FF",
 };
 
 const textStyle: React.CSSProperties = {
