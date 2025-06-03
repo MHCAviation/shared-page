@@ -11,12 +11,12 @@
   ],
   "exports": {
     ".": {
+      "style": "./dist/style.css",
       "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "style": "./dist/style.css"
+      "require": "./dist/index.cjs.js"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./style": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite",
