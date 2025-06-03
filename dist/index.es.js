@@ -1,5 +1,5 @@
-import i0, { useState as a2, useRef as r2, useEffect as q, useCallback as a0, useMemo as o0 } from "react";
-var i2 = { exports: {} }, J1 = {};
+import i0, { useState as a2, useRef as r2, useEffect as J, useCallback as a0, useMemo as o0 } from "react";
+var i2 = { exports: {} }, G1 = {};
 /**
  * @license React
  * react-jsx-runtime.production.js
@@ -11,7 +11,7 @@ var i2 = { exports: {} }, J1 = {};
  */
 var e3;
 function s0() {
-  if (e3) return J1;
+  if (e3) return G1;
   e3 = 1;
   var h = Symbol.for("react.transitional.element"), n = Symbol.for("react.fragment");
   function r(l, s, p) {
@@ -29,9 +29,9 @@ function s0() {
       props: p
     };
   }
-  return J1.Fragment = n, J1.jsx = r, J1.jsxs = r, J1;
+  return G1.Fragment = n, G1.jsx = r, G1.jsxs = r, G1;
 }
-var Y1 = {};
+var J1 = {};
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -50,13 +50,13 @@ function l0() {
         return f.$$typeof === S1 ? null : f.displayName || f.name || null;
       if (typeof f == "string") return f;
       switch (f) {
-        case A:
+        case j:
           return "Fragment";
         case g1:
           return "Profiler";
-        case J:
+        case K:
           return "StrictMode";
-        case V:
+        case q:
           return "Suspense";
         case o1:
           return "SuspenseList";
@@ -67,21 +67,21 @@ function l0() {
         switch (typeof f.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
         ), f.$$typeof) {
-          case P:
+          case F:
             return "Portal";
-          case j:
+          case A:
             return (f.displayName || "Context") + ".Provider";
           case c1:
             return (f._context.displayName || "Context") + ".Consumer";
           case f1:
-            var L = f.render;
-            return f = f.displayName, f || (f = L.displayName || L.name || "", f = f !== "" ? "ForwardRef(" + f + ")" : "ForwardRef"), f;
+            var C = f.render;
+            return f = f.displayName, f || (f = C.displayName || C.name || "", f = f !== "" ? "ForwardRef(" + f + ")" : "ForwardRef"), f;
           case S:
-            return L = f.displayName || null, L !== null ? L : h(f.type) || "Memo";
+            return C = f.displayName || null, C !== null ? C : h(f.type) || "Memo";
           case T:
-            L = f._payload, f = f._init;
+            C = f._payload, f = f._init;
             try {
-              return h(f(L));
+              return h(f(C));
             } catch {
             }
         }
@@ -93,27 +93,27 @@ function l0() {
     function r(f) {
       try {
         n(f);
-        var L = !1;
+        var C = !1;
       } catch {
-        L = !0;
+        C = !0;
       }
-      if (L) {
-        L = console;
-        var R = L.error, G = typeof Symbol == "function" && Symbol.toStringTag && f[Symbol.toStringTag] || f.constructor.name || "Object";
-        return R.call(
-          L,
+      if (C) {
+        C = console;
+        var D = C.error, V = typeof Symbol == "function" && Symbol.toStringTag && f[Symbol.toStringTag] || f.constructor.name || "Object";
+        return D.call(
+          C,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          G
+          V
         ), n(f);
       }
     }
     function l(f) {
-      if (f === A) return "<>";
+      if (f === j) return "<>";
       if (typeof f == "object" && f !== null && f.$$typeof === T)
         return "<...>";
       try {
-        var L = h(f);
-        return L ? "<" + L + ">" : "<...>";
+        var C = h(f);
+        return C ? "<" + C + ">" : "<...>";
       } catch {
         return "<...>";
       }
@@ -126,40 +126,40 @@ function l0() {
       return Error("react-stack-top-frame");
     }
     function M(f) {
-      if (x1.call(f, "key")) {
-        var L = Object.getOwnPropertyDescriptor(f, "key").get;
-        if (L && L.isReactWarning) return !1;
+      if (P1.call(f, "key")) {
+        var C = Object.getOwnPropertyDescriptor(f, "key").get;
+        if (C && C.isReactWarning) return !1;
       }
       return f.key !== void 0;
     }
-    function w(f, L) {
-      function R() {
+    function w(f, C) {
+      function D() {
         s1 || (s1 = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
-          L
+          C
         ));
       }
-      R.isReactWarning = !0, Object.defineProperty(f, "key", {
-        get: R,
+      D.isReactWarning = !0, Object.defineProperty(f, "key", {
+        get: D,
         configurable: !0
       });
     }
-    function x() {
+    function P() {
       var f = h(this.type);
       return e1[f] || (e1[f] = !0, console.error(
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), f = this.props.ref, f !== void 0 ? f : null;
     }
-    function k(f, L, R, G, v1, t1, k1, A1) {
-      return R = t1.ref, f = {
+    function k(f, C, D, V, v1, t1, F1, j1) {
+      return D = t1.ref, f = {
         $$typeof: B,
         type: f,
-        key: L,
+        key: C,
         props: t1,
         _owner: v1
-      }, (R !== void 0 ? R : null) !== null ? Object.defineProperty(f, "ref", {
+      }, (D !== void 0 ? D : null) !== null ? Object.defineProperty(f, "ref", {
         enumerable: !1,
-        get: x
+        get: P
       }) : Object.defineProperty(f, "ref", { enumerable: !1, value: null }), f._store = {}, Object.defineProperty(f._store, "validated", {
         configurable: !1,
         enumerable: !1,
@@ -174,52 +174,52 @@ function l0() {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: k1
+        value: F1
       }), Object.defineProperty(f, "_debugTask", {
         configurable: !1,
         enumerable: !1,
         writable: !0,
-        value: A1
+        value: j1
       }), Object.freeze && (Object.freeze(f.props), Object.freeze(f)), f;
     }
-    function D(f, L, R, G, v1, t1, k1, A1) {
-      var W = L.children;
+    function R(f, C, D, V, v1, t1, F1, j1) {
+      var W = C.children;
       if (W !== void 0)
-        if (G)
+        if (V)
           if (g(W)) {
-            for (G = 0; G < W.length; G++)
-              $(W[G]);
+            for (V = 0; V < W.length; V++)
+              $(W[V]);
             Object.freeze && Object.freeze(W);
           } else
             console.error(
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
         else $(W);
-      if (x1.call(L, "key")) {
+      if (P1.call(C, "key")) {
         W = h(f);
-        var h1 = Object.keys(L).filter(function(l2) {
+        var h1 = Object.keys(C).filter(function(l2) {
           return l2 !== "key";
         });
-        G = 0 < h1.length ? "{key: someKey, " + h1.join(": ..., ") + ": ...}" : "{key: someKey}", P1[W + G] || (h1 = 0 < h1.length ? "{" + h1.join(": ..., ") + ": ...}" : "{}", console.error(
+        V = 0 < h1.length ? "{key: someKey, " + h1.join(": ..., ") + ": ...}" : "{key: someKey}", k1[W + V] || (h1 = 0 < h1.length ? "{" + h1.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
 React keys must be passed directly to JSX without using spread:
   let props = %s;
   <%s key={someKey} {...props} />`,
-          G,
+          V,
           W,
           h1,
           W
-        ), P1[W + G] = !0);
+        ), k1[W + V] = !0);
       }
-      if (W = null, R !== void 0 && (r(R), W = "" + R), M(L) && (r(L.key), W = "" + L.key), "key" in L) {
-        R = {};
-        for (var j1 in L)
-          j1 !== "key" && (R[j1] = L[j1]);
-      } else R = L;
+      if (W = null, D !== void 0 && (r(D), W = "" + D), M(C) && (r(C.key), W = "" + C.key), "key" in C) {
+        D = {};
+        for (var A1 in C)
+          A1 !== "key" && (D[A1] = C[A1]);
+      } else D = C;
       return W && w(
-        R,
+        D,
         typeof f == "function" ? f.displayName || f.name || "Unknown" : f
       ), k(
         f,
@@ -227,80 +227,80 @@ React keys must be passed directly to JSX without using spread:
         t1,
         v1,
         s(),
-        R,
-        k1,
-        A1
+        D,
+        F1,
+        j1
       );
     }
     function $(f) {
       typeof f == "object" && f !== null && f.$$typeof === B && f._store && (f._store.validated = 1);
     }
-    var N = i0, B = Symbol.for("react.transitional.element"), P = Symbol.for("react.portal"), A = Symbol.for("react.fragment"), J = Symbol.for("react.strict_mode"), g1 = Symbol.for("react.profiler"), c1 = Symbol.for("react.consumer"), j = Symbol.for("react.context"), f1 = Symbol.for("react.forward_ref"), V = Symbol.for("react.suspense"), o1 = Symbol.for("react.suspense_list"), S = Symbol.for("react.memo"), T = Symbol.for("react.lazy"), M1 = Symbol.for("react.activity"), S1 = Symbol.for("react.client.reference"), m1 = N.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, x1 = Object.prototype.hasOwnProperty, g = Array.isArray, y1 = console.createTask ? console.createTask : function() {
+    var U = i0, B = Symbol.for("react.transitional.element"), F = Symbol.for("react.portal"), j = Symbol.for("react.fragment"), K = Symbol.for("react.strict_mode"), g1 = Symbol.for("react.profiler"), c1 = Symbol.for("react.consumer"), A = Symbol.for("react.context"), f1 = Symbol.for("react.forward_ref"), q = Symbol.for("react.suspense"), o1 = Symbol.for("react.suspense_list"), S = Symbol.for("react.memo"), T = Symbol.for("react.lazy"), M1 = Symbol.for("react.activity"), S1 = Symbol.for("react.client.reference"), m1 = U.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, P1 = Object.prototype.hasOwnProperty, g = Array.isArray, y1 = console.createTask ? console.createTask : function() {
       return null;
     };
-    N = {
+    U = {
       "react-stack-bottom-frame": function(f) {
         return f();
       }
     };
-    var s1, e1 = {}, l1 = N["react-stack-bottom-frame"].bind(
-      N,
+    var s1, e1 = {}, l1 = U["react-stack-bottom-frame"].bind(
+      U,
       p
-    )(), E1 = y1(l(p)), P1 = {};
-    Y1.Fragment = A, Y1.jsx = function(f, L, R, G, v1) {
+    )(), E1 = y1(l(p)), k1 = {};
+    J1.Fragment = j, J1.jsx = function(f, C, D, V, v1) {
       var t1 = 1e4 > m1.recentlyCreatedOwnerStacks++;
-      return D(
+      return R(
         f,
-        L,
-        R,
+        C,
+        D,
         !1,
-        G,
+        V,
         v1,
         t1 ? Error("react-stack-top-frame") : l1,
         t1 ? y1(l(f)) : E1
       );
-    }, Y1.jsxs = function(f, L, R, G, v1) {
+    }, J1.jsxs = function(f, C, D, V, v1) {
       var t1 = 1e4 > m1.recentlyCreatedOwnerStacks++;
-      return D(
+      return R(
         f,
-        L,
-        R,
+        C,
+        D,
         !0,
-        G,
+        V,
         v1,
         t1 ? Error("react-stack-top-frame") : l1,
         t1 ? y1(l(f)) : E1
       );
     };
-  }()), Y1;
+  }()), J1;
 }
 var n3;
 function h0() {
   return n3 || (n3 = 1, process.env.NODE_ENV === "production" ? i2.exports = s0() : i2.exports = l0()), i2.exports;
 }
-var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Object.getOwnPropertyDescriptors, o2 = Object.getOwnPropertySymbols, h3 = Object.prototype.hasOwnProperty, u3 = Object.prototype.propertyIsEnumerable, F2 = (h, n, r) => n in h ? u0(h, n, { enumerable: !0, configurable: !0, writable: !0, value: r }) : h[n] = r, Q = (h, n) => {
-  for (var r in n || (n = {})) h3.call(n, r) && F2(h, r, n[r]);
-  if (o2) for (var r of o2(n)) u3.call(n, r) && F2(h, r, n[r]);
+var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Object.getOwnPropertyDescriptors, o2 = Object.getOwnPropertySymbols, h3 = Object.prototype.hasOwnProperty, u3 = Object.prototype.propertyIsEnumerable, x2 = (h, n, r) => n in h ? u0(h, n, { enumerable: !0, configurable: !0, writable: !0, value: r }) : h[n] = r, Y = (h, n) => {
+  for (var r in n || (n = {})) h3.call(n, r) && x2(h, r, n[r]);
+  if (o2) for (var r of o2(n)) u3.call(n, r) && x2(h, r, n[r]);
   return h;
 }, a1 = (h, n) => d0(h, c0(n)), d3 = (h, n) => {
   var r = {};
   for (var l in h) h3.call(h, l) && n.indexOf(l) < 0 && (r[l] = h[l]);
   if (h != null && o2) for (var l of o2(h)) n.indexOf(l) < 0 && u3.call(h, l) && (r[l] = h[l]);
   return r;
-}, b = (h, n, r) => F2(h, typeof n != "symbol" ? n + "" : n, r), E = (h, n, r) => new Promise((l, s) => {
-  var p = (x) => {
+}, L = (h, n, r) => x2(h, typeof n != "symbol" ? n + "" : n, r), E = (h, n, r) => new Promise((l, s) => {
+  var p = (P) => {
     try {
-      w(r.next(x));
+      w(r.next(P));
     } catch (k) {
       s(k);
     }
-  }, M = (x) => {
+  }, M = (P) => {
     try {
-      w(r.throw(x));
+      w(r.throw(P));
     } catch (k) {
       s(k);
     }
-  }, w = (x) => x.done ? l(x.value) : Promise.resolve(x.value).then(p, M);
+  }, w = (P) => P.done ? l(P.value) : Promise.resolve(P.value).then(p, M);
   w((r = r.apply(h, n)).next());
 }), f0 = class {
   requestAnimationFrame(h) {
@@ -311,7 +311,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
   }
 }, m0 = class {
   constructor() {
-    b(this, "_lastHandleId", 0), b(this, "_lastImmediate", null);
+    L(this, "_lastHandleId", 0), L(this, "_lastImmediate", null);
   }
   requestAnimationFrame(h) {
     return this._lastHandleId >= Number.MAX_SAFE_INTEGER && (this._lastHandleId = 0), this._lastHandleId += 1, this._lastImmediate = setImmediate(() => {
@@ -323,7 +323,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
   }
 }, v0 = class {
   constructor() {
-    b(this, "_strategy"), this._strategy = typeof requestAnimationFrame == "function" ? new f0() : new m0();
+    L(this, "_strategy"), this._strategy = typeof requestAnimationFrame == "function" ? new f0() : new m0();
   }
   requestAnimationFrame(h) {
     return this._strategy.requestAnimationFrame(h);
@@ -331,21 +331,21 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
   cancelAnimationFrame(h) {
     this._strategy.cancelAnimationFrame(h);
   }
-}, K = typeof window < "u" && typeof window.document < "u", S2 = new Uint8Array([80, 75, 3, 4]), p0 = ["v", "ip", "op", "layers", "fr", "w", "h"], c3 = "0.42.0", f3 = "@lottiefiles/dotlottie-web", _0 = 0.75, g0 = (() => {
+}, Q = typeof window < "u" && typeof window.document < "u", S2 = new Uint8Array([80, 75, 3, 4]), p0 = ["v", "ip", "op", "layers", "fr", "w", "h"], c3 = "0.42.0", f3 = "@lottiefiles/dotlottie-web", _0 = 0.75, g0 = (() => {
   var h, n = typeof document < "u" ? (h = document.currentScript) == null ? void 0 : h.src : void 0;
   return function(r = {}) {
     var l, s = r, p, M, w = new Promise((e, t) => {
       p = e, M = t;
-    }), x = Object.assign({}, s), k = "./this.program", D = "", $;
-    typeof document < "u" && document.currentScript && (D = document.currentScript.src), n && (D = n), D.startsWith("blob:") ? D = "" : D = D.substr(0, D.replace(/[?#].*/, "").lastIndexOf("/") + 1), $ = (e) => fetch(e, { credentials: "same-origin" }).then((t) => t.ok ? t.arrayBuffer() : Promise.reject(Error(t.status + " : " + t.url)));
-    var N = s.print || console.log.bind(console), B = s.printErr || console.error.bind(console);
-    Object.assign(s, x), x = null, s.thisProgram && (k = s.thisProgram);
-    var P = s.wasmBinary, A, J = !1, g1, c1, j, f1, V, o1, S, T, M1;
+    }), P = Object.assign({}, s), k = "./this.program", R = "", $;
+    typeof document < "u" && document.currentScript && (R = document.currentScript.src), n && (R = n), R.startsWith("blob:") ? R = "" : R = R.substr(0, R.replace(/[?#].*/, "").lastIndexOf("/") + 1), $ = (e) => fetch(e, { credentials: "same-origin" }).then((t) => t.ok ? t.arrayBuffer() : Promise.reject(Error(t.status + " : " + t.url)));
+    var U = s.print || console.log.bind(console), B = s.printErr || console.error.bind(console);
+    Object.assign(s, P), P = null, s.thisProgram && (k = s.thisProgram);
+    var F = s.wasmBinary, j, K = !1, g1, c1, A, f1, q, o1, S, T, M1;
     function S1() {
-      var e = A.buffer;
-      s.HEAP8 = c1 = new Int8Array(e), s.HEAP16 = f1 = new Int16Array(e), s.HEAPU8 = j = new Uint8Array(e), s.HEAPU16 = V = new Uint16Array(e), s.HEAP32 = o1 = new Int32Array(e), s.HEAPU32 = S = new Uint32Array(e), s.HEAPF32 = T = new Float32Array(e), s.HEAPF64 = M1 = new Float64Array(e);
+      var e = j.buffer;
+      s.HEAP8 = c1 = new Int8Array(e), s.HEAP16 = f1 = new Int16Array(e), s.HEAPU8 = A = new Uint8Array(e), s.HEAPU16 = q = new Uint16Array(e), s.HEAP32 = o1 = new Int32Array(e), s.HEAPU32 = S = new Uint32Array(e), s.HEAPF32 = T = new Float32Array(e), s.HEAPF64 = M1 = new Float64Array(e);
     }
-    var m1 = [], x1 = [], g = [];
+    var m1 = [], P1 = [], g = [];
     function y1() {
       var e = s.preRun.shift();
       m1.unshift(e);
@@ -353,38 +353,38 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     var s1 = 0, e1 = null;
     function l1(e) {
       var t;
-      throw (t = s.onAbort) == null || t.call(s, e), e = "Aborted(" + e + ")", B(e), J = !0, e = new WebAssembly.RuntimeError(e + ". Build with -sASSERTIONS for more info."), M(e), e;
+      throw (t = s.onAbort) == null || t.call(s, e), e = "Aborted(" + e + ")", B(e), K = !0, e = new WebAssembly.RuntimeError(e + ". Build with -sASSERTIONS for more info."), M(e), e;
     }
-    var E1 = (e) => e.startsWith("data:application/octet-stream;base64,"), P1;
+    var E1 = (e) => e.startsWith("data:application/octet-stream;base64,"), k1;
     function f(e) {
-      if (e == P1 && P) return new Uint8Array(P);
+      if (e == k1 && F) return new Uint8Array(F);
       throw "both async and sync fetching of the wasm failed";
     }
-    function L(e) {
-      return P ? Promise.resolve().then(() => f(e)) : $(e).then((t) => new Uint8Array(t), () => f(e));
+    function C(e) {
+      return F ? Promise.resolve().then(() => f(e)) : $(e).then((t) => new Uint8Array(t), () => f(e));
     }
-    function R(e, t, i) {
-      return L(e).then((a) => WebAssembly.instantiate(a, t)).then(i, (a) => {
+    function D(e, t, i) {
+      return C(e).then((a) => WebAssembly.instantiate(a, t)).then(i, (a) => {
         B(`failed to asynchronously prepare wasm: ${a}`), l1(a);
       });
     }
-    function G(e, t) {
-      var i = P1;
-      return P || typeof WebAssembly.instantiateStreaming != "function" || E1(i) || typeof fetch != "function" ? R(i, e, t) : fetch(i, { credentials: "same-origin" }).then((a) => WebAssembly.instantiateStreaming(a, e).then(t, function(o) {
-        return B(`wasm streaming compile failed: ${o}`), B("falling back to ArrayBuffer instantiation"), R(i, e, t);
+    function V(e, t) {
+      var i = k1;
+      return F || typeof WebAssembly.instantiateStreaming != "function" || E1(i) || typeof fetch != "function" ? D(i, e, t) : fetch(i, { credentials: "same-origin" }).then((a) => WebAssembly.instantiateStreaming(a, e).then(t, function(o) {
+        return B(`wasm streaming compile failed: ${o}`), B("falling back to ArrayBuffer instantiation"), D(i, e, t);
       }));
     }
     class v1 {
       constructor(t) {
-        b(this, "name", "ExitStatus"), this.message = `Program terminated with exit(${t})`, this.status = t;
+        L(this, "name", "ExitStatus"), this.message = `Program terminated with exit(${t})`, this.status = t;
       }
     }
     var t1 = (e) => {
       for (; 0 < e.length; ) e.shift()(s);
-    }, k1 = s.noExitRuntime || !0, A1 = typeof TextDecoder < "u" ? new TextDecoder() : void 0, W = (e, t = 0, i = NaN) => {
+    }, F1 = s.noExitRuntime || !0, j1 = typeof TextDecoder < "u" ? new TextDecoder() : void 0, W = (e, t = 0, i = NaN) => {
       var a = t + i;
       for (i = t; e[i] && !(i >= a); ) ++i;
-      if (16 < i - t && e.buffer && A1) return A1.decode(e.subarray(t, i));
+      if (16 < i - t && e.buffer && j1) return j1.decode(e.subarray(t, i));
       for (a = ""; t < i; ) {
         var o = e[t++];
         if (o & 128) {
@@ -398,7 +398,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       }
       return a;
     }, h1 = 0;
-    class j1 {
+    class A1 {
       constructor(t) {
         this.Ea = t - 24;
       }
@@ -406,7 +406,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     var l2 = () => {
       var e = [], t = h1;
       if (!t) return B1(0), 0;
-      var i = new j1(t);
+      var i = new A1(t);
       S[i.Ea + 16 >> 2] = t;
       var a = S[i.Ea + 4 >> 2];
       if (!a) return B1(0), t;
@@ -416,7 +416,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       }
       return B1(a), t;
     }, O1 = (e, t, i) => {
-      var a = j;
+      var a = A;
       if (0 < i) {
         i = t + i - 1;
         for (var o = 0; o < e.length; ++o) {
@@ -447,7 +447,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         }
         a[t] = 0;
       }
-    }, q1 = {}, h2 = (e) => {
+    }, Y1 = {}, h2 = (e) => {
       for (; e.length; ) {
         var t = e.pop();
         e.pop()(t);
@@ -456,7 +456,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     function $1(e) {
       return this.fromWireType(S[e >> 2]);
     }
-    var T1 = {}, F1 = {}, Q1 = {}, W1, I1 = (e, t, i) => {
+    var T1 = {}, x1 = {}, Q1 = {}, W1, I1 = (e, t, i) => {
       function a(d) {
         if (d = i(d), d.length !== e.length) throw new W1("Mismatched type converter count");
         for (var m = 0; m < e.length; ++m) p1(e[m], d[m]);
@@ -464,22 +464,22 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       e.forEach((d) => Q1[d] = t);
       var o = Array(t.length), u = [], c = 0;
       t.forEach((d, m) => {
-        F1.hasOwnProperty(d) ? o[m] = F1[d] : (u.push(d), T1.hasOwnProperty(d) || (T1[d] = []), T1[d].push(() => {
-          o[m] = F1[d], ++c, c === u.length && a(o);
+        x1.hasOwnProperty(d) ? o[m] = x1[d] : (u.push(d), T1.hasOwnProperty(d) || (T1[d] = []), T1[d].push(() => {
+          o[m] = x1[d], ++c, c === u.length && a(o);
         }));
       }), u.length === 0 && a(o);
-    }, D2, Y = (e) => {
-      for (var t = ""; j[e]; ) t += D2[j[e++]];
+    }, D2, G = (e) => {
+      for (var t = ""; A[e]; ) t += D2[A[e++]];
       return t;
     }, I;
     function _3(e, t, i = {}) {
       var a = t.name;
       if (!e) throw new I(`type "${a}" must have a positive integer typeid pointer`);
-      if (F1.hasOwnProperty(e)) {
+      if (x1.hasOwnProperty(e)) {
         if (i.kb) return;
         throw new I(`Cannot register type '${a}' twice`);
       }
-      F1[e] = t, delete Q1[e], T1.hasOwnProperty(e) && (t = T1[e], delete T1[e], t.forEach((o) => o()));
+      x1[e] = t, delete Q1[e], T1.hasOwnProperty(e) && (t = T1[e], delete T1[e], t.forEach((o) => o()));
     }
     function p1(e, t, i = {}) {
       return _3(e, t, i);
@@ -487,25 +487,25 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     var u2 = (e) => {
       throw new I(e.Da.Ga.Fa.name + " instance already deleted");
     }, d2 = !1, R2 = () => {
-    }, A2 = (e, t, i) => t === i ? e : i.Ja === void 0 ? null : (e = A2(e, t, i.Ja), e === null ? null : i.cb(e)), j2 = {}, g3 = {}, y3 = (e, t) => {
+    }, j2 = (e, t, i) => t === i ? e : i.Ja === void 0 ? null : (e = j2(e, t, i.Ja), e === null ? null : i.cb(e)), A2 = {}, g3 = {}, y3 = (e, t) => {
       if (t === void 0) throw new I("ptr should not be undefined");
       for (; e.Ja; ) t = e.Ta(t), e = e.Ja;
       return g3[t];
     }, K1 = (e, t) => {
       if (!t.Ga || !t.Ea) throw new W1("makeClassHandle requires ptr and ptrType");
       if (!!t.Ka != !!t.Ia) throw new W1("Both smartPtrType and smartPtr must be specified");
-      return t.count = { value: 1 }, z1(Object.create(e, { Da: { value: t, writable: !0 } }));
-    }, z1 = (e) => typeof FinalizationRegistry > "u" ? (z1 = (t) => t, e) : (d2 = new FinalizationRegistry((t) => {
+      return t.count = { value: 1 }, N1(Object.create(e, { Da: { value: t, writable: !0 } }));
+    }, N1 = (e) => typeof FinalizationRegistry > "u" ? (N1 = (t) => t, e) : (d2 = new FinalizationRegistry((t) => {
       t = t.Da, --t.count.value, t.count.value === 0 && (t.Ia ? t.Ka.Na(t.Ia) : t.Ga.Fa.Na(t.Ea));
-    }), z1 = (t) => {
+    }), N1 = (t) => {
       var i = t.Da;
       return i.Ia && d2.register(t, { Da: i }, t), t;
     }, R2 = (t) => {
       d2.unregister(t);
-    }, z1(e));
+    }, N1(e));
     function X1() {
     }
-    var U1 = (e, t) => Object.defineProperty(t, "name", { value: e }), T2 = (e, t, i) => {
+    var z1 = (e, t) => Object.defineProperty(t, "name", { value: e }), T2 = (e, t, i) => {
       if (e[t].Ha === void 0) {
         var a = e[t];
         e[t] = function(...o) {
@@ -524,7 +524,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       var t = e.charCodeAt(0);
       return 48 <= t && 57 >= t ? `_${e}` : e;
     };
-    function b3(e, t, i, a, o, u, c, d) {
+    function L3(e, t, i, a, o, u, c, d) {
       this.name = e, this.constructor = t, this.Pa = i, this.Na = a, this.Ja = o, this.fb = u, this.Ta = c, this.cb = d, this.mb = [];
     }
     var f2 = (e, t, i) => {
@@ -534,7 +534,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       }
       return e;
     };
-    function L3(e, t) {
+    function C3(e, t) {
       if (t === null) {
         if (this.Wa) throw new I(`null is not a valid ${this.name}`);
         return 0;
@@ -543,7 +543,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       if (!t.Da.Ea) throw new I(`Cannot pass deleted object as a pointer of type ${this.name}`);
       return f2(t.Da.Ea, t.Da.Ga.Fa, this.Fa);
     }
-    function C3(e, t) {
+    function b3(e, t) {
       if (t === null) {
         if (this.Wa) throw new I(`null is not a valid ${this.name}`);
         if (this.Va) {
@@ -588,24 +588,24 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       if (t.Da.Ga.Ua) throw new I(`Cannot convert argument of type ${t.Da.Ga.name} to parameter type ${this.name}`);
       return f2(t.Da.Ea, t.Da.Ga.Fa, this.Fa);
     }
-    function N1(e, t, i, a, o, u, c, d, m, v, _) {
-      this.name = e, this.Fa = t, this.Wa = i, this.Ua = a, this.Va = o, this.lb = u, this.rb = c, this.ab = d, this.Xa = m, this.nb = v, this.Na = _, o || t.Ja !== void 0 ? this.toWireType = C3 : (this.toWireType = a ? L3 : M3, this.Ma = null);
+    function U1(e, t, i, a, o, u, c, d, m, v, _) {
+      this.name = e, this.Fa = t, this.Wa = i, this.Ua = a, this.Va = o, this.lb = u, this.rb = c, this.ab = d, this.Xa = m, this.nb = v, this.Na = _, o || t.Ja !== void 0 ? this.toWireType = b3 : (this.toWireType = a ? C3 : M3, this.Ma = null);
     }
     var O2 = (e, t, i) => {
       if (!s.hasOwnProperty(e)) throw new W1("Replacing nonexistent public symbol");
       s[e].Ha !== void 0 && i !== void 0 ? s[e].Ha[i] = t : (s[e] = t, s[e].Qa = i);
     }, X, E3 = (e, t, i = []) => (e.includes("j") ? (e = e.replace(/p/g, "i"), t = (0, s["dynCall_" + e])(t, ...i)) : t = X.get(t)(...i), t), I3 = (e, t) => (...i) => E3(e, t, i), Z = (e, t) => {
-      e = Y(e);
+      e = G(e);
       var i = e.includes("j") ? I3(e, t) : X.get(t);
       if (typeof i != "function") throw new I(`unknown function pointer with signature ${e}: ${t}`);
       return i;
     }, $2, W2 = (e) => {
-      e = Y2(e);
-      var t = Y(e);
-      return C1(e), t;
+      e = J2(e);
+      var t = G(e);
+      return b1(e), t;
     }, Z1 = (e, t) => {
       function i(u) {
-        o[u] || F1[u] || (Q1[u] ? Q1[u].forEach(i) : (a.push(u), o[u] = !0));
+        o[u] || x1[u] || (Q1[u] ? Q1[u].forEach(i) : (a.push(u), o[u] = !0));
       }
       var a = [], o = {};
       throw t.forEach(i), new $2(`${e}: ` + a.map(W2).join([", "]));
@@ -620,30 +620,30 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     function v2(e, t, i, a, o) {
       var u = t.length;
       if (2 > u) throw new I("argTypes array size mismatch! Must at least get return value and 'this' types!");
-      var c = t[1] !== null && i !== null, d = S3(t), m = t[0].name !== "void", v = u - 2, _ = Array(v), C = [], F = [];
-      return U1(e, function(...u1) {
-        if (F.length = 0, C.length = c ? 2 : 1, C[0] = o, c) {
-          var U = t[1].toWireType(F, this);
-          C[1] = U;
+      var c = t[1] !== null && i !== null, d = S3(t), m = t[0].name !== "void", v = u - 2, _ = Array(v), b = [], x = [];
+      return z1(e, function(...u1) {
+        if (x.length = 0, b.length = c ? 2 : 1, b[0] = o, c) {
+          var z = t[1].toWireType(x, this);
+          b[1] = z;
         }
-        for (var H = 0; H < v; ++H) _[H] = t[H + 2].toWireType(F, u1[H]), C.push(_[H]);
-        if (u1 = a(...C), d) h2(F);
+        for (var H = 0; H < v; ++H) _[H] = t[H + 2].toWireType(x, u1[H]), b.push(_[H]);
+        if (u1 = a(...b), d) h2(x);
         else for (H = c ? 1 : 2; H < t.length; H++) {
-          var _1 = H === 1 ? U : _[H - 2];
+          var _1 = H === 1 ? z : _[H - 2];
           t[H].Ma !== null && t[H].Ma(_1);
         }
-        return U = m ? t[0].fromWireType(u1) : void 0, U;
+        return z = m ? t[0].fromWireType(u1) : void 0, z;
       });
     }
-    var z2 = (e) => {
+    var N2 = (e) => {
       e = e.trim();
       let t = e.indexOf("(");
       return t !== -1 ? e.substr(0, t) : e;
-    }, p2 = [], L1 = [], _2 = (e) => {
-      9 < e && --L1[e + 1] === 0 && (L1[e] = void 0, p2.push(e));
+    }, p2 = [], C1 = [], _2 = (e) => {
+      9 < e && --C1[e + 1] === 0 && (C1[e] = void 0, p2.push(e));
     }, g2 = (e) => {
       if (!e) throw new I("Cannot use deleted val. handle = " + e);
-      return L1[e];
+      return C1[e];
     }, e2 = (e) => {
       switch (e) {
         case void 0:
@@ -655,25 +655,25 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         case !1:
           return 8;
         default:
-          let t = p2.pop() || L1.length;
-          return L1[t] = e, L1[t + 1] = 1, t;
+          let t = p2.pop() || C1.length;
+          return C1[t] = e, C1[t + 1] = 1, t;
       }
-    }, U2 = { name: "emscripten::val", fromWireType: (e) => {
+    }, z2 = { name: "emscripten::val", fromWireType: (e) => {
       var t = g2(e);
       return _2(e), t;
-    }, toWireType: (e, t) => e2(t), La: 8, readValueFromPointer: $1, Ma: null }, x3 = (e, t, i) => {
+    }, toWireType: (e, t) => e2(t), La: 8, readValueFromPointer: $1, Ma: null }, P3 = (e, t, i) => {
       switch (t) {
         case 1:
           return i ? function(a) {
             return this.fromWireType(c1[a]);
           } : function(a) {
-            return this.fromWireType(j[a]);
+            return this.fromWireType(A[a]);
           };
         case 2:
           return i ? function(a) {
             return this.fromWireType(f1[a >> 1]);
           } : function(a) {
-            return this.fromWireType(V[a >> 1]);
+            return this.fromWireType(q[a >> 1]);
           };
         case 4:
           return i ? function(a) {
@@ -685,14 +685,14 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
           throw new TypeError(`invalid integer width (${t}): ${e}`);
       }
     }, y2 = (e, t) => {
-      var i = F1[e];
+      var i = x1[e];
       if (i === void 0) throw e = `${t} has unknown type ${W2(e)}`, new I(e);
       return i;
     }, w2 = (e) => {
       if (e === null) return "null";
       var t = typeof e;
       return t === "object" || t === "array" || t === "function" ? e.toString() : "" + e;
-    }, P3 = (e, t) => {
+    }, k3 = (e, t) => {
       switch (t) {
         case 4:
           return function(i) {
@@ -705,20 +705,20 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         default:
           throw new TypeError(`invalid float width (${t}): ${e}`);
       }
-    }, k3 = (e, t, i) => {
+    }, F3 = (e, t, i) => {
       switch (t) {
         case 1:
-          return i ? (a) => c1[a] : (a) => j[a];
+          return i ? (a) => c1[a] : (a) => A[a];
         case 2:
-          return i ? (a) => f1[a >> 1] : (a) => V[a >> 1];
+          return i ? (a) => f1[a >> 1] : (a) => q[a >> 1];
         case 4:
           return i ? (a) => o1[a >> 2] : (a) => S[a >> 2];
         default:
           throw new TypeError(`invalid integer width (${t}): ${e}`);
       }
-    }, F3 = Object.assign({ optional: !0 }, U2), N2 = typeof TextDecoder < "u" ? new TextDecoder("utf-16le") : void 0, D3 = (e, t) => {
-      for (var i = e >> 1, a = i + t / 2; !(i >= a) && V[i]; ) ++i;
-      if (i <<= 1, 32 < i - e && N2) return N2.decode(j.subarray(e, i));
+    }, x3 = Object.assign({ optional: !0 }, z2), U2 = typeof TextDecoder < "u" ? new TextDecoder("utf-16le") : void 0, D3 = (e, t) => {
+      for (var i = e >> 1, a = i + t / 2; !(i >= a) && q[i]; ) ++i;
+      if (i <<= 1, 32 < i - e && U2) return U2.decode(A.subarray(e, i));
       for (i = "", a = 0; !(a >= t / 2); ++a) {
         var o = f1[e + 2 * a >> 1];
         if (o == 0) break;
@@ -732,7 +732,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       i = i < 2 * e.length ? i / 2 : e.length;
       for (var o = 0; o < i; ++o) f1[t >> 1] = e.charCodeAt(o), t += 2;
       return f1[t >> 1] = 0, t - a;
-    }, A3 = (e) => 2 * e.length, j3 = (e, t) => {
+    }, j3 = (e) => 2 * e.length, A3 = (e, t) => {
       for (var i = 0, a = ""; !(i >= t / 4); ) {
         var o = o1[e + 4 * i >> 2];
         if (o == 0) break;
@@ -758,20 +758,20 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         55296 <= a && 57343 >= a && ++i, t += 4;
       }
       return t;
-    }, b2 = 0, L2 = [], $3 = (e) => {
-      var t = L2.length;
-      return L2.push(e), t;
+    }, L2 = 0, C2 = [], $3 = (e) => {
+      var t = C2.length;
+      return C2.push(e), t;
     }, W3 = (e, t) => {
       for (var i = Array(e), a = 0; a < e; ++a) i[a] = y2(S[t + 4 * a >> 2], "parameter " + a);
       return i;
-    }, z3 = Reflect.construct, H1 = {}, H2 = (e) => {
+    }, N3 = Reflect.construct, H1 = {}, H2 = (e) => {
       if (!(e instanceof v1 || e == "unwind")) throw e;
     }, B2 = (e) => {
       var t;
-      throw g1 = e, k1 || 0 < b2 || ((t = s.onExit) == null || t.call(s, e), J = !0), new v1(e);
-    }, U3 = (e) => {
-      if (!J) try {
-        if (e(), !(k1 || 0 < b2)) try {
+      throw g1 = e, F1 || 0 < L2 || ((t = s.onExit) == null || t.call(s, e), K = !0), new v1(e);
+    }, z3 = (e) => {
+      if (!K) try {
+        if (e(), !(F1 || 0 < L2)) try {
           g1 = e = g1, B2(e);
         } catch (t) {
           H2(t);
@@ -779,26 +779,26 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       } catch (t) {
         H2(t);
       }
-    }, C2 = {}, V2 = () => {
+    }, b2 = {}, q2 = () => {
       if (!M2) {
         var e = { USER: "web_user", LOGNAME: "web_user", PATH: "/", PWD: "/", HOME: "/home/web_user", LANG: (typeof navigator == "object" && navigator.languages && navigator.languages[0] || "C").replace("-", "_") + ".UTF-8", _: k || "./this.program" }, t;
-        for (t in C2) C2[t] === void 0 ? delete e[t] : e[t] = C2[t];
+        for (t in b2) b2[t] === void 0 ? delete e[t] : e[t] = b2[t];
         var i = [];
         for (t in e) i.push(`${t}=${e[t]}`);
         M2 = i;
       }
       return M2;
-    }, M2, N3 = [null, [], []], H3 = () => {
+    }, M2, U3 = [null, [], []], H3 = () => {
       if (typeof crypto == "object" && typeof crypto.getRandomValues == "function") return (e) => crypto.getRandomValues(e);
       l1("initRandomDevice");
-    }, G2 = (e) => (G2 = H3())(e);
+    }, V2 = (e) => (V2 = H3())(e);
     W1 = s.InternalError = class extends Error {
       constructor(e) {
         super(e), this.name = "InternalError";
       }
     };
-    for (var J2 = Array(256), t2 = 0; 256 > t2; ++t2) J2[t2] = String.fromCharCode(t2);
-    D2 = J2, I = s.BindingError = class extends Error {
+    for (var G2 = Array(256), t2 = 0; 256 > t2; ++t2) G2[t2] = String.fromCharCode(t2);
+    D2 = G2, I = s.BindingError = class extends Error {
       constructor(e) {
         super(e), this.name = "BindingError";
       }
@@ -812,7 +812,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       return t === a && i === e;
     }, clone: function() {
       if (this.Da.Ea || u2(this), this.Da.Sa) return this.Da.count.value += 1, this;
-      var e = z1, t = Object, i = t.create, a = Object.getPrototypeOf(this), o = this.Da;
+      var e = N1, t = Object, i = t.create, a = Object.getPrototypeOf(this), o = this.Da;
       return e = e(i.call(t, a, { Da: { value: { count: o.count, Ra: o.Ra, Sa: o.Sa, Ea: o.Ea, Ga: o.Ga, Ia: o.Ia, Ka: o.Ka } } })), e.Da.count.value += 1, e.Da.Ra = !1, e;
     }, delete() {
       if (this.Da.Ea || u2(this), this.Da.Ra && !this.Da.Sa) throw new I("Object already scheduled for deletion");
@@ -824,7 +824,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     }, deleteLater: function() {
       if (this.Da.Ea || u2(this), this.Da.Ra && !this.Da.Sa) throw new I("Object already scheduled for deletion");
       return this.Da.Ra = !0, this;
-    } }), Object.assign(N1.prototype, { gb(e) {
+    } }), Object.assign(U1.prototype, { gb(e) {
       return this.ab && (e = this.ab(e)), e;
     }, Za(e) {
       var t;
@@ -837,21 +837,21 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       if (!i) return this.Za(e), null;
       var a = y3(this.Fa, i);
       if (a !== void 0) return a.Da.count.value === 0 ? (a.Da.Ea = i, a.Da.Ia = e, a.clone()) : (a = a.clone(), this.Za(e), a);
-      if (a = this.Fa.fb(i), a = j2[a], !a) return t.call(this);
+      if (a = this.Fa.fb(i), a = A2[a], !a) return t.call(this);
       a = this.Ua ? a.bb : a.pointerType;
-      var o = A2(i, this.Fa, a.Fa);
+      var o = j2(i, this.Fa, a.Fa);
       return o === null ? t.call(this) : this.Va ? K1(a.Fa.Pa, { Ga: a, Ea: o, Ka: this, Ia: e }) : K1(a.Fa.Pa, { Ga: a, Ea: o });
     } }), $2 = s.UnboundTypeError = ((e, t) => {
-      var i = U1(t, function(a) {
+      var i = z1(t, function(a) {
         this.name = t, this.message = a, a = Error(a).stack, a !== void 0 && (this.stack = this.toString() + `
 ` + a.replace(/^Error(:[^\n]*)?\n/, ""));
       });
       return i.prototype = Object.create(e.prototype), i.prototype.constructor = i, i.prototype.toString = function() {
         return this.message === void 0 ? this.name : `${this.name}: ${this.message}`;
       }, i;
-    })(Error, "UnboundTypeError"), L1.push(0, 1, void 0, 1, null, 1, !0, 1, !1, 1), s.count_emval_handles = () => L1.length / 2 - 5 - p2.length;
-    var B3 = { c: (e, t, i, a) => l1(`Assertion failed: ${e ? W(j, e) : ""}, at: ` + [t ? t ? W(j, t) : "" : "unknown filename", i, a ? a ? W(j, a) : "" : "unknown function"]), d: () => l2(), p: (e, t, i) => {
-      var a = new j1(e);
+    })(Error, "UnboundTypeError"), C1.push(0, 1, void 0, 1, null, 1, !0, 1, !1, 1), s.count_emval_handles = () => C1.length / 2 - 5 - p2.length;
+    var B3 = { c: (e, t, i, a) => l1(`Assertion failed: ${e ? W(A, e) : ""}, at: ` + [t ? t ? W(A, t) : "" : "unknown filename", i, a ? a ? W(A, a) : "" : "unknown function"]), d: () => l2(), p: (e, t, i) => {
+      var a = new A1(e);
       throw S[a.Ea + 16 >> 2] = 0, S[a.Ea + 4 >> 2] = t, S[a.Ea + 8 >> 2] = i, h1 = e, h1;
     }, g: (e) => {
       throw h1 || (h1 = e), h1;
@@ -861,16 +861,16 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     }, U: function() {
     }, Q: () => {
     }, W: () => l1(""), z: (e) => {
-      var t = q1[e];
-      delete q1[e];
+      var t = Y1[e];
+      delete Y1[e];
       var i = t.Xa, a = t.Na, o = t.$a, u = o.map((c) => c.jb).concat(o.map((c) => c.pb));
       I1([e], u, (c) => {
         var d = {};
         return o.forEach((m, v) => {
-          var _ = c[v], C = m.hb, F = m.ib, u1 = c[v + o.length], U = m.ob, H = m.qb;
-          d[m.eb] = { read: (_1) => _.fromWireType(C(F, _1)), write: (_1, V1) => {
+          var _ = c[v], b = m.hb, x = m.ib, u1 = c[v + o.length], z = m.ob, H = m.qb;
+          d[m.eb] = { read: (_1) => _.fromWireType(b(x, _1)), write: (_1, q1) => {
             var d1 = [];
-            U(H, _1, u1.toWireType(d1, V1)), h2(d1);
+            z(H, _1, u1.toWireType(d1, q1)), h2(d1);
           } };
         }), [{ name: t.name, fromWireType: (m) => {
           var v = {}, _;
@@ -878,43 +878,43 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
           return a(m), v;
         }, toWireType: (m, v) => {
           for (var _ in d) if (!(_ in v)) throw new TypeError(`Missing field: "${_}"`);
-          var C = i();
-          for (_ in d) d[_].write(C, v[_]);
-          return m !== null && m.push(a, C), C;
+          var b = i();
+          for (_ in d) d[_].write(b, v[_]);
+          return m !== null && m.push(a, b), b;
         }, La: 8, readValueFromPointer: $1, Ma: a }];
       });
     }, H: () => {
     }, aa: (e, t, i, a) => {
-      t = Y(t), p1(e, { name: t, fromWireType: function(o) {
+      t = G(t), p1(e, { name: t, fromWireType: function(o) {
         return !!o;
       }, toWireType: function(o, u) {
         return u ? i : a;
       }, La: 8, readValueFromPointer: function(o) {
-        return this.fromWireType(j[o]);
+        return this.fromWireType(A[o]);
       }, Ma: null });
-    }, v: (e, t, i, a, o, u, c, d, m, v, _, C, F) => {
-      _ = Y(_), u = Z(o, u), d && (d = Z(c, d)), v && (v = Z(m, v)), F = Z(C, F);
+    }, v: (e, t, i, a, o, u, c, d, m, v, _, b, x) => {
+      _ = G(_), u = Z(o, u), d && (d = Z(c, d)), v && (v = Z(m, v)), x = Z(b, x);
       var u1 = w3(_);
       c2(u1, function() {
         Z1(`Cannot construct ${_} due to unbound types`, [a]);
-      }), I1([e, t, i], a ? [a] : [], (U) => {
-        if (U = U[0], a) var H = U.Fa, _1 = H.Pa;
+      }), I1([e, t, i], a ? [a] : [], (z) => {
+        if (z = z[0], a) var H = z.Fa, _1 = H.Pa;
         else _1 = X1.prototype;
-        U = U1(_, function(...I2) {
-          if (Object.getPrototypeOf(this) !== V1) throw new I("Use 'new' to construct " + _);
+        z = z1(_, function(...I2) {
+          if (Object.getPrototypeOf(this) !== q1) throw new I("Use 'new' to construct " + _);
           if (d1.Oa === void 0) throw new I(_ + " has no accessible constructor");
           var Z2 = d1.Oa[I2.length];
           if (Z2 === void 0) throw new I(`Tried to invoke ctor of ${_} with invalid number of parameters (${I2.length}) - expected (${Object.keys(d1.Oa).toString()}) parameters instead!`);
           return Z2.apply(this, I2);
         });
-        var V1 = Object.create(_1, { constructor: { value: U } });
-        U.prototype = V1;
-        var d1 = new b3(_, U, V1, F, H, u, d, v);
+        var q1 = Object.create(_1, { constructor: { value: z } });
+        z.prototype = q1;
+        var d1 = new L3(_, z, q1, x, H, u, d, v);
         if (d1.Ja) {
-          var G1;
-          (G1 = d1.Ja).Ya != null || (G1.Ya = []), d1.Ja.Ya.push(d1);
+          var V1;
+          (V1 = d1.Ja).Ya != null || (V1.Ya = []), d1.Ja.Ya.push(d1);
         }
-        return H = new N1(_, d1, !0, !1, !1), G1 = new N1(_ + "*", d1, !1, !1, !1), _1 = new N1(_ + " const*", d1, !1, !0, !1), j2[e] = { pointerType: G1, bb: _1 }, O2(u1, U), [H, G1, _1];
+        return H = new U1(_, d1, !0, !1, !1), V1 = new U1(_ + "*", d1, !1, !1, !1), _1 = new U1(_ + " const*", d1, !1, !0, !1), A2[e] = { pointerType: V1, bb: _1 }, O2(u1, z), [H, V1, _1];
       });
     }, t: (e, t, i, a, o, u) => {
       var c = m2(t, i);
@@ -928,35 +928,35 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       });
     }, h: (e, t, i, a, o, u, c, d) => {
       var m = m2(i, a);
-      t = Y(t), t = z2(t), u = Z(o, u), I1([], [e], (v) => {
+      t = G(t), t = N2(t), u = Z(o, u), I1([], [e], (v) => {
         function _() {
-          Z1(`Cannot call ${C} due to unbound types`, m);
+          Z1(`Cannot call ${b} due to unbound types`, m);
         }
         v = v[0];
-        var C = `${v.name}.${t}`;
+        var b = `${v.name}.${t}`;
         t.startsWith("@@") && (t = Symbol[t.substring(2)]), d && v.Fa.mb.push(t);
-        var F = v.Fa.Pa, u1 = F[t];
-        return u1 === void 0 || u1.Ha === void 0 && u1.className !== v.name && u1.Qa === i - 2 ? (_.Qa = i - 2, _.className = v.name, F[t] = _) : (T2(F, t, C), F[t].Ha[i - 2] = _), I1([], m, (U) => (U = v2(C, U, v, u, c), F[t].Ha === void 0 ? (U.Qa = i - 2, F[t] = U) : F[t].Ha[i - 2] = U, [])), [];
+        var x = v.Fa.Pa, u1 = x[t];
+        return u1 === void 0 || u1.Ha === void 0 && u1.className !== v.name && u1.Qa === i - 2 ? (_.Qa = i - 2, _.className = v.name, x[t] = _) : (T2(x, t, b), x[t].Ha[i - 2] = _), I1([], m, (z) => (z = v2(b, z, v, u, c), x[t].Ha === void 0 ? (z.Qa = i - 2, x[t] = z) : x[t].Ha[i - 2] = z, [])), [];
       });
-    }, $: (e) => p1(e, U2), B: (e, t, i, a) => {
+    }, $: (e) => p1(e, z2), B: (e, t, i, a) => {
       function o() {
       }
-      t = Y(t), o.values = {}, p1(e, { name: t, constructor: o, fromWireType: function(u) {
+      t = G(t), o.values = {}, p1(e, { name: t, constructor: o, fromWireType: function(u) {
         return this.constructor.values[u];
-      }, toWireType: (u, c) => c.value, La: 8, readValueFromPointer: x3(t, i, a), Ma: null }), c2(t, o);
+      }, toWireType: (u, c) => c.value, La: 8, readValueFromPointer: P3(t, i, a), Ma: null }), c2(t, o);
     }, n: (e, t, i) => {
       var a = y2(e, "enum");
-      t = Y(t), e = a.constructor, a = Object.create(a.constructor.prototype, { value: { value: i }, constructor: { value: U1(`${a.name}_${t}`, function() {
+      t = G(t), e = a.constructor, a = Object.create(a.constructor.prototype, { value: { value: i }, constructor: { value: z1(`${a.name}_${t}`, function() {
       }) } }), e.values[i] = a, e[t] = a;
     }, D: (e, t, i) => {
-      t = Y(t), p1(e, { name: t, fromWireType: (a) => a, toWireType: (a, o) => o, La: 8, readValueFromPointer: P3(t, i), Ma: null });
+      t = G(t), p1(e, { name: t, fromWireType: (a) => a, toWireType: (a, o) => o, La: 8, readValueFromPointer: k3(t, i), Ma: null });
     }, y: (e, t, i, a, o, u) => {
       var c = m2(t, i);
-      e = Y(e), e = z2(e), o = Z(a, o), c2(e, function() {
+      e = G(e), e = N2(e), o = Z(a, o), c2(e, function() {
         Z1(`Cannot call ${e} due to unbound types`, c);
       }, t - 1), I1([], c, (d) => (O2(e, v2(e, [d[0], null].concat(d.slice(1)), null, o, u), t - 1), []));
     }, o: (e, t, i, a, o) => {
-      if (t = Y(t), o === -1 && (o = 4294967295), o = (d) => d, a === 0) {
+      if (t = G(t), o === -1 && (o = 4294967295), o = (d) => d, a === 0) {
         var u = 32 - 8 * i;
         o = (d) => d << u >>> u;
       }
@@ -965,35 +965,35 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       } : function(d, m) {
         return m;
       };
-      p1(e, { name: t, fromWireType: o, toWireType: c, La: 8, readValueFromPointer: k3(t, i, a !== 0), Ma: null });
+      p1(e, { name: t, fromWireType: o, toWireType: c, La: 8, readValueFromPointer: F3(t, i, a !== 0), Ma: null });
     }, k: (e, t, i) => {
       function a(u) {
         return new o(c1.buffer, S[u + 4 >> 2], S[u >> 2]);
       }
       var o = [Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array][t];
-      i = Y(i), p1(e, { name: i, fromWireType: a, La: 8, readValueFromPointer: a }, { kb: !0 });
+      i = G(i), p1(e, { name: i, fromWireType: a, La: 8, readValueFromPointer: a }, { kb: !0 });
     }, x: (e) => {
-      p1(e, F3);
-    }, ga: (e, t, i, a, o, u, c, d, m, v, _, C) => {
-      i = Y(i), u = Z(o, u), d = Z(c, d), v = Z(m, v), C = Z(_, C), I1([e], [t], (F) => (F = F[0], [new N1(i, F.Fa, !1, !1, !0, F, a, u, d, v, C)]));
+      p1(e, x3);
+    }, ga: (e, t, i, a, o, u, c, d, m, v, _, b) => {
+      i = G(i), u = Z(o, u), d = Z(c, d), v = Z(m, v), b = Z(_, b), I1([e], [t], (x) => (x = x[0], [new U1(i, x.Fa, !1, !1, !0, x, a, u, d, v, b)]));
     }, E: (e, t) => {
-      t = Y(t);
+      t = G(t);
       var i = t === "std::string";
       p1(e, { name: t, fromWireType: function(a) {
         var o = S[a >> 2], u = a + 4;
         if (i) for (var c = u, d = 0; d <= o; ++d) {
           var m = u + d;
-          if (d == o || j[m] == 0) {
-            if (c = c ? W(j, c, m - c) : "", v === void 0) var v = c;
+          if (d == o || A[m] == 0) {
+            if (c = c ? W(A, c, m - c) : "", v === void 0) var v = c;
             else v += "\0", v += c;
             c = m + 1;
           }
         }
         else {
-          for (v = Array(o), d = 0; d < o; ++d) v[d] = String.fromCharCode(j[u + d]);
+          for (v = Array(o), d = 0; d < o; ++d) v[d] = String.fromCharCode(A[u + d]);
           v = v.join("");
         }
-        return C1(a), v;
+        return b1(a), v;
       }, toWireType: function(a, o) {
         o instanceof ArrayBuffer && (o = new Uint8Array(o));
         var u, c = typeof o == "string";
@@ -1006,59 +1006,59 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         if (d = E2(4 + u + 1), m = d + 4, S[d >> 2] = u, i && c) O1(o, m, u + 1);
         else if (c) for (c = 0; c < u; ++c) {
           var v = o.charCodeAt(c);
-          if (255 < v) throw C1(m), new I("String has UTF-16 code units that do not fit in 8 bits");
-          j[m + c] = v;
+          if (255 < v) throw b1(m), new I("String has UTF-16 code units that do not fit in 8 bits");
+          A[m + c] = v;
         }
-        else for (c = 0; c < u; ++c) j[m + c] = o[c];
-        return a !== null && a.push(C1, d), d;
+        else for (c = 0; c < u; ++c) A[m + c] = o[c];
+        return a !== null && a.push(b1, d), d;
       }, La: 8, readValueFromPointer: $1, Ma(a) {
-        C1(a);
+        b1(a);
       } });
     }, w: (e, t, i) => {
-      if (i = Y(i), t === 2) var a = D3, o = R3, u = A3, c = (d) => V[d >> 1];
-      else t === 4 && (a = j3, o = T3, u = O3, c = (d) => S[d >> 2]);
+      if (i = G(i), t === 2) var a = D3, o = R3, u = j3, c = (d) => q[d >> 1];
+      else t === 4 && (a = A3, o = T3, u = O3, c = (d) => S[d >> 2]);
       p1(e, { name: i, fromWireType: (d) => {
-        for (var m = S[d >> 2], v, _ = d + 4, C = 0; C <= m; ++C) {
-          var F = d + 4 + C * t;
-          (C == m || c(F) == 0) && (_ = a(_, F - _), v === void 0 ? v = _ : (v += "\0", v += _), _ = F + t);
+        for (var m = S[d >> 2], v, _ = d + 4, b = 0; b <= m; ++b) {
+          var x = d + 4 + b * t;
+          (b == m || c(x) == 0) && (_ = a(_, x - _), v === void 0 ? v = _ : (v += "\0", v += _), _ = x + t);
         }
-        return C1(d), v;
+        return b1(d), v;
       }, toWireType: (d, m) => {
         if (typeof m != "string") throw new I(`Cannot pass non-string to C++ string type ${i}`);
         var v = u(m), _ = E2(4 + v + t);
-        return S[_ >> 2] = v / t, o(m, _ + 4, v + t), d !== null && d.push(C1, _), _;
+        return S[_ >> 2] = v / t, o(m, _ + 4, v + t), d !== null && d.push(b1, _), _;
       }, La: 8, readValueFromPointer: $1, Ma(d) {
-        C1(d);
+        b1(d);
       } });
     }, A: (e, t, i, a, o, u) => {
-      q1[e] = { name: Y(t), Xa: Z(i, a), Na: Z(o, u), $a: [] };
+      Y1[e] = { name: G(t), Xa: Z(i, a), Na: Z(o, u), $a: [] };
     }, m: (e, t, i, a, o, u, c, d, m, v) => {
-      q1[e].$a.push({ eb: Y(t), jb: i, hb: Z(a, o), ib: u, pb: c, ob: Z(d, m), qb: v });
+      Y1[e].$a.push({ eb: G(t), jb: i, hb: Z(a, o), ib: u, pb: c, ob: Z(d, m), qb: v });
     }, ba: (e, t) => {
-      t = Y(t), p1(e, { sb: !0, name: t, La: 0, fromWireType: () => {
+      t = G(t), p1(e, { sb: !0, name: t, La: 0, fromWireType: () => {
       }, toWireType: () => {
       } });
     }, M: () => {
-      k1 = !1, b2 = 0;
+      F1 = !1, L2 = 0;
     }, I: () => {
       throw 1 / 0;
-    }, ea: (e, t, i, a) => (e = L2[e], t = g2(t), e(null, t, i, a)), F: _2, da: (e, t, i) => {
+    }, ea: (e, t, i, a) => (e = C2[e], t = g2(t), e(null, t, i, a)), F: _2, da: (e, t, i) => {
       var a = W3(e, t), o = a.shift();
       e--;
       var u = Array(e);
-      return t = `methodCaller<(${a.map((c) => c.name).join(", ")}) => ${o.name}>`, $3(U1(t, (c, d, m, v) => {
-        for (var _ = 0, C = 0; C < e; ++C) u[C] = a[C].readValueFromPointer(v + _), _ += a[C].La;
-        return d = i === 1 ? z3(d, u) : d.apply(c, u), c = [], d = o.toWireType(c, d), c.length && (S[m >> 2] = e2(c)), d;
+      return t = `methodCaller<(${a.map((c) => c.name).join(", ")}) => ${o.name}>`, $3(z1(t, (c, d, m, v) => {
+        for (var _ = 0, b = 0; b < e; ++b) u[b] = a[b].readValueFromPointer(v + _), _ += a[b].La;
+        return d = i === 1 ? N3(d, u) : d.apply(c, u), c = [], d = o.toWireType(c, d), c.length && (S[m >> 2] = e2(c)), d;
       }));
     }, fa: (e) => {
-      9 < e && (L1[e + 1] += 1);
+      9 < e && (C1[e + 1] += 1);
     }, ca: (e) => {
       var t = g2(e);
       h2(t), _2(e);
     }, r: (e, t) => (e = y2(e, "_emval_take_value"), e = e.readValueFromPointer(t), e2(e)), J: (e, t) => {
       if (H1[e] && (clearTimeout(H1[e].id), delete H1[e]), !t) return 0;
       var i = setTimeout(() => {
-        delete H1[e], U3(() => q2(e, performance.now()));
+        delete H1[e], z3(() => Y2(e, performance.now()));
       }, t);
       return H1[e] = { id: i, tb: t }, 0;
     }, K: (e, t, i, a) => {
@@ -1068,15 +1068,15 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         return `UTC${0 <= c ? "-" : "+"}${String(Math.floor(d / 60)).padStart(2, "0")}${String(d % 60).padStart(2, "0")}`;
       }, e = t(u), t = t(o), o < u ? (O1(e, i, 17), O1(t, a, 17)) : (O1(e, a, 17), O1(t, i, 17));
     }, ha: () => performance.now(), L: (e) => {
-      var t = j.length;
+      var t = A.length;
       if (e >>>= 0, 2147483648 < e) return !1;
       for (var i = 1; 4 >= i; i *= 2) {
         var a = t * (1 + 0.2 / i);
         a = Math.min(a, e + 100663296);
         e: {
-          a = (Math.min(2147483648, 65536 * Math.ceil(Math.max(e, a) / 65536)) - A.buffer.byteLength + 65535) / 65536 | 0;
+          a = (Math.min(2147483648, 65536 * Math.ceil(Math.max(e, a) / 65536)) - j.buffer.byteLength + 65535) / 65536 | 0;
           try {
-            A.grow(a), S1();
+            j.grow(a), S1();
             var o = 1;
             break e;
           } catch {
@@ -1088,13 +1088,13 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       return !1;
     }, Y: (e, t) => {
       var i = 0;
-      return V2().forEach((a, o) => {
+      return q2().forEach((a, o) => {
         var u = t + i;
         for (o = S[e + 4 * o >> 2] = u, u = 0; u < a.length; ++u) c1[o++] = a.charCodeAt(u);
         c1[o] = 0, i += a.length + 1;
       }), 0;
     }, Z: (e, t) => {
-      var i = V2();
+      var i = q2();
       S[e >> 2] = i.length;
       var a = 0;
       return i.forEach((o) => a += o.length + 1), S[t >> 2] = a, 0;
@@ -1103,17 +1103,17 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         var c = S[t >> 2], d = S[t + 4 >> 2];
         t += 8;
         for (var m = 0; m < d; m++) {
-          var v = e, _ = j[c + m], C = N3[v];
-          _ === 0 || _ === 10 ? ((v === 1 ? N : B)(W(C)), C.length = 0) : C.push(_);
+          var v = e, _ = A[c + m], b = U3[v];
+          _ === 0 || _ === 10 ? ((v === 1 ? U : B)(W(b)), b.length = 0) : b.push(_);
         }
         o += d;
       }
       return S[a >> 2] = o, 0;
-    }, j: Q3, f: t0, e: e0, _: G3, s: n0, C: Z3, u: q3, b: V3, a: J3, i: Y3, l: X3, q: K3, G: r0, X: B2, N: (e, t) => (G2(j.subarray(e, e + t)), 0) }, O = function() {
+    }, j: Q3, f: t0, e: e0, _: V3, s: n0, C: Z3, u: Y3, b: q3, a: G3, i: J3, l: X3, q: K3, G: r0, X: B2, N: (e, t) => (V2(A.subarray(e, e + t)), 0) }, O = function() {
       var e;
       function t(a) {
         var o;
-        return O = a.exports, A = O.ia, S1(), X = O.na, x1.unshift(O.ja), s1--, (o = s.monitorRunDependencies) == null || o.call(s, s1), s1 == 0 && e1 && (a = e1, e1 = null, a()), O;
+        return O = a.exports, j = O.ia, S1(), X = O.na, P1.unshift(O.ja), s1--, (o = s.monitorRunDependencies) == null || o.call(s, s1), s1 == 0 && e1 && (a = e1, e1 = null, a()), O;
       }
       s1++, (e = s.monitorRunDependencies) == null || e.call(s, s1);
       var i = { a: B3 };
@@ -1122,14 +1122,14 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       } catch (a) {
         B(`Module.instantiateWasm callback failed with error: ${a}`), M(a);
       }
-      return P1 != null || (P1 = E1("DotLottiePlayer.wasm") ? "DotLottiePlayer.wasm" : s.locateFile ? s.locateFile("DotLottiePlayer.wasm", D) : D + "DotLottiePlayer.wasm"), G(i, function(a) {
+      return k1 != null || (k1 = E1("DotLottiePlayer.wasm") ? "DotLottiePlayer.wasm" : s.locateFile ? s.locateFile("DotLottiePlayer.wasm", R) : R + "DotLottiePlayer.wasm"), V(i, function(a) {
         t(a.instance);
       }).catch(M), {};
-    }(), E2 = (e) => (E2 = O.ka)(e), Y2 = (e) => (Y2 = O.la)(e), C1 = (e) => (C1 = O.ma)(e), q2 = (e, t) => (q2 = O.oa)(e, t), n1 = (e, t) => (n1 = O.pa)(e, t), B1 = (e) => (B1 = O.qa)(e), r1 = (e) => (r1 = O.ra)(e), i1 = () => (i1 = O.sa)(), Q2 = (e, t, i) => (Q2 = O.ta)(e, t, i);
+    }(), E2 = (e) => (E2 = O.ka)(e), J2 = (e) => (J2 = O.la)(e), b1 = (e) => (b1 = O.ma)(e), Y2 = (e, t) => (Y2 = O.oa)(e, t), n1 = (e, t) => (n1 = O.pa)(e, t), B1 = (e) => (B1 = O.qa)(e), r1 = (e) => (r1 = O.ra)(e), i1 = () => (i1 = O.sa)(), Q2 = (e, t, i) => (Q2 = O.ta)(e, t, i);
     s.dynCall_iijj = (e, t, i, a, o, u) => (s.dynCall_iijj = O.ua)(e, t, i, a, o, u), s.dynCall_vijj = (e, t, i, a, o, u) => (s.dynCall_vijj = O.va)(e, t, i, a, o, u), s.dynCall_jiii = (e, t, i, a) => (s.dynCall_jiii = O.wa)(e, t, i, a);
     var K2 = s.dynCall_vijjjj = (e, t, i, a, o, u, c, d, m, v) => (K2 = s.dynCall_vijjjj = O.xa)(e, t, i, a, o, u, c, d, m, v);
     s.dynCall_jii = (e, t, i) => (s.dynCall_jii = O.ya)(e, t, i), s.dynCall_viijii = (e, t, i, a, o, u, c) => (s.dynCall_viijii = O.za)(e, t, i, a, o, u, c), s.dynCall_iiiiij = (e, t, i, a, o, u, c) => (s.dynCall_iiiiij = O.Aa)(e, t, i, a, o, u, c), s.dynCall_iiiiijj = (e, t, i, a, o, u, c, d, m) => (s.dynCall_iiiiijj = O.Ba)(e, t, i, a, o, u, c, d, m), s.dynCall_iiiiiijj = (e, t, i, a, o, u, c, d, m, v) => (s.dynCall_iiiiiijj = O.Ca)(e, t, i, a, o, u, c, d, m, v);
-    function V3(e, t) {
+    function q3(e, t) {
       var i = i1();
       try {
         X.get(e)(t);
@@ -1138,7 +1138,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         n1(1, 0);
       }
     }
-    function G3(e, t, i, a, o) {
+    function V3(e, t, i, a, o) {
       var u = i1();
       try {
         return X.get(e)(t, i, a, o);
@@ -1147,7 +1147,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         n1(1, 0);
       }
     }
-    function J3(e, t, i) {
+    function G3(e, t, i) {
       var a = i1();
       try {
         X.get(e)(t, i);
@@ -1156,7 +1156,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         n1(1, 0);
       }
     }
-    function Y3(e, t, i, a) {
+    function J3(e, t, i, a) {
       var o = i1();
       try {
         X.get(e)(t, i, a);
@@ -1165,7 +1165,7 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
         n1(1, 0);
       }
     }
-    function q3(e) {
+    function Y3(e) {
       var t = i1();
       try {
         X.get(e)();
@@ -1241,8 +1241,8 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
       var _ = i1();
       try {
         K2(e, t, i, a, o, u, c, d, m, v);
-      } catch (C) {
-        if (r1(_), C !== C + 0) throw C;
+      } catch (b) {
+        if (r1(_), b !== b + 0) throw b;
         n1(1, 0);
       }
     }
@@ -1253,8 +1253,8 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     function X2() {
       function e() {
         var t;
-        if (!n2 && (n2 = !0, s.calledRun = !0, !J)) {
-          if (t1(x1), p(s), (t = s.onRuntimeInitialized) == null || t.call(s), s.postRun) for (typeof s.postRun == "function" && (s.postRun = [s.postRun]); s.postRun.length; ) {
+        if (!n2 && (n2 = !0, s.calledRun = !0, !K)) {
+          if (t1(P1), p(s), (t = s.onRuntimeInitialized) == null || t.call(s), s.postRun) for (typeof s.postRun == "function" && (s.postRun = [s.postRun]); s.postRun.length; ) {
             var i = s.postRun.shift();
             g.unshift(i);
           }
@@ -1302,10 +1302,10 @@ var y = h0(), u0 = Object.defineProperty, d0 = Object.defineProperties, c0 = Obj
     h !== this._wasmURL && (this._wasmURL = h, this._ModulePromise = null);
   }
 };
-b(s2, "_ModulePromise", null), b(s2, "_wasmURL", `https://cdn.jsdelivr.net/npm/${f3}@${c3}/dist/dotlottie-player.wasm`);
+L(s2, "_ModulePromise", null), L(s2, "_wasmURL", `https://cdn.jsdelivr.net/npm/${f3}@${c3}/dist/dotlottie-player.wasm`);
 var m3 = class {
   constructor() {
-    b(this, "_eventListeners", /* @__PURE__ */ new Map());
+    L(this, "_eventListeners", /* @__PURE__ */ new Map());
   }
   addEventListener(h, n) {
     let r = this._eventListeners.get(h);
@@ -1342,8 +1342,8 @@ var m3 = class {
     (n = this._observer) == null || n.unobserve(h), this._observedCanvases.delete(h), this._observedCanvases.size === 0 && ((r = this._observer) == null || r.disconnect(), this._observer = null);
   }
 };
-b(w1, "_observer", null), b(w1, "_observedCanvases", /* @__PURE__ */ new Map());
-var b1 = class {
+L(w1, "_observer", null), L(w1, "_observedCanvases", /* @__PURE__ */ new Map());
+var L1 = class {
   static _initializeObserver() {
     if (this._observer) return;
     let h = (n) => {
@@ -1369,11 +1369,11 @@ var b1 = class {
     (n = this._observer) == null || n.unobserve(h), this._observedCanvases.delete(h), this._observedCanvases.size === 0 && ((r = this._observer) == null || r.disconnect(), this._observer = null);
   }
 };
-b(b1, "_observer", null), b(b1, "_observedCanvases", /* @__PURE__ */ new Map());
+L(L1, "_observer", null), L(L1, "_observedCanvases", /* @__PURE__ */ new Map());
 function w0(h) {
   return /^#([\da-f]{6}|[\da-f]{8})$/iu.test(h);
 }
-function b0(h) {
+function L0(h) {
   if (!w0(h)) return 0;
   let n = h.replace("#", "");
   return n = n.length === 6 ? `${n}ff` : n, parseInt(n, 16);
@@ -1396,28 +1396,28 @@ function a3(h) {
   else return i3(h);
 }
 function R1() {
-  return 1 + ((K ? window.devicePixelRatio : 1) - 1) * _0;
+  return 1 + ((Q ? window.devicePixelRatio : 1) - 1) * _0;
 }
 function v3(h) {
   let n = h.getBoundingClientRect();
   return n.top >= 0 && n.left >= 0 && n.bottom <= (window.innerHeight || document.documentElement.clientHeight) && n.right <= (window.innerWidth || document.documentElement.clientWidth);
 }
-var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bounce : h === "reverse-bounce" ? n.Mode.ReverseBounce : n.Mode.Forward, L0 = (h, n) => h === "contain" ? n.Fit.Contain : h === "cover" ? n.Fit.Cover : h === "fill" ? n.Fit.Fill : h === "fit-height" ? n.Fit.FitHeight : h === "fit-width" ? n.Fit.FitWidth : n.Fit.None, C0 = (h, n) => {
+var P2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bounce : h === "reverse-bounce" ? n.Mode.ReverseBounce : n.Mode.Forward, C0 = (h, n) => h === "contain" ? n.Fit.Contain : h === "cover" ? n.Fit.Cover : h === "fill" ? n.Fit.Fill : h === "fit-height" ? n.Fit.FitHeight : h === "fit-width" ? n.Fit.FitWidth : n.Fit.None, b0 = (h, n) => {
   let r = new n.VectorFloat();
   return r.push_back(h[0]), r.push_back(h[1]), r;
-}, P2 = (h, n) => {
+}, k2 = (h, n) => {
   let r = new n.VectorFloat();
   return h.length !== 2 || (r.push_back(h[0]), r.push_back(h[1])), r;
-}, k2 = (h, n) => {
+}, F2 = (h, n) => {
   var r, l;
-  return h ? { align: C0((r = h.align) != null ? r : [0.5, 0.5], n), fit: L0((l = h.fit) != null ? l : "contain", n) } : n.createDefaultLayout();
-}, p3 = class z {
+  return h ? { align: b0((r = h.align) != null ? r : [0.5, 0.5], n), fit: C0((l = h.fit) != null ? l : "contain", n) } : n.createDefaultLayout();
+}, p3 = class N {
   constructor(n) {
-    b(this, "_canvas"), b(this, "_context", null), b(this, "_eventManager"), b(this, "_animationFrameId", null), b(this, "_frameManager"), b(this, "_dotLottieCore", null), b(this, "_renderConfig", {}), b(this, "_isFrozen", !1), b(this, "_backgroundColor", null), b(this, "_pointerUpMethod"), b(this, "_pointerDownMethod"), b(this, "_pointerMoveMethod"), b(this, "_pointerEnterMethod"), b(this, "_pointerExitMethod");
+    L(this, "_canvas"), L(this, "_context", null), L(this, "_eventManager"), L(this, "_animationFrameId", null), L(this, "_frameManager"), L(this, "_dotLottieCore", null), L(this, "_renderConfig", {}), L(this, "_isFrozen", !1), L(this, "_backgroundColor", null), L(this, "_pointerUpMethod"), L(this, "_pointerDownMethod"), L(this, "_pointerMoveMethod"), L(this, "_pointerEnterMethod"), L(this, "_pointerExitMethod");
     var r, l, s;
-    this._canvas = n.canvas, this._context = this._canvas.getContext("2d"), this._eventManager = new m3(), this._frameManager = new v0(), this._renderConfig = a1(Q({}, n.renderConfig), { devicePixelRatio: ((r = n.renderConfig) == null ? void 0 : r.devicePixelRatio) || R1(), freezeOnOffscreen: (s = (l = n.renderConfig) == null ? void 0 : l.freezeOnOffscreen) != null ? s : !0 }), s2.load().then((p) => {
-      var M, w, x, k, D, $, N, B;
-      z._wasmModule = p, this._dotLottieCore = new p.DotLottiePlayer({ themeId: (M = n.themeId) != null ? M : "", autoplay: (w = n.autoplay) != null ? w : !1, backgroundColor: 0, loopAnimation: (x = n.loop) != null ? x : !1, mode: x2((k = n.mode) != null ? k : "forward", p), segment: P2((D = n.segment) != null ? D : [], p), speed: ($ = n.speed) != null ? $ : 1, useFrameInterpolation: (N = n.useFrameInterpolation) != null ? N : !0, marker: (B = n.marker) != null ? B : "", layout: k2(n.layout, p) }), this._eventManager.dispatch({ type: "ready" }), n.data ? this._loadFromData(n.data) : n.src && this._loadFromSrc(n.src), n.backgroundColor && this.setBackgroundColor(n.backgroundColor);
+    this._canvas = n.canvas, this._context = this._canvas.getContext("2d"), this._eventManager = new m3(), this._frameManager = new v0(), this._renderConfig = a1(Y({}, n.renderConfig), { devicePixelRatio: ((r = n.renderConfig) == null ? void 0 : r.devicePixelRatio) || R1(), freezeOnOffscreen: (s = (l = n.renderConfig) == null ? void 0 : l.freezeOnOffscreen) != null ? s : !0 }), s2.load().then((p) => {
+      var M, w, P, k, R, $, U, B;
+      N._wasmModule = p, this._dotLottieCore = new p.DotLottiePlayer({ themeId: (M = n.themeId) != null ? M : "", autoplay: (w = n.autoplay) != null ? w : !1, backgroundColor: 0, loopAnimation: (P = n.loop) != null ? P : !1, mode: P2((k = n.mode) != null ? k : "forward", p), segment: k2((R = n.segment) != null ? R : [], p), speed: ($ = n.speed) != null ? $ : 1, useFrameInterpolation: (U = n.useFrameInterpolation) != null ? U : !0, marker: (B = n.marker) != null ? B : "", layout: F2(n.layout, p) }), this._eventManager.dispatch({ type: "ready" }), n.data ? this._loadFromData(n.data) : n.src && this._loadFromSrc(n.src), n.backgroundColor && this.setBackgroundColor(n.backgroundColor);
     }).catch((p) => {
       this._eventManager.dispatch({ type: "loadError", error: new Error(`Failed to load wasm module: ${p}`) });
     }), this._pointerUpMethod = this._onPointerUp.bind(this), this._pointerDownMethod = this._onPointerDown.bind(this), this._pointerMoveMethod = this._onPointerMove.bind(this), this._pointerEnterMethod = this._onPointerEnter.bind(this), this._pointerExitMethod = this._onPointerLeave.bind(this);
@@ -1462,7 +1462,7 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
           Received: ${typeof n}`);
       return;
     }
-    s ? (this._eventManager.dispatch({ type: "load" }), K && this.resize(), this._eventManager.dispatch({ type: "frame", currentFrame: this.currentFrame }), this._render(), this._dotLottieCore.config().autoplay && (this._dotLottieCore.play(), this._dotLottieCore.isPlaying() ? (this._eventManager.dispatch({ type: "play" }), this._animationFrameId = this._frameManager.requestAnimationFrame(this._draw.bind(this))) : console.error("something went wrong, the animation was suppose to autoplay")), K && this._canvas instanceof HTMLCanvasElement && (this._renderConfig.freezeOnOffscreen && w1.observe(this._canvas, this), this._renderConfig.autoResize && b1.observe(this._canvas, this))) : this._dispatchError("Failed to load animation data");
+    s ? (this._eventManager.dispatch({ type: "load" }), Q && this.resize(), this._eventManager.dispatch({ type: "frame", currentFrame: this.currentFrame }), this._render(), this._dotLottieCore.config().autoplay && (this._dotLottieCore.play(), this._dotLottieCore.isPlaying() ? (this._eventManager.dispatch({ type: "play" }), this._animationFrameId = this._frameManager.requestAnimationFrame(this._draw.bind(this))) : console.error("something went wrong, the animation was suppose to autoplay")), Q && this._canvas instanceof HTMLCanvasElement && (this._renderConfig.freezeOnOffscreen && w1.observe(this._canvas, this), this._renderConfig.autoResize && L1.observe(this._canvas, this))) : this._dispatchError("Failed to load animation data");
   }
   _loadFromSrc(n) {
     this._fetchData(n).then((r) => this._loadFromData(r)).catch((r) => this._dispatchError(`Failed to load animation data from URL: ${n}. ${r}`));
@@ -1479,19 +1479,19 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     var n;
     let r = (n = this._dotLottieCore) == null ? void 0 : n.config().layout;
     if (r) return { align: [r.align.get(0), r.align.get(1)], fit: (() => {
-      var l, s, p, M, w, x;
+      var l, s, p, M, w, P;
       switch (r.fit) {
-        case ((l = z._wasmModule) == null ? void 0 : l.Fit.Contain):
+        case ((l = N._wasmModule) == null ? void 0 : l.Fit.Contain):
           return "contain";
-        case ((s = z._wasmModule) == null ? void 0 : s.Fit.Cover):
+        case ((s = N._wasmModule) == null ? void 0 : s.Fit.Cover):
           return "cover";
-        case ((p = z._wasmModule) == null ? void 0 : p.Fit.Fill):
+        case ((p = N._wasmModule) == null ? void 0 : p.Fit.Fill):
           return "fill";
-        case ((M = z._wasmModule) == null ? void 0 : M.Fit.FitHeight):
+        case ((M = N._wasmModule) == null ? void 0 : M.Fit.FitHeight):
           return "fit-height";
-        case ((w = z._wasmModule) == null ? void 0 : w.Fit.FitWidth):
+        case ((w = N._wasmModule) == null ? void 0 : w.Fit.FitWidth):
           return "fit-width";
-        case ((x = z._wasmModule) == null ? void 0 : x.Fit.None):
+        case ((P = N._wasmModule) == null ? void 0 : P.Fit.None):
           return "none";
         default:
           return "contain";
@@ -1528,7 +1528,7 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
   get mode() {
     var n, r, l, s;
     let p = (n = this._dotLottieCore) == null ? void 0 : n.config().mode;
-    return p === ((r = z._wasmModule) == null ? void 0 : r.Mode.Reverse) ? "reverse" : p === ((l = z._wasmModule) == null ? void 0 : l.Mode.Bounce) ? "bounce" : p === ((s = z._wasmModule) == null ? void 0 : s.Mode.ReverseBounce) ? "reverse-bounce" : "forward";
+    return p === ((r = N._wasmModule) == null ? void 0 : r.Mode.Reverse) ? "reverse" : p === ((l = N._wasmModule) == null ? void 0 : l.Mode.Bounce) ? "bounce" : p === ((s = N._wasmModule) == null ? void 0 : s.Mode.ReverseBounce) ? "reverse-bounce" : "forward";
   }
   get isFrozen() {
     return this._isFrozen;
@@ -1591,8 +1591,8 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     return this._canvas;
   }
   load(n) {
-    var r, l, s, p, M, w, x, k, D;
-    this._dotLottieCore === null || z._wasmModule === null || (this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null), this._isFrozen = !1, this._dotLottieCore.setConfig({ themeId: (r = n.themeId) != null ? r : "", autoplay: (l = n.autoplay) != null ? l : !1, backgroundColor: 0, loopAnimation: (s = n.loop) != null ? s : !1, mode: x2((p = n.mode) != null ? p : "forward", z._wasmModule), segment: P2((M = n.segment) != null ? M : [], z._wasmModule), speed: (w = n.speed) != null ? w : 1, useFrameInterpolation: (x = n.useFrameInterpolation) != null ? x : !0, marker: (k = n.marker) != null ? k : "", layout: k2(n.layout, z._wasmModule) }), n.data ? this._loadFromData(n.data) : n.src && this._loadFromSrc(n.src), this.setBackgroundColor((D = n.backgroundColor) != null ? D : ""));
+    var r, l, s, p, M, w, P, k, R;
+    this._dotLottieCore === null || N._wasmModule === null || (this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null), this._isFrozen = !1, this._dotLottieCore.setConfig({ themeId: (r = n.themeId) != null ? r : "", autoplay: (l = n.autoplay) != null ? l : !1, backgroundColor: 0, loopAnimation: (s = n.loop) != null ? s : !1, mode: P2((p = n.mode) != null ? p : "forward", N._wasmModule), segment: k2((M = n.segment) != null ? M : [], N._wasmModule), speed: (w = n.speed) != null ? w : 1, useFrameInterpolation: (P = n.useFrameInterpolation) != null ? P : !0, marker: (k = n.marker) != null ? k : "", layout: F2(n.layout, N._wasmModule) }), n.data ? this._loadFromData(n.data) : n.src && this._loadFromSrc(n.src), this.setBackgroundColor((R = n.backgroundColor) != null ? R : ""));
   }
   _render() {
     if (this._dotLottieCore === null || this._context === null) return !1;
@@ -1616,7 +1616,7 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     }
   }
   play() {
-    this._dotLottieCore !== null && (this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null), (this._dotLottieCore.play() || this._dotLottieCore.isPlaying()) && (this._isFrozen = !1, this._eventManager.dispatch({ type: "play" }), this._animationFrameId = this._frameManager.requestAnimationFrame(this._draw.bind(this))), K && this._canvas instanceof HTMLCanvasElement && this._renderConfig.freezeOnOffscreen && !v3(this._canvas) && this.freeze());
+    this._dotLottieCore !== null && (this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null), (this._dotLottieCore.play() || this._dotLottieCore.isPlaying()) && (this._isFrozen = !1, this._eventManager.dispatch({ type: "play" }), this._animationFrameId = this._frameManager.requestAnimationFrame(this._draw.bind(this))), Q && this._canvas instanceof HTMLCanvasElement && this._renderConfig.freezeOnOffscreen && !v3(this._canvas) && this.freeze());
   }
   pause() {
     this._dotLottieCore !== null && (this._dotLottieCore.pause() || this._dotLottieCore.isPaused()) && this._eventManager.dispatch({ type: "pause" });
@@ -1628,16 +1628,16 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     this._dotLottieCore === null || n < 0 || n > this._dotLottieCore.totalFrames() || this._dotLottieCore.seek(n) && (this._eventManager.dispatch({ type: "frame", currentFrame: this.currentFrame }), this._render());
   }
   setSpeed(n) {
-    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { speed: n }));
+    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { speed: n }));
   }
   setBackgroundColor(n) {
-    this._dotLottieCore !== null && (K && this._canvas instanceof HTMLCanvasElement ? this._canvas.style.backgroundColor = n : this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { backgroundColor: b0(n) })), this._backgroundColor = n);
+    this._dotLottieCore !== null && (Q && this._canvas instanceof HTMLCanvasElement ? this._canvas.style.backgroundColor = n : this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { backgroundColor: L0(n) })), this._backgroundColor = n);
   }
   setLoop(n) {
-    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { loopAnimation: n }));
+    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { loopAnimation: n }));
   }
   setUseFrameInterpolation(n) {
-    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { useFrameInterpolation: n }));
+    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { useFrameInterpolation: n }));
   }
   addEventListener(n, r) {
     this._eventManager.addEventListener(n, r);
@@ -1647,7 +1647,7 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
   }
   destroy() {
     var n;
-    this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null), K && this._canvas instanceof HTMLCanvasElement && (w1.unobserve(this._canvas), b1.unobserve(this._canvas)), (n = this._dotLottieCore) == null || n.delete(), this._dotLottieCore = null, this._context = null, this._eventManager.dispatch({ type: "destroy" }), this._eventManager.removeAllEventListeners(), this._cleanupStateMachineListeners();
+    this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null), Q && this._canvas instanceof HTMLCanvasElement && (w1.unobserve(this._canvas), L1.unobserve(this._canvas)), (n = this._dotLottieCore) == null || n.delete(), this._dotLottieCore = null, this._context = null, this._eventManager.dispatch({ type: "destroy" }), this._eventManager.removeAllEventListeners(), this._cleanupStateMachineListeners();
   }
   freeze() {
     this._animationFrameId !== null && (this._frameManager.cancelAnimationFrame(this._animationFrameId), this._animationFrameId = null, this._isFrozen = !0, this._eventManager.dispatch({ type: "freeze" }));
@@ -1657,7 +1657,7 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
   }
   resize() {
     if (!(!this._dotLottieCore || !this.isLoaded)) {
-      if (K && this._canvas instanceof HTMLCanvasElement) {
+      if (Q && this._canvas instanceof HTMLCanvasElement) {
         let n = this._renderConfig.devicePixelRatio || window.devicePixelRatio || 1, { height: r, width: l } = this._canvas.getBoundingClientRect();
         r !== 0 && l !== 0 && (this._canvas.width = l * n, this._canvas.height = r * n);
       }
@@ -1665,20 +1665,20 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     }
   }
   setSegment(n, r) {
-    this._dotLottieCore === null || z._wasmModule === null || this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { segment: P2([n, r], z._wasmModule) }));
+    this._dotLottieCore === null || N._wasmModule === null || this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { segment: k2([n, r], N._wasmModule) }));
   }
   setMode(n) {
-    this._dotLottieCore === null || z._wasmModule === null || this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { mode: x2(n, z._wasmModule) }));
+    this._dotLottieCore === null || N._wasmModule === null || this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { mode: P2(n, N._wasmModule) }));
   }
   setRenderConfig(n) {
     let r = n, { devicePixelRatio: l, freezeOnOffscreen: s } = r, p = d3(r, ["devicePixelRatio", "freezeOnOffscreen"]);
-    this._renderConfig = a1(Q(Q({}, this._renderConfig), p), { devicePixelRatio: l || R1(), freezeOnOffscreen: s ?? !0 }), K && this._canvas instanceof HTMLCanvasElement && (this._renderConfig.autoResize ? b1.observe(this._canvas, this) : b1.unobserve(this._canvas), this._renderConfig.freezeOnOffscreen ? w1.observe(this._canvas, this) : (w1.unobserve(this._canvas), this._isFrozen && this.unfreeze()));
+    this._renderConfig = a1(Y(Y({}, this._renderConfig), p), { devicePixelRatio: l || R1(), freezeOnOffscreen: s ?? !0 }), Q && this._canvas instanceof HTMLCanvasElement && (this._renderConfig.autoResize ? L1.observe(this._canvas, this) : L1.unobserve(this._canvas), this._renderConfig.freezeOnOffscreen ? w1.observe(this._canvas, this) : (w1.unobserve(this._canvas), this._isFrozen && this.unfreeze()));
   }
   loadAnimation(n) {
     this._dotLottieCore === null || this._dotLottieCore.activeAnimationId() === n || (this._dotLottieCore.loadAnimation(n, this._canvas.width, this._canvas.height) ? (this._eventManager.dispatch({ type: "load" }), this.resize()) : this._eventManager.dispatch({ type: "loadError", error: new Error(`Failed to animation :${n}`) }));
   }
   setMarker(n) {
-    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { marker: n }));
+    this._dotLottieCore !== null && this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { marker: n }));
   }
   markers() {
     var n;
@@ -1710,7 +1710,7 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     this._dotLottieCore !== null && this._dotLottieCore.setSlots(n);
   }
   setLayout(n) {
-    this._dotLottieCore === null || z._wasmModule === null || this._dotLottieCore.setConfig(a1(Q({}, this._dotLottieCore.config()), { layout: k2(n, z._wasmModule) }));
+    this._dotLottieCore === null || N._wasmModule === null || this._dotLottieCore.setConfig(a1(Y({}, this._dotLottieCore.config()), { layout: F2(n, N._wasmModule) }));
   }
   setViewport(n, r, l, s) {
     return this._dotLottieCore === null ? !1 : this._dotLottieCore.setViewport(n, r, l, s);
@@ -1783,13 +1783,13 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
     return r;
   }
   _setupStateMachineListeners() {
-    if (K && this._canvas instanceof HTMLCanvasElement && this._dotLottieCore !== null && this.isLoaded) {
+    if (Q && this._canvas instanceof HTMLCanvasElement && this._dotLottieCore !== null && this.isLoaded) {
       let n = this.getStateMachineListeners();
       n.includes("PointerUp") && this._canvas.addEventListener("pointerup", this._pointerUpMethod), n.includes("PointerDown") && this._canvas.addEventListener("pointerdown", this._pointerDownMethod), n.includes("PointerMove") && this._canvas.addEventListener("pointermove", this._pointerMoveMethod), n.includes("PointerEnter") && this._canvas.addEventListener("pointerenter", this._pointerEnterMethod), n.includes("PointerExit") && this._canvas.addEventListener("pointerleave", this._pointerExitMethod);
     }
   }
   _cleanupStateMachineListeners() {
-    K && this._canvas instanceof HTMLCanvasElement && (this._canvas.removeEventListener("pointerup", this._pointerUpMethod), this._canvas.removeEventListener("pointerdown", this._pointerDownMethod), this._canvas.removeEventListener("pointermove", this._pointerMoveMethod), this._canvas.removeEventListener("pointerenter", this._pointerEnterMethod), this._canvas.removeEventListener("pointerleave", this._pointerExitMethod));
+    Q && this._canvas instanceof HTMLCanvasElement && (this._canvas.removeEventListener("pointerup", this._pointerUpMethod), this._canvas.removeEventListener("pointerdown", this._pointerDownMethod), this._canvas.removeEventListener("pointermove", this._pointerMoveMethod), this._canvas.removeEventListener("pointerenter", this._pointerEnterMethod), this._canvas.removeEventListener("pointerleave", this._pointerExitMethod));
   }
   loadStateMachineData(n) {
     var r, l;
@@ -1822,10 +1822,10 @@ var x2 = (h, n) => h === "reverse" ? n.Mode.Reverse : h === "bounce" ? n.Mode.Bo
   }
   static transformThemeToLottieSlots(n, r) {
     var l, s;
-    return (s = (l = z._wasmModule) == null ? void 0 : l.transformThemeToLottieSlots(n, r)) != null ? s : "";
+    return (s = (l = N._wasmModule) == null ? void 0 : l.transformThemeToLottieSlots(n, r)) != null ? s : "";
   }
 };
-b(p3, "_wasmModule", null);
+L(p3, "_wasmModule", null);
 var M0 = p3, E0 = class {
   constructor() {
     if (typeof Worker > "u") throw new Error("Worker is not supported in this environment.");
@@ -1834,7 +1834,7 @@ var M0 = p3, E0 = class {
   }
 }, I0 = E0, S0 = class {
   constructor() {
-    b(this, "_workers", /* @__PURE__ */ new Map()), b(this, "_animationWorkerMap", /* @__PURE__ */ new Map());
+    L(this, "_workers", /* @__PURE__ */ new Map()), L(this, "_animationWorkerMap", /* @__PURE__ */ new Map());
   }
   getWorker(h) {
     return this._workers.has(h) || this._workers.set(h, new I0()), this._workers.get(h);
@@ -1865,16 +1865,16 @@ function s3() {
 }
 var l3 = class D1 {
   constructor(n) {
-    b(this, "_eventManager", new m3()), b(this, "_id"), b(this, "_worker"), b(this, "_canvas"), b(this, "_dotLottieInstanceState", { loopCount: 0, markers: [], autoplay: !1, backgroundColor: "", currentFrame: 0, duration: 0, loop: !1, mode: "forward", segment: [0, 0], segmentDuration: 0, speed: 1, totalFrames: 0, isLoaded: !1, isPlaying: !1, isPaused: !1, isStopped: !0, isFrozen: !1, useFrameInterpolation: !1, renderConfig: { devicePixelRatio: R1() }, activeAnimationId: "", activeThemeId: "", layout: void 0, marker: void 0, isReady: !1, manifest: null }), b(this, "_created", !1), b(this, "_pointerUpMethod"), b(this, "_pointerDownMethod"), b(this, "_pointerMoveMethod"), b(this, "_pointerEnterMethod"), b(this, "_pointerExitMethod");
+    L(this, "_eventManager", new m3()), L(this, "_id"), L(this, "_worker"), L(this, "_canvas"), L(this, "_dotLottieInstanceState", { loopCount: 0, markers: [], autoplay: !1, backgroundColor: "", currentFrame: 0, duration: 0, loop: !1, mode: "forward", segment: [0, 0], segmentDuration: 0, speed: 1, totalFrames: 0, isLoaded: !1, isPlaying: !1, isPaused: !1, isStopped: !0, isFrozen: !1, useFrameInterpolation: !1, renderConfig: { devicePixelRatio: R1() }, activeAnimationId: "", activeThemeId: "", layout: void 0, marker: void 0, isReady: !1, manifest: null }), L(this, "_created", !1), L(this, "_pointerUpMethod"), L(this, "_pointerDownMethod"), L(this, "_pointerMoveMethod"), L(this, "_pointerEnterMethod"), L(this, "_pointerExitMethod");
     var r, l, s;
     this._canvas = n.canvas, this._id = `dotlottie-${s3()}`;
     let p = n.workerId || "defaultWorker";
-    this._worker = D1._workerManager.getWorker(p), D1._workerManager.assignAnimationToWorker(this._id, p), D1._wasmUrl && this._sendMessage("setWasmUrl", { url: D1._wasmUrl }), this._create(a1(Q({}, n), { renderConfig: a1(Q({}, n.renderConfig), { devicePixelRatio: ((r = n.renderConfig) == null ? void 0 : r.devicePixelRatio) || R1(), freezeOnOffscreen: (s = (l = n.renderConfig) == null ? void 0 : l.freezeOnOffscreen) != null ? s : !0 }) })), this._worker.addEventListener("message", this._handleWorkerEvent.bind(this)), this._pointerUpMethod = this._onPointerUp.bind(this), this._pointerDownMethod = this._onPointerDown.bind(this), this._pointerMoveMethod = this._onPointerMove.bind(this), this._pointerEnterMethod = this._onPointerEnter.bind(this), this._pointerExitMethod = this._onPointerLeave.bind(this);
+    this._worker = D1._workerManager.getWorker(p), D1._workerManager.assignAnimationToWorker(this._id, p), D1._wasmUrl && this._sendMessage("setWasmUrl", { url: D1._wasmUrl }), this._create(a1(Y({}, n), { renderConfig: a1(Y({}, n.renderConfig), { devicePixelRatio: ((r = n.renderConfig) == null ? void 0 : r.devicePixelRatio) || R1(), freezeOnOffscreen: (s = (l = n.renderConfig) == null ? void 0 : l.freezeOnOffscreen) != null ? s : !0 }) })), this._worker.addEventListener("message", this._handleWorkerEvent.bind(this)), this._pointerUpMethod = this._onPointerUp.bind(this), this._pointerDownMethod = this._onPointerDown.bind(this), this._pointerMoveMethod = this._onPointerMove.bind(this), this._pointerEnterMethod = this._onPointerEnter.bind(this), this._pointerExitMethod = this._onPointerLeave.bind(this);
   }
   _handleWorkerEvent(n) {
     return E(this, null, function* () {
       let r = n.data;
-      r.id || (r.method === "onLoad" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event), K && this._canvas instanceof HTMLCanvasElement && (this._dotLottieInstanceState.renderConfig.freezeOnOffscreen && w1.observe(this._canvas, this), this._dotLottieInstanceState.renderConfig.autoResize && b1.observe(this._canvas, this))), r.method === "onComplete" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onDestroy" && r.result.instanceId === this._id && this._eventManager.dispatch(r.result.event), r.method === "onUnfreeze" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._dotLottieInstanceState.isFrozen = !1, this._eventManager.dispatch(r.result.event)), r.method === "onFrame" && r.result.instanceId === this._id && (this._dotLottieInstanceState.currentFrame = r.result.event.currentFrame, this._eventManager.dispatch(r.result.event)), r.method === "onRender" && r.result.instanceId === this._id && this._eventManager.dispatch(r.result.event), r.method === "onFreeze" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onPause" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onPlay" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onStop" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onLoadError" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onReady" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onLoop" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)));
+      r.id || (r.method === "onLoad" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event), Q && this._canvas instanceof HTMLCanvasElement && (this._dotLottieInstanceState.renderConfig.freezeOnOffscreen && w1.observe(this._canvas, this), this._dotLottieInstanceState.renderConfig.autoResize && L1.observe(this._canvas, this))), r.method === "onComplete" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onDestroy" && r.result.instanceId === this._id && this._eventManager.dispatch(r.result.event), r.method === "onUnfreeze" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._dotLottieInstanceState.isFrozen = !1, this._eventManager.dispatch(r.result.event)), r.method === "onFrame" && r.result.instanceId === this._id && (this._dotLottieInstanceState.currentFrame = r.result.event.currentFrame, this._eventManager.dispatch(r.result.event)), r.method === "onRender" && r.result.instanceId === this._id && this._eventManager.dispatch(r.result.event), r.method === "onFreeze" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onPause" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onPlay" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onStop" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onLoadError" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onReady" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)), r.method === "onLoop" && r.result.instanceId === this._id && (yield this._updateDotLottieInstanceState(), this._eventManager.dispatch(r.result.event)));
     });
   }
   _create(n) {
@@ -1882,7 +1882,7 @@ var l3 = class D1 {
       var r;
       let l;
       this._canvas instanceof HTMLCanvasElement ? l = this._canvas.transferControlToOffscreen() : l = this._canvas;
-      let { instanceId: s } = yield this._sendMessage("create", Q({ instanceId: this._id, config: a1(Q({}, n), { canvas: l }) }, o3(this._canvas, ((r = n.renderConfig) == null ? void 0 : r.devicePixelRatio) || R1())), [l]);
+      let { instanceId: s } = yield this._sendMessage("create", Y({ instanceId: this._id, config: a1(Y({}, n), { canvas: l }) }, o3(this._canvas, ((r = n.renderConfig) == null ? void 0 : r.devicePixelRatio) || R1())), [l]);
       if (s !== this._id) throw new Error("Instance ID mismatch");
       this._created = !0, yield this._updateDotLottieInstanceState();
     });
@@ -1964,7 +1964,7 @@ var l3 = class D1 {
   }
   play() {
     return E(this, null, function* () {
-      this._created && (yield this._sendMessage("play", { instanceId: this._id }), yield this._updateDotLottieInstanceState(), K && this._canvas instanceof HTMLCanvasElement && this._dotLottieInstanceState.renderConfig.freezeOnOffscreen && !v3(this._canvas) && (yield this.freeze()));
+      this._created && (yield this._sendMessage("play", { instanceId: this._id }), yield this._updateDotLottieInstanceState(), Q && this._canvas instanceof HTMLCanvasElement && this._dotLottieInstanceState.renderConfig.freezeOnOffscreen && !v3(this._canvas) && (yield this.freeze()));
     });
   }
   pause() {
@@ -2001,7 +2001,7 @@ var l3 = class D1 {
     return E(this, null, function* () {
       if (!this._created) return;
       let r = n, { devicePixelRatio: l, freezeOnOffscreen: s } = r, p = d3(r, ["devicePixelRatio", "freezeOnOffscreen"]);
-      yield this._sendMessage("setRenderConfig", { instanceId: this._id, renderConfig: a1(Q(Q({}, this._dotLottieInstanceState.renderConfig), p), { devicePixelRatio: l || R1(), freezeOnOffscreen: s ?? !0 }) }), yield this._updateDotLottieInstanceState(), K && this._canvas instanceof HTMLCanvasElement && (this._dotLottieInstanceState.renderConfig.autoResize ? b1.observe(this._canvas, this) : b1.unobserve(this._canvas), this._dotLottieInstanceState.renderConfig.freezeOnOffscreen ? w1.observe(this._canvas, this) : (w1.unobserve(this._canvas), this._dotLottieInstanceState.isFrozen && (yield this.unfreeze())));
+      yield this._sendMessage("setRenderConfig", { instanceId: this._id, renderConfig: a1(Y(Y({}, this._dotLottieInstanceState.renderConfig), p), { devicePixelRatio: l || R1(), freezeOnOffscreen: s ?? !0 }) }), yield this._updateDotLottieInstanceState(), Q && this._canvas instanceof HTMLCanvasElement && (this._dotLottieInstanceState.renderConfig.autoResize ? L1.observe(this._canvas, this) : L1.unobserve(this._canvas), this._dotLottieInstanceState.renderConfig.freezeOnOffscreen ? w1.observe(this._canvas, this) : (w1.unobserve(this._canvas), this._dotLottieInstanceState.isFrozen && (yield this.unfreeze())));
     });
   }
   setUseFrameInterpolation(n) {
@@ -2035,7 +2035,7 @@ var l3 = class D1 {
   }
   destroy() {
     return E(this, null, function* () {
-      this._created && (this._created = !1, yield this._sendMessage("destroy", { instanceId: this._id }), this._cleanupStateMachineListeners(), D1._workerManager.unassignAnimationFromWorker(this._id), this._eventManager.removeAllEventListeners(), K && this._canvas instanceof HTMLCanvasElement && (w1.unobserve(this._canvas), b1.unobserve(this._canvas)));
+      this._created && (this._created = !1, yield this._sendMessage("destroy", { instanceId: this._id }), this._cleanupStateMachineListeners(), D1._workerManager.unassignAnimationFromWorker(this._id), this._eventManager.removeAllEventListeners(), Q && this._canvas instanceof HTMLCanvasElement && (w1.unobserve(this._canvas), L1.unobserve(this._canvas)));
     });
   }
   freeze() {
@@ -2094,8 +2094,8 @@ var l3 = class D1 {
     return E(this, null, function* () {
       let s = { id: `dotlottie-request-${s3()}`, method: n, params: r };
       return this._worker.postMessage(s, l || []), new Promise((p, M) => {
-        let w = (x) => {
-          let k = x.data;
+        let w = (P) => {
+          let k = P.data;
           k.id === s.id && (this._worker.removeEventListener("message", w), k.error ? M(new Error(`Failed to execute method ${n}: ${k.error}`)) : p(k.result));
         };
         this._worker.addEventListener("message", w);
@@ -2169,84 +2169,84 @@ var l3 = class D1 {
   }
   _setupStateMachineListeners() {
     return E(this, null, function* () {
-      if (K && this._canvas instanceof HTMLCanvasElement && this.isLoaded) {
+      if (Q && this._canvas instanceof HTMLCanvasElement && this.isLoaded) {
         let n = yield this._sendMessage("getStateMachineListeners", { instanceId: this._id });
         n.includes("PointerUp") && this._canvas.addEventListener("pointerup", this._pointerUpMethod), n.includes("PointerDown") && this._canvas.addEventListener("pointerdown", this._pointerDownMethod), n.includes("PointerMove") && this._canvas.addEventListener("pointermove", this._pointerMoveMethod), n.includes("PointerEnter") && this._canvas.addEventListener("pointerenter", this._pointerEnterMethod), n.includes("PointerExit") && this._canvas.addEventListener("pointerleave", this._pointerExitMethod);
       }
     });
   }
   _cleanupStateMachineListeners() {
-    K && this._canvas instanceof HTMLCanvasElement && (this._canvas.removeEventListener("pointerup", this._pointerUpMethod), this._canvas.removeEventListener("pointerdown", this._pointerDownMethod), this._canvas.removeEventListener("pointermove", this._pointerMoveMethod), this._canvas.removeEventListener("pointerenter", this._pointerEnterMethod), this._canvas.removeEventListener("pointerleave", this._pointerExitMethod));
+    Q && this._canvas instanceof HTMLCanvasElement && (this._canvas.removeEventListener("pointerup", this._pointerUpMethod), this._canvas.removeEventListener("pointerdown", this._pointerDownMethod), this._canvas.removeEventListener("pointermove", this._pointerMoveMethod), this._canvas.removeEventListener("pointerenter", this._pointerEnterMethod), this._canvas.removeEventListener("pointerleave", this._pointerExitMethod));
   }
 };
-b(l3, "_workerManager", new S0()), b(l3, "_wasmUrl", "");
-var x0 = ({ animationId: h, autoplay: n, backgroundColor: r, className: l, createDotLottie: s, data: p, dotLottieRefCallback: M, layout: w, loop: x, mode: k, playOnHover: D, renderConfig: $, segment: N, speed: B, src: P, style: A, themeData: J, themeId: g1, useFrameInterpolation: c1, workerId: j, ...f1 }) => {
-  let [V, o1] = a2(null), S = r2(null), T = r2(null), M1 = r2(M), S1 = { speed: B, mode: k, loop: x, useFrameInterpolation: c1, segment: N, backgroundColor: r, autoplay: n, themeId: g1, workerId: j, src: P, data: p, layout: w, renderConfig: $ }, m1 = r2(S1);
-  M1.current = M, T.current = V, m1.current = S1, q(() => {
-    typeof M1.current == "function" && V && M1.current(V);
-  }, [V]);
-  let x1 = a0((g) => {
+L(l3, "_workerManager", new S0()), L(l3, "_wasmUrl", "");
+var P0 = ({ animationId: h, autoplay: n, backgroundColor: r, className: l, createDotLottie: s, data: p, dotLottieRefCallback: M, layout: w, loop: P, mode: k, playOnHover: R, renderConfig: $, segment: U, speed: B, src: F, style: j, themeData: K, themeId: g1, useFrameInterpolation: c1, workerId: A, ...f1 }) => {
+  let [q, o1] = a2(null), S = r2(null), T = r2(null), M1 = r2(M), S1 = { speed: B, mode: k, loop: P, useFrameInterpolation: c1, segment: U, backgroundColor: r, autoplay: n, themeId: g1, workerId: A, src: F, data: p, layout: w, renderConfig: $ }, m1 = r2(S1);
+  M1.current = M, T.current = q, m1.current = S1, J(() => {
+    typeof M1.current == "function" && q && M1.current(q);
+  }, [q]);
+  let P1 = a0((g) => {
     if (S.current = g, g) {
       let y1 = s({ ...m1.current, canvas: g });
       o1(y1);
-    } else V == null || V.destroy(), o1(null);
+    } else q == null || q.destroy(), o1(null);
   }, []);
-  return q(() => {
+  return J(() => {
     var y1, s1;
     let g = (e1) => {
       var l1, E1;
-      D && (e1.type === "mouseenter" && ((l1 = T.current) == null || l1.play()), e1.type === "mouseleave" && ((E1 = T.current) == null || E1.pause()));
+      R && (e1.type === "mouseenter" && ((l1 = T.current) == null || l1.play()), e1.type === "mouseleave" && ((E1 = T.current) == null || E1.pause()));
     };
     return (y1 = S.current) == null || y1.addEventListener("mouseenter", g), (s1 = S.current) == null || s1.addEventListener("mouseleave", g), () => {
       var e1, l1;
       (e1 = S.current) == null || e1.removeEventListener("mouseenter", g), (l1 = S.current) == null || l1.removeEventListener("mouseleave", g);
     };
-  }, [D]), q(() => () => {
-    V && (V.destroy(), o1(null));
-  }, [V]), q(() => {
+  }, [R]), J(() => () => {
+    q && (q.destroy(), o1(null));
+  }, [q]), J(() => {
     var g;
     (g = T.current) == null || g.setSpeed(B ?? 1);
-  }, [B]), q(() => {
+  }, [B]), J(() => {
     var g;
     (g = T.current) == null || g.setMode(k ?? "forward");
-  }, [k]), q(() => {
+  }, [k]), J(() => {
     var g;
-    (g = T.current) == null || g.setLoop(x ?? !1);
-  }, [x]), q(() => {
+    (g = T.current) == null || g.setLoop(P ?? !1);
+  }, [P]), J(() => {
     var g;
     (g = T.current) == null || g.setUseFrameInterpolation(c1 ?? !0);
-  }, [c1]), q(() => {
+  }, [c1]), J(() => {
     var g;
-    typeof (N == null ? void 0 : N[0]) == "number" && typeof N[1] == "number" && ((g = T.current) == null || g.setSegment(N[0], N[1]));
-  }, [N]), q(() => {
+    typeof (U == null ? void 0 : U[0]) == "number" && typeof U[1] == "number" && ((g = T.current) == null || g.setSegment(U[0], U[1]));
+  }, [U]), J(() => {
     var g;
     (g = T.current) == null || g.setBackgroundColor(r ?? "");
-  }, [r]), q(() => {
+  }, [r]), J(() => {
     var g;
     (g = T.current) == null || g.setRenderConfig($ ?? {});
-  }, [JSON.stringify($)]), q(() => {
+  }, [JSON.stringify($)]), J(() => {
     var g;
     typeof p != "string" && typeof p != "object" || ((g = T.current) == null || g.load({ data: p, ...m1.current }));
-  }, [p]), q(() => {
+  }, [p]), J(() => {
     var g;
-    typeof P == "string" && ((g = T.current) == null || g.load({ src: P, ...m1.current }));
-  }, [P]), q(() => {
+    typeof F == "string" && ((g = T.current) == null || g.load({ src: F, ...m1.current }));
+  }, [F]), J(() => {
     var g;
     (g = T.current) == null || g.setMarker(f1.marker ?? "");
-  }, [f1.marker]), q(() => {
+  }, [f1.marker]), J(() => {
     var g;
     (g = T.current) == null || g.loadAnimation(h ?? "");
-  }, [h]), q(() => {
+  }, [h]), J(() => {
     var g;
     typeof g1 == "string" && ((g = T.current) == null || g.setTheme(g1));
-  }, [g1]), q(() => {
+  }, [g1]), J(() => {
     var g;
-    (g = T.current) == null || g.setThemeData(J ?? "");
-  }, [J]), q(() => {
+    (g = T.current) == null || g.setThemeData(K ?? "");
+  }, [K]), J(() => {
     var g;
     (g = T.current) == null || g.setLayout(w ?? {});
-  }, [w == null ? void 0 : w.fit, (w == null ? void 0 : w.align) && w.align[0], (w == null ? void 0 : w.align) && w.align[1]]), y.jsx("div", { className: l, ...!l && { style: { width: "100%", height: "100%", lineHeight: 0, ...A } }, children: y.jsx("canvas", { ref: x1, style: { width: "100%", height: "100%" }, ...f1 }) });
-}, P0 = (h) => new M0(h), k0 = (h) => y.jsx(x0, { ...h, createDotLottie: P0 });
+  }, [w == null ? void 0 : w.fit, (w == null ? void 0 : w.align) && w.align[0], (w == null ? void 0 : w.align) && w.align[1]]), y.jsx("div", { className: l, ...!l && { style: { width: "100%", height: "100%", lineHeight: 0, ...j } }, children: y.jsx("canvas", { ref: P1, style: { width: "100%", height: "100%" }, ...f1 }) });
+}, k0 = (h) => new M0(h), F0 = (h) => y.jsx(P0, { ...h, createDotLottie: k0 });
 const B0 = ({
   message: h = "Page not found",
   styles: n = {}
@@ -2256,9 +2256,9 @@ const B0 = ({
     secondaryColor: p = "#E0EBFF",
     textColor: M = "white",
     backgroundColor: w = "#ffffff",
-    borderColor: x = "#cbd5e0",
+    borderColor: P = "#cbd5e0",
     inputFocusColor: k = "#0055FF"
-  } = n, D = ($) => {
+  } = n, R = ($) => {
     $.preventDefault(), r.trim() && (window.location.href = `/find-jobs?search=${encodeURIComponent(
       r
     )}`);
@@ -2267,13 +2267,13 @@ const B0 = ({
     "div",
     {
       style: {
-        ...j0,
+        ...A0,
         backgroundColor: w,
         fontFamily: "Arial, sans-serif"
       },
       children: [
         /* @__PURE__ */ y.jsx(
-          k0,
+          F0,
           {
             style: T0,
             autoplay: !0,
@@ -2283,7 +2283,7 @@ const B0 = ({
         ),
         /* @__PURE__ */ y.jsx("h1", { style: { ...O0, color: s }, children: "404" }),
         /* @__PURE__ */ y.jsx("p", { style: $0, children: h }),
-        /* @__PURE__ */ y.jsxs("form", { style: F0, onSubmit: D, children: [
+        /* @__PURE__ */ y.jsxs("form", { style: x0, onSubmit: R, children: [
           /* @__PURE__ */ y.jsx(
             "input",
             {
@@ -2293,7 +2293,7 @@ const B0 = ({
               placeholder: "Search for jobs...",
               style: {
                 ...D0,
-                borderColor: x
+                borderColor: P
               }
             }
           ),
@@ -2314,7 +2314,7 @@ const B0 = ({
           "button",
           {
             style: {
-              ...A0,
+              ...j0,
               backgroundColor: s,
               color: M
             },
@@ -2331,7 +2331,7 @@ const B0 = ({
       ]
     }
   );
-}, F0 = {
+}, x0 = {
   display: "flex",
   position: "relative",
   gap: "0.5rem",
@@ -2354,13 +2354,13 @@ const B0 = ({
   cursor: "pointer",
   fontSize: "1rem",
   transition: "background-color 0.2s"
-}, A0 = {
+}, j0 = {
   marginTop: "2rem",
   padding: "0.75rem 1.5rem",
   border: "none",
   borderRadius: "4px",
   cursor: "pointer"
-}, j0 = {
+}, A0 = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -2391,7 +2391,7 @@ const B0 = ({
     title: "Hire an Expert",
     description: "Need a professional app fast and willing to pay? Certified experts & agencies are standing by."
   }
-], z0 = [
+], N0 = [
   {
     question: "How do I delete a Team folder?",
     answer: "You can delete a team folder from your dashboard by navigating to the folder settings."
@@ -2408,16 +2408,10 @@ const B0 = ({
     question: "Will you help me build my app?",
     answer: "Yes! We offer various support options including documentation, community forums, and expert assistance."
   }
-], U0 = ({ isOpen: h }) => /* @__PURE__ */ y.jsx(
+], z0 = ({ isOpen: h }) => /* @__PURE__ */ y.jsx(
   "svg",
   {
-    style: {
-      transform: h ? "rotate(180deg)" : "rotate(0)",
-      transition: "transform 0.2s ease",
-      minWidth: "20px"
-    },
-    width: "20",
-    height: "20",
+    className: `chevron-icon ${h ? "open" : ""}`,
     viewBox: "0 0 20 20",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
@@ -2432,15 +2426,13 @@ const B0 = ({
       }
     )
   }
-), N0 = () => /* @__PURE__ */ y.jsx(
+), U0 = () => /* @__PURE__ */ y.jsx(
   "svg",
   {
-    width: "16",
-    height: "16",
+    className: "external-link-icon",
     viewBox: "0 0 24 24",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
-    style: { marginLeft: "4px" },
     children: /* @__PURE__ */ y.jsx(
       "path",
       {
@@ -2452,328 +2444,115 @@ const B0 = ({
       }
     )
   }
-), V0 = ({
+), q0 = ({
   title: h = "Get Help",
-  faqs: n = z0,
+  faqs: n = N0,
   quickLinks: r = W0,
   styles: l = {}
 }) => {
   const [s, p] = a2(""), [M, w] = a2([]), {
-    primaryColor: x = "#000",
+    primaryColor: P = "#000",
     backgroundColor: k = "#f8f9ff",
-    textColor: D = "#222"
+    textColor: R = "#222"
   } = l, $ = o0(() => {
     if (!s.trim()) return n;
-    const P = s.toLowerCase();
+    const F = s.toLowerCase();
     return n.filter(
-      (A) => A.question.toLowerCase().includes(P) || A.answer.toLowerCase().includes(P)
+      (j) => j.question.toLowerCase().includes(F) || j.answer.toLowerCase().includes(F)
     );
-  }, [n, s]), N = (P) => {
+  }, [n, s]), U = (F) => {
     w(
-      (A) => A.includes(P) ? A.filter((J) => J !== P) : [...A, P]
+      (j) => j.includes(F) ? j.filter((K) => K !== F) : [...j, F]
     );
   }, B = () => /* @__PURE__ */ y.jsxs("div", { className: "quick-links", children: [
-    /* @__PURE__ */ y.jsx(
-      "h2",
-      {
-        style: {
-          fontSize: "1.5rem",
-          fontWeight: "bold",
-          marginBottom: "1rem"
-        },
-        children: "Quick Links"
-      }
-    ),
-    /* @__PURE__ */ y.jsx("div", { className: "quick-links-container", children: r.map((P, A) => /* @__PURE__ */ y.jsxs(
+    /* @__PURE__ */ y.jsx("h2", { className: "quick-links-title", children: "Quick Links" }),
+    /* @__PURE__ */ y.jsx("div", { className: "quick-links-container", children: r.map((F, j) => /* @__PURE__ */ y.jsxs(
       "div",
       {
         className: "quick-link-item",
-        onClick: () => console.log(`Clicked: ${P.title}`),
+        onClick: () => console.log(`Clicked: ${F.title}`),
         children: [
-          /* @__PURE__ */ y.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "0.5rem"
-              },
-              children: [
-                /* @__PURE__ */ y.jsx(
-                  "h3",
-                  {
-                    style: {
-                      fontSize: "1rem",
-                      fontWeight: 600,
-                      margin: 0
-                    },
-                    children: P.title
-                  }
-                ),
-                /* @__PURE__ */ y.jsx(N0, {})
-              ]
-            }
-          ),
-          /* @__PURE__ */ y.jsx("p", { style: { color: "#666", fontSize: "0.85rem", margin: 0 }, children: P.description })
+          /* @__PURE__ */ y.jsxs("div", { className: "quick-link-header", children: [
+            /* @__PURE__ */ y.jsx("h3", { className: "quick-link-title", children: F.title }),
+            /* @__PURE__ */ y.jsx(U0, {})
+          ] }),
+          /* @__PURE__ */ y.jsx("p", { className: "quick-link-description", children: F.description })
         ]
       },
-      A
+      j
     )) })
   ] });
   return /* @__PURE__ */ y.jsxs(
     "div",
     {
+      className: "faq-wrapper",
       style: {
-        backgroundColor: k,
-        minHeight: "100vh",
-        fontFamily: "Arial, sans-serif",
-        margin: 0,
-        padding: 0
+        "--bg-color": k,
+        "--text-color": R,
+        "--primary-color": P
       },
       children: [
-        /* @__PURE__ */ y.jsxs(
-          "div",
-          {
-            style: {
-              position: "relative",
-              width: "100%",
-              background: "#0f172a",
-              padding: "4rem 0",
-              marginBottom: "2rem",
-              overflow: "hidden"
-            },
-            children: [
-              /* @__PURE__ */ y.jsx(
-                "div",
+        /* @__PURE__ */ y.jsxs("div", { className: "faq-banner", children: [
+          /* @__PURE__ */ y.jsx("div", { className: "banner-overlay" }),
+          /* @__PURE__ */ y.jsxs("div", { className: "banner-content", children: [
+            /* @__PURE__ */ y.jsx("h1", { className: "banner-title", children: h }),
+            /* @__PURE__ */ y.jsxs("div", { className: "search-bar", children: [
+              "            ",
+              /* @__PURE__ */ y.jsx("svg", { className: "search-icon", viewBox: "0 0 24 24", children: /* @__PURE__ */ y.jsx(
+                "path",
                 {
-                  style: {
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    opacity: 0.7
-                  }
+                  fill: "currentColor",
+                  d: "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
                 }
-              ),
-              /* @__PURE__ */ y.jsxs(
-                "div",
+              ) }),
+              /* @__PURE__ */ y.jsx(
+                "input",
                 {
-                  style: {
-                    position: "relative",
-                    zIndex: 1,
-                    width: "100%",
-                    maxWidth: 1200,
-                    margin: "0 auto",
-                    textAlign: "center",
-                    padding: "0 1rem"
-                  },
-                  children: [
-                    /* @__PURE__ */ y.jsx(
-                      "h1",
-                      {
-                        style: {
-                          fontSize: "3.5rem",
-                          fontWeight: "bold",
-                          marginBottom: "2rem",
-                          color: "white",
-                          textShadow: "0 2px 4px rgba(0,0,0,0.2)"
-                        },
-                        children: h
-                      }
-                    ),
-                    /* @__PURE__ */ y.jsxs(
-                      "div",
-                      {
-                        style: {
-                          maxWidth: 800,
-                          margin: "0 auto",
-                          padding: "0.75rem 1.25rem",
-                          backgroundColor: "white",
-                          borderRadius: 8,
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.75rem",
-                          boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
-                        },
-                        children: [
-                          /* @__PURE__ */ y.jsx(
-                            "svg",
-                            {
-                              viewBox: "0 0 24 24",
-                              style: { width: 20, height: 20, color: "#666", flexShrink: 0 },
-                              children: /* @__PURE__ */ y.jsx(
-                                "path",
-                                {
-                                  fill: "currentColor",
-                                  d: "M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                                }
-                              )
-                            }
-                          ),
-                          /* @__PURE__ */ y.jsx(
-                            "input",
-                            {
-                              type: "text",
-                              value: s,
-                              onChange: (P) => p(P.target.value),
-                              placeholder: "FAQs, Videos, Documentation and Forum Posts",
-                              style: {
-                                width: "100%",
-                                border: "none",
-                                backgroundColor: "transparent",
-                                fontSize: "1rem",
-                                color: D,
-                                outline: "none"
-                              }
-                            }
-                          )
-                        ]
-                      }
-                    )
-                  ]
+                  type: "text",
+                  className: "search-input",
+                  value: s,
+                  onChange: (F) => p(F.target.value),
+                  placeholder: "FAQs, Videos, Documentation and Forum Posts"
                 }
               )
-            ]
-          }
-        ),
+            ] })
+          ] })
+        ] }),
         /* @__PURE__ */ y.jsxs("div", { className: "faq-container", children: [
           /* @__PURE__ */ y.jsx(B, {}),
           /* @__PURE__ */ y.jsxs("div", { className: "faq-list", children: [
-            /* @__PURE__ */ y.jsxs(
-              "div",
-              {
-                style: {
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "1.5rem"
-                },
-                children: [
-                  /* @__PURE__ */ y.jsx("h2", { style: { fontSize: "1.5rem", fontWeight: "bold", margin: 0 }, children: "General" }),
-                  s.trim() && /* @__PURE__ */ y.jsxs(
-                    "div",
-                    {
-                      style: {
-                        fontSize: "0.95rem",
-                        color: "#666",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        flexWrap: "wrap"
-                      },
-                      children: [
-                        /* @__PURE__ */ y.jsx("span", { children: $.length === 0 ? `No results for "${s}"` : `Found ${$.length} result${$.length === 1 ? "" : "s"} for "${s}"` }),
-                        /* @__PURE__ */ y.jsx(
-                          "button",
-                          {
-                            onClick: () => p(""),
-                            style: {
-                              background: "none",
-                              border: "none",
-                              padding: "4px 8px",
-                              cursor: "pointer",
-                              color: x,
-                              fontSize: "0.9rem",
-                              borderRadius: "4px",
-                              backgroundColor: "transparent",
-                              transition: "background-color 0.2s ease"
-                            },
-                            onMouseOver: (P) => {
-                              P.target.style.backgroundColor = "#f1f3f9";
-                            },
-                            onMouseOut: (P) => {
-                              P.target.style.backgroundColor = "transparent";
-                            },
-                            children: "Clear search"
-                          }
-                        )
-                      ]
-                    }
-                  )
-                ]
-              }
-            ),
-            /* @__PURE__ */ y.jsx(
-              "div",
-              {
-                style: { display: "flex", flexDirection: "column", gap: "0.5rem" },
-                children: $.length === 0 && s.trim() ? /* @__PURE__ */ y.jsx(
-                  "div",
+            /* @__PURE__ */ y.jsxs("div", { className: "faq-header", children: [
+              /* @__PURE__ */ y.jsx("h2", { className: "faq-title", children: "General" }),
+              s.trim() && /* @__PURE__ */ y.jsxs("div", { className: "search-results", children: [
+                /* @__PURE__ */ y.jsx("span", { children: $.length === 0 ? `No results for "${s}"` : `Found ${$.length} result${$.length === 1 ? "" : "s"} for "${s}"` }),
+                /* @__PURE__ */ y.jsx(
+                  "button",
                   {
-                    style: {
-                      textAlign: "center",
-                      padding: "2rem",
-                      color: "#666",
-                      backgroundColor: "white",
-                      borderRadius: "8px"
-                    },
-                    children: "No matching questions found. Try adjusting your search terms."
+                    onClick: () => p(""),
+                    className: "clear-search",
+                    children: "Clear search"
                   }
-                ) : $.map((P, A) => {
-                  const J = M.includes(A);
-                  return /* @__PURE__ */ y.jsxs(
-                    "div",
-                    {
-                      style: {
-                        backgroundColor: "white",
-                        borderRadius: 8,
-                        padding: "0.75rem 1rem",
-                        cursor: "pointer",
-                        transition: "all 0.2s ease"
-                      },
-                      onClick: () => N(A),
-                      children: [
-                        /* @__PURE__ */ y.jsxs(
-                          "div",
-                          {
-                            style: {
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                              gap: "1rem"
-                            },
-                            children: [
-                              /* @__PURE__ */ y.jsx(
-                                "h3",
-                                {
-                                  style: {
-                                    fontWeight: 500,
-                                    fontSize: "1rem",
-                                    color: J ? x : D,
-                                    margin: 0
-                                  },
-                                  children: P.question
-                                }
-                              ),
-                              /* @__PURE__ */ y.jsx(U0, { isOpen: J })
-                            ]
-                          }
-                        ),
-                        /* @__PURE__ */ y.jsx(
-                          "div",
-                          {
-                            style: {
-                              height: J ? "auto" : "0",
-                              overflow: "hidden",
-                              opacity: J ? 1 : 0,
-                              transition: "all 0.3s ease",
-                              marginTop: J ? "0.75rem" : 0,
-                              color: "#666"
-                            },
-                            children: /* @__PURE__ */ y.jsx("p", { style: { marginLeft: "0.5rem", lineHeight: 1.5 }, children: P.answer })
-                          }
-                        )
-                      ]
-                    },
-                    A
-                  );
-                })
-              }
-            )
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ y.jsx("div", { className: "faq-items", children: $.length === 0 && s.trim() ? /* @__PURE__ */ y.jsx("div", { className: "no-results", children: "No matching questions found. Try adjusting your search terms." }) : $.map((F, j) => {
+              const K = M.includes(j);
+              return /* @__PURE__ */ y.jsxs(
+                "div",
+                {
+                  className: "faq-item",
+                  onClick: () => U(j),
+                  children: [
+                    /* @__PURE__ */ y.jsxs("div", { className: "faq-item-header", children: [
+                      /* @__PURE__ */ y.jsx("h3", { className: `faq-question ${K ? "open" : ""}`, children: F.question }),
+                      /* @__PURE__ */ y.jsx(z0, { isOpen: K })
+                    ] }),
+                    /* @__PURE__ */ y.jsx("div", { className: `faq-answer ${K ? "open" : ""}`, children: /* @__PURE__ */ y.jsx("p", { children: F.answer }) })
+                  ]
+                },
+                j
+              );
+            }) })
           ] })
         ] })
       ]
@@ -2781,6 +2560,6 @@ const B0 = ({
   );
 };
 export {
-  V0 as FAQ,
+  q0 as FAQ,
   B0 as NotFound
 };
