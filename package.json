@@ -1,8 +1,22 @@
 {
     "name": "shared-pages",
-    "private": true,
     "version": "0.1.0",
     "type": "module",
+    "main": "./dist/index.cjs.js",
+    "module": "./dist/index.es.js",
+    "types": "./dist/types/index.d.ts",
+    "style": "./dist/shared-pages.css",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/index.es.js",
+            "require": "./dist/index.cjs.js"
+        },
+        "./style.css": "./dist/shared-pages.css"
+    },
     "scripts": {
         "dev": "vite",
         "build": "tsc -b && vite build",
@@ -11,10 +25,7 @@
         "prepack": "npm run build"
     },
     "dependencies": {
-        "@lottiefiles/dotlottie-react": "^0.13.3",
-        "@rollup/plugin-replace": "^6.0.2",
-        "react": "^18.0.0 || ^19.0.0",
-        "react-dom": "^18.0.0 || ^19.0.0"
+        "@lottiefiles/dotlottie-react": "^0.13.3"
     },
     "peerDependencies": {
         "react": "^18.0.0 || ^19.0.0",
@@ -35,11 +46,5 @@
         "typescript-eslint": "^8.24.1",
         "vite": "^6.2.0",
         "vite-plugin-dts": "^4.5.3"
-    },
-    "main": "./dist/index.js",
-    "module": "./dist/index.es.js",
-    "types": "./dist/types/index.d.ts",
-    "files": [
-        "dist"
-    ]
+    }
 }

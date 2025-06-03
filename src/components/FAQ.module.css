@@ -1,0 +1,384 @@
+/* Global resets specifically for FAQ component */
+.faqRoot * {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+.faqRoot :global(*::-webkit-scrollbar) {
+  display: none;
+}
+
+.faqRoot :global(*) {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.faqContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.faqWrapper {
+  background-color: var(--bg-color, #f8f9ff);
+  min-height: 100vh;
+  font-family: var(--font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  margin: 0;
+  padding: 0;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  background: #0f172a;
+  padding: 4rem 0;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--banner-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.bannerTitle {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.searchBar {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.searchInput {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--text-color, #222);
+  outline: none;
+  font-family: inherit;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.quickLinks {
+  width: 100%;
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+}
+
+.quickLinksContainer {
+  display: flex;
+  gap: 0.75rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.quickLinksTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.quickLinkItem {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.quickLinkItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.quickLinkHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.quickLinkTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.quickLinkDescription {
+  color: #666;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.faqList {
+  width: 100%;
+  flex: 1;
+}
+
+.faqHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.faqTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.searchResults {
+  font-size: 0.95rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.clearSearch {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--primary-color, #000);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.clearSearch:hover {
+  background-color: #f1f3f9;
+}
+
+.faqItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faqItem {
+  background-color: white;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.faqItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faqQuestion {
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-color, #222);
+}
+
+.faqQuestion.open {
+  color: var(--primary-color, #000);
+}
+
+.faqAnswer {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  margin-top: 0;
+  color: #666;
+}
+
+.faqAnswer.open {
+  height: auto;
+  opacity: 1;
+  margin-top: 0.75rem;
+}
+
+.faqAnswer p {
+  margin-left: 0.5rem;
+  line-height: 1.5;
+}
+
+.noResults {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.chevronIcon {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  transform: rotate(0);
+  transition: transform 0.2s ease;
+}
+
+.chevronIcon.open {
+  transform: rotate(180deg);
+}
+
+.externalLinkIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .faqContainer {
+    padding: 1rem;
+  }
+
+  .bannerTitle {
+    font-size: 2.5rem;
+  }
+
+  .banner {
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .quickLinks {
+    position: static;
+    margin-bottom: 1.5rem;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .quickLinksContainer {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    margin: 0 -1rem;
+    padding: 0.5rem 1rem;
+    width: calc(100% + 2rem);
+  }
+
+  .quickLinkItem {
+    flex: 0 0 280px;
+    width: 280px;
+    min-width: 280px;
+    scroll-snap-align: start;
+    margin-right: 0.75rem;
+  }
+
+  .quickLinkItem:last-child {
+    margin-right: 0;
+  }
+
+  .faqList {
+    width: 100%;
+    padding: 0;
+  }
+
+  .faqItem {
+    padding: 1rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .faqQuestion {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .faqAnswer {
+    font-size: 0.9rem;
+  }
+
+  .faqAnswer p {
+    margin: 0;
+    padding: 0.5rem 0 0;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .faqContainer {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .faqList {
+    order: 1;
+    flex: 1 1 auto;
+  }
+
+  .quickLinks {
+    order: 2;
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .quickLinksContainer {
+    flex-direction: column;
+    overflow-x: visible;
+    padding: 0;
+  }
+
+  .quickLinkItem {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    scroll-snap-align: none;
+  }
+}
