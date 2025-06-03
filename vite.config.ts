@@ -11,6 +11,21 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
+  server: {
+    host: '0.0.0.0', // Expose to all network interfaces
+    port: 5173,
+    strictPort: true,
+    hmr: {
+      host: '0.0.0.0',
+      port: 5173
+    },
+  },
+  css: {
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: '[local]_[hash:base64:5]'
+    }
+  },
   build: {
     lib: {
       entry: "src/index.ts",
@@ -24,11 +39,18 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM'
         },
-        assetFileNames: 'shared-pages.[ext]'
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'style.css';
+          }
+          return '[name][extname]';
+        }
       }
     },
     cssCodeSplit: false,
     sourcemap: true,
     outDir: "dist",
+    cssMinify: true,
+    assetsInlineLimit: 0,
   },
 });

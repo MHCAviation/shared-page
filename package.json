@@ -5,7 +5,7 @@
     "main": "./dist/index.cjs.js",
     "module": "./dist/index.es.js",
     "types": "./dist/types/index.d.ts",
-    "style": "./dist/shared-pages.css",
+    "style": "./dist/style.css",
     "files": [
         "dist"
     ],
@@ -13,9 +13,10 @@
         ".": {
             "types": "./dist/types/index.d.ts",
             "import": "./dist/index.es.js",
-            "require": "./dist/index.cjs.js"
+            "require": "./dist/index.cjs.js",
+            "style": "./dist/style.css"
         },
-        "./style.css": "./dist/shared-pages.css"
+        "./dist/style.css": "./dist/style.css"
     },
     "scripts": {
         "dev": "vite",
