@@ -12,7 +12,7 @@ Currently, two official plugins are available:
 🔧 Set up repository in package.json
 
 ```js
-"notfound": "git+https://github.com/[username]/notfound.git#main"
+"shared-pages": "git+https://github.com/MHCAviation/shared-page.git#main"
 ```
 
 📦 Installation:
