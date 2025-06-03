@@ -1,4 +1,3 @@
-// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
@@ -45,17 +44,17 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
         assetFileNames: (assetInfo) => {
-          // This just controls how non‐CSS assets are named.
+          // When cssCodeSplit is false, Vite emits exactly one CSS file named "style.css"
           if (assetInfo.name && assetInfo.name.endsWith(".css")) {
-            // Vite will still emit each .module.css separately under its hashed name.
-            return assetInfo.name;
+            // keep it as “style.css”
+            return "style.css";
           }
           return "[name][extname]";
         },
       },
     },
-    // **Enable** CSS splitting so that each .module.css is emitted to dist/.
-    cssCodeSplit: true,
+    // ← bundle all CSS into a single style.css instead of splitting
+    cssCodeSplit: false,
     sourcemap: true,
     outDir: "dist",
     cssMinify: true,
