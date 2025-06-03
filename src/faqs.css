@@ -1,0 +1,139 @@
+/* src/components/FAQ.css */
+
+/* 1) Global resets (optional; you can merge with your existing CSS) */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+div::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+div {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Enable smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================= */
+/* 2) FAQ component‐specific layout */
+/* ============================================================= */
+
+/* The container that wraps both Quick Links and FAQ list */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Quick Links section (always first in DOM) */
+.quick-links {
+  width: 100%;
+}
+
+/* Container for the individual quick‐link items */
+.quick-links-container {
+  display: flex;
+  flex-direction: row;
+  /* mobile: horizontal scroll */
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  -webkit-overflow-scrolling: touch;
+  /* iOS momentum scroll */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+}
+
+/* Each quick‐link card */
+.quick-link-item {
+  flex: 0 0 280px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  scroll-snap-align: start;
+}
+
+.quick-link-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* FAQ list section */
+.faq-list {
+  width: 100%;
+}
+
+/* ============================================================= */
+/* 3) Desktop overrides (screens ≥ 768px) */
+/* ============================================================= */
+@media (min-width: 768px) {
+
+  /* Make .faq-container a row flex container on desktop */
+  .faq-container {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  /* On desktop, we want .faq-list on the left, .quick-links on the right */
+  .faq-list {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    /* prevent overflow */
+    max-width: calc(100% - 340px);
+    /* leave room for quick links */
+  }
+
+  .quick-links {
+    order: 2;
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    /* sticks 2rem below top of viewport */
+    align-self: flex-start;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .quick-links-container {
+    /* On desktop, show quick links as a vertical stack, no horizontal scroll */
+    display: flex;
+    flex-direction: column;
+    overflow-x: visible;
+    padding: 0;
+    /* no extra top/bottom padding needed */
+  }
+
+  .quick-link-item {
+    flex: 1;
+    /* take full width in vertical stack */
+    scroll-snap-align: none;
+    /* no scroll‐snap on desktop */
+  }
+}
