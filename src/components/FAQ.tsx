@@ -1,9 +1,33 @@
 // src/components/FAQ.tsx
 import React, { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom"; // ← import Link
 import styles from "./FAQ.module.css";
 import { getFaqs } from "../lib/sanity";
 import type { FAQItem, FAQProps } from "../types";
+
+// Create a wrapper component that handles Link availability
+const FaqLink: React.FC<{ to: string; className: string; children: React.ReactNode }> = ({ to, className, children }) => {
+  const [Link, setLink] = useState<React.ComponentType<{ to: string; className: string; children: React.ReactNode }> | null>(null);
+
+  useEffect(() => {
+    // Try to import Link dynamically
+    import("react-router-dom")
+      .then((module) => setLink(() => module.Link))
+      .catch(() => {
+        // react-router-dom not available, Link will remain null
+      });
+  }, []);
+
+  if (Link) {
+    return <Link to={to} className={className}>{children}</Link>;
+  }
+
+  // Fallback to a div when Link is not available
+  return (
+    <div className={className} onClick={() => window.location.href = to}>
+      {children}
+    </div>
+  );
+};
 
 const defaultFaqs: FAQItem[] = [
   {
@@ -103,7 +127,7 @@ const FAQ: React.FC<FAQProps> = ({
 
     if (faq.page.tableOfContents && faq.page.tableOfContents.length > 0) {
       const raw = faq.page.tableOfContents[0].slug;
-      // Remove any leading “#” characters:
+      // Remove any leading " characters:
       const cleanSlug = raw.replace(/^#+/, ""); // e.g. "#installation" → "installation"
       return `${basePath}#${cleanSlug}`; // now → "/docs/getting-started#installation"
     }
@@ -202,9 +226,9 @@ const FAQ: React.FC<FAQProps> = ({
                       </p>
                     )}
                     {faqs.map((faq: FAQItem) => (
-                      <Link
+                      <FaqLink
                         key={faq._id}
-                        to={getFaqLink(faq)} // ← use 'to' instead of 'href'
+                        to={getFaqLink(faq)}
                         className={styles.faqItem}
                       >
                         <div className={styles.faqItemContent}>
@@ -218,7 +242,7 @@ const FAQ: React.FC<FAQProps> = ({
                           </div>
                           <ArrowIcon />
                         </div>
-                      </Link>
+                      </FaqLink>
                     ))}
                   </div>
                 )
