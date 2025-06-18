@@ -14,12 +14,21 @@ export default defineConfig({
   build: {
     lib: {
       entry: "src/index.ts",
-      name: "NotFound",
+      name: "SharedPages",
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') {
+            return 'style.css';
+          }
+          return assetInfo.name || 'asset';
+        },
+      },
     },
     outDir: "dist",
+    cssCodeSplit: false,
   },
 });
