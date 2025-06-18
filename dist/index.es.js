@@ -1,5 +1,6 @@
-import { F as a, N as r } from "./index-Dn9R5i6x.js";
+import { D as s, F, N as e } from "./index-BNIW3kZq.js";
 export {
-  a as FAQ,
-  r as NotFound
+  s as DocPage,
+  F as FAQ,
+  e as NotFound
 };

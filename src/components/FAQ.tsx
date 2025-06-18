@@ -37,7 +37,7 @@ const ArrowIcon = () => (
 );
 
 const FAQ: React.FC<FAQProps> = ({
-  title = "Get Help",
+  title = "Advice and answers from the team",
   initialFaqs = defaultFaqs,
   description,
 }) => {
