@@ -1,0 +1,253 @@
+/* src/styles/DocPage.module.css */
+
+.container {
+    display: flex;
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    justify-content: center;
+    color: #333
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Left Column (Main Content)
+──────────────────────────────────────────────────────────────── */
+.sectionReferenceLink {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.mainContent {
+    flex: 1 1 0;
+    max-width: 740px;
+}
+
+.breadcrumbs {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.breadcrumbs a {
+    color: #0070f3;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.pageTitle {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.metaInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.authorImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.authorName {
+    font-weight: 500;
+}
+
+.publishedDate {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.tocInContent {
+    background-color: #f9f9f9;
+    padding: 1rem 1.5rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.tocInContent h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.tocInContent ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0;
+}
+
+.subtoc {
+    list-style: circle;
+    padding-left: 1.25rem;
+    margin: 0.25rem 0;
+}
+
+.bodyContent {
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.bodyContent table {
+    width: 100%;
+    min-width: 600px;
+    /* adjust to your typical table width */
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+.bodyContent th,
+.bodyContent td {
+    padding: 0.75rem;
+    border: 1px solid #e2e2e2;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.bodyContent td {
+    white-space: normal;
+}
+
+/* Portable Text default heading/p styles */
+.bodyContent h2,
+.bodyContent h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.bodyContent p {
+    margin: 0 0 0.5rem 0;
+
+}
+
+.portableImage {
+    display: block;
+    margin: 0 0 0.5rem 0;
+    margin-left: 0;
+    max-width: 100%;
+    width: auto;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Right Column (Sticky Sidebar TOC)
+──────────────────────────────────────────────────────────────── */
+.stickySidebar {
+    flex: 0 0 260px;
+    position: relative;
+}
+
+.sidebarInner {
+    position: sticky;
+    top: 2rem;
+    /* Adjust this if you have a fixed header */
+    border-left: 1px solid #e2e2e2;
+    padding-left: 1.5rem;
+}
+
+.sidebarInner h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.sidebarInner ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.sidebarInner li {
+    margin-bottom: 0.75rem;
+}
+
+.sidebarInner a {
+    text-decoration: none;
+    color: #0070f3;
+    font-size: 0.95rem;
+}
+
+.sidebarInner a:hover {
+    text-decoration: underline;
+}
+
+.sidebarInner .subtoc {
+    list-style: none;
+    padding-left: 1rem;
+    margin-top: 0.25rem;
+}
+
+.sidebarInner .subtoc li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebarInner .subtoc a {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Loading / Error States
+──────────────────────────────────────────────────────────────── */
+.loading,
+.error {
+    text-align: center;
+    margin: 4rem auto;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Responsive layout for mobile
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .mainContent {
+        max-width: 100%;
+    }
+
+    /* hide the sidebar on mobile; you could also move it below if you prefer */
+    .stickySidebar {
+        display: none;
+    }
+
+    /* tighten up margins a bit */
+    .tocInContent,
+    .bodyContent {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* shrink the min-width on really small screens */
+@media (max-width: 480px) {
+
+    .bodyContent table,
+    .bodyContent img {
+        min-width: 320px;
+    }
+
+    .bodyContent th,
+    .bodyContent td {
+        padding: 0.5rem;
+    }
+}

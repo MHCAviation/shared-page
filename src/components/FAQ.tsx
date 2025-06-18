@@ -1,97 +1,36 @@
 // src/components/FAQ.tsx
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom"; // ← import Link
 import styles from "./FAQ.module.css";
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-interface QuickLink {
-  title: string;
-  description: string;
-}
-
-interface FAQProps {
-  title?: string;
-  faqs?: FAQItem[];
-  quickLinks?: QuickLink[];
-  styles?: {
-    primaryColor?: string;
-    backgroundColor?: string;
-    textColor?: string;
-    borderColor?: string;
-  };
-}
-
-const defaultQuickLinks: QuickLink[] = [
-  {
-    title: "Join the Community",
-    description:
-      "Post in our lively forum for quick help with apps, or just share your app!",
-  },
-  {
-    title: "Read Documentation & Guides",
-    description: "Learn at your own pace with our comprehensive guides.",
-  },
-  {
-    title: "Hire an Expert",
-    description:
-      "Need a professional app fast and willing to pay? Certified experts & agencies are standing by.",
-  },
-];
+import { getFaqs } from "../lib/sanity";
+import type { FAQItem, FAQProps } from "../types";
 
 const defaultFaqs: FAQItem[] = [
   {
-    question: "How do I delete a Team folder?",
-    answer:
-      "You can delete a team folder from your dashboard by navigating to the folder settings.",
-  },
-  {
-    question: "Why did you change the design of the app builder?",
-    answer:
-      "We updated the design to improve usability and add new features based on user feedback.",
-  },
-  {
-    question: "When does my app update with changes?",
-    answer:
-      "Your app updates automatically when you publish changes from the builder.",
-  },
-  {
-    question: "Will you help me build my app?",
-    answer:
-      "Yes! We offer various support options including documentation, community forums, and expert assistance.",
+    _id: "default-1",
+    question: "How do I get started?",
+    answer: "We'll load the real FAQs from Sanity shortly...",
+    order: 1,
+    category: {
+      _id: "default-cat",
+      title: "General",
+    },
   },
 ];
 
-const ChevronIcon = ({ isOpen }: { isOpen: boolean }) => (
+const ArrowIcon = () => (
   <svg
-    className={`${styles.chevronIcon} ${isOpen ? styles.open : ''}`}
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M5 7.5L10 12.5L15 7.5"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const ExternalLinkIcon = () => (
-  <svg
-    className={styles.externalLinkIcon}
+    className={styles.arrowIcon}
+    width="24"
+    height="24"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14"
+      d="M5 12H19M19 12L12 5M19 12L12 19"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -100,20 +39,31 @@ const ExternalLinkIcon = () => (
 
 const FAQ: React.FC<FAQProps> = ({
   title = "Get Help",
-  faqs = defaultFaqs,
-  quickLinks = defaultQuickLinks,
-  styles: customStyles = {},
+  initialFaqs = defaultFaqs,
+  description,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const {
-    primaryColor = "#000",
-    backgroundColor = "#f8f9ff",
-    textColor = "#222",
-  } = customStyles;
+  useEffect(() => {
+    const loadFaqs = async () => {
+      try {
+        setIsLoading(true);
+        const sanityFaqs = await getFaqs();
+        setFaqs(sanityFaqs || []);
+      } catch (err) {
+        setError("Failed to load FAQs. Please try again later.");
+        console.error("Error loading FAQs:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadFaqs();
+  }, []);
 
-  // Filter FAQs by searchTerm (case‐insensitive)
+  // Filter FAQs by search term
   const filteredFaqs = useMemo(() => {
     if (!searchTerm.trim()) return faqs;
     const lower = searchTerm.toLowerCase();
@@ -124,57 +74,81 @@ const FAQ: React.FC<FAQProps> = ({
     );
   }, [faqs, searchTerm]);
 
-  const toggleAccordion = (idx: number) => {
-    setOpenItems((prev) =>
-      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
-    );
+  // Group FAQs by category
+  const groupedFaqs = useMemo(() => {
+    if (!filteredFaqs.length) return new Map();
+    return filteredFaqs.reduce((groups, faq) => {
+      const category = faq.category || { title: "Other", _id: "other" };
+      const categoryTitle =
+        category.title.charAt(0).toUpperCase() + category.title.slice(1);
+      if (!groups.has(categoryTitle)) {
+        groups.set(categoryTitle, {
+          faqs: [],
+          description: category.description || "",
+        });
+      }
+      groups.get(categoryTitle)?.faqs.push(faq);
+      return groups;
+    }, new Map<string, { faqs: FAQItem[]; description: string }>());
+  }, [filteredFaqs]);
+
+  // Generate FAQ link based on page and table of contents
+  const getFaqLink = (faq: FAQItem): string => {
+    if (!faq.page) {
+      return `/faq/${faq._id}`;
+    }
+
+    const pageSlug = faq.page.slug.current; // e.g. "getting-started"
+    const basePath = `/docs/${pageSlug}`; // e.g. "/docs/getting-started"
+
+    if (faq.page.tableOfContents && faq.page.tableOfContents.length > 0) {
+      const raw = faq.page.tableOfContents[0].slug;
+      // Remove any leading “#” characters:
+      const cleanSlug = raw.replace(/^#+/, ""); // e.g. "#installation" → "installation"
+      return `${basePath}#${cleanSlug}`; // now → "/docs/getting-started#installation"
+    }
+
+    return basePath;
   };
 
-  const QuickLinksSection = () => (
-    <div className={styles.quickLinks}>
-      <h2 className={styles.quickLinksTitle}>Quick Links</h2>
-      <div className={styles.quickLinksContainer}>
-        {quickLinks.map((link, idx) => (
-          <div
-            key={idx}
-            className={styles.quickLinkItem}
-            onClick={() => console.log(`Clicked: ${link.title}`)}
-          >
-            <div className={styles.quickLinkHeader}>
-              <h3 className={styles.quickLinkTitle}>{link.title}</h3>
-              <ExternalLinkIcon />
-            </div>
-            <p className={styles.quickLinkDescription}>{link.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  // Get description text for FAQ link
+  const getFaqLinkText = (faq: FAQItem): string => {
+    return faq.answer.substring(0, 120) + (faq.answer.length > 120 ? "..." : "");
+  };
 
   return (
     <div className={styles.faqRoot}>
       <div
         className={styles.faqWrapper}
-        style={{
-          "--bg-color": backgroundColor,
-          "--text-color": textColor,
-          "--primary-color": primaryColor,
-          "--banner-image": "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
-          "--font-family": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        } as React.CSSProperties}
+        style={
+          {
+            "--banner-image":
+              "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+          } as React.CSSProperties
+        }
       >
         {/* Banner */}
         <div className={styles.banner}>
           <div className={styles.bannerOverlay} />
           <div className={styles.bannerContent}>
             <h1 className={styles.bannerTitle}>{title}</h1>
-
+            {description && (
+              <p className={styles.bannerDescription}>{description}</p>
+            )}
             {/* Search Bar */}
             <div className={styles.searchBar}>
-              <svg className={styles.searchIcon} viewBox="0 0 24 24">
+              <svg
+                className={styles.searchIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
-                  fill="currentColor"
-                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
               <input
@@ -182,67 +156,74 @@ const FAQ: React.FC<FAQProps> = ({
                 className={styles.searchInput}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="FAQs, Videos, Documentation and Forum Posts"
+                placeholder="Search answer or question"
               />
             </div>
           </div>
         </div>
 
-        {/* Main container */}
-        <div className={styles.faqContainer}>
-          <QuickLinksSection />
-
-          {/* FAQs Section */}
-          <div className={styles.faqList}>
-            <div className={styles.faqHeader}>
-              <h2 className={styles.faqTitle}>General</h2>
-              {searchTerm.trim() && (
-                <div className={styles.searchResults}>
-                  <span>
-                    {filteredFaqs.length === 0
-                      ? `No results for "${searchTerm}"`
-                      : `Found ${filteredFaqs.length} result${
-                          filteredFaqs.length === 1 ? "" : "s"
-                        } for "${searchTerm}"`}
-                  </span>
-                  <button
-                    onClick={() => setSearchTerm("")}
-                    className={styles.clearSearch}
-                  >
-                    Clear search
-                  </button>
-                </div>
-              )}
+        {/* FAQ Content */}
+        <div className={styles.faqContent}>
+          {searchTerm.trim() && (
+            <div className={styles.searchResults}>
+              <span>
+                {filteredFaqs.length === 0
+                  ? `No results for "${searchTerm}"`
+                  : `Found ${filteredFaqs.length} result${
+                      filteredFaqs.length === 1 ? "" : "s"
+                    } for "${searchTerm}"`}
+              </span>
+              <button
+                onClick={() => setSearchTerm("")}
+                className={styles.clearSearch}
+              >
+                Clear search
+              </button>
             </div>
+          )}
 
-            <div className={styles.faqItems}>
-              {filteredFaqs.length === 0 && searchTerm.trim() ? (
-                <div className={styles.noResults}>
-                  No matching questions found. Try adjusting your search terms.
-                </div>
-              ) : (
-                filteredFaqs.map((faq, idx) => {
-                  const isOpen = openItems.includes(idx);
-                  return (
-                    <div
-                      key={idx}
-                      className={styles.faqItem}
-                      onClick={() => toggleAccordion(idx)}
-                    >
-                      <div className={styles.faqItemHeader}>
-                        <h3 className={`${styles.faqQuestion} ${isOpen ? styles.open : ""}`}>
-                          {faq.question}
-                        </h3>
-                        <ChevronIcon isOpen={isOpen} />
-                      </div>
-                      <div className={`${styles.faqAnswer} ${isOpen ? styles.open : ""}`}>
-                        <p>{faq.answer}</p>
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
+          <div className={styles.faqItems}>
+            {isLoading ? (
+              <div className={styles.loading}>Loading FAQs...</div>
+            ) : error ? (
+              <div className={styles.error}>{error}</div>
+            ) : filteredFaqs.length === 0 && searchTerm.trim() ? (
+              <div className={styles.noResults}>
+                No matching questions found. Try adjusting your search terms.
+              </div>
+            ) : (
+              Array.from(groupedFaqs.entries()).map(
+                ([category, { faqs, description }]) => (
+                  <div key={category} className={styles.faqCategory}>
+                    <h2 className={styles.faqCategoryTitle}>{category}</h2>
+                    {description && (
+                      <p className={styles.faqCategoryDescription}>
+                        {description}
+                      </p>
+                    )}
+                    {faqs.map((faq: FAQItem) => (
+                      <Link
+                        key={faq._id}
+                        to={getFaqLink(faq)} // ← use 'to' instead of 'href'
+                        className={styles.faqItem}
+                      >
+                        <div className={styles.faqItemContent}>
+                          <div className={styles.faqItemMain}>
+                            <h3 className={styles.faqQuestion}>
+                              {faq.question}
+                            </h3>
+                            <p className={styles.faqDescription}>
+                              {getFaqLinkText(faq)}
+                            </p>
+                          </div>
+                          <ArrowIcon />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )
+              )
+            )}
           </div>
         </div>
       </div>
