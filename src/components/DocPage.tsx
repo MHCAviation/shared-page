@@ -1,6 +1,5 @@
 // src/components/DocPage.tsx
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 import { client, urlFor } from "../lib/sanity";
@@ -23,6 +22,10 @@ interface TableData {
   columns: string[];
   rows: TableRow[];
   layoutOrientation?: "top" | "left";
+}
+
+interface DocPageProps {
+  slug?: string;
 }
 
 const pageQuery = `
@@ -49,8 +52,7 @@ const pageQuery = `
   }
 `;
 
-const DocPage: React.FC = () => {
-  const { slug } = useParams<{ slug?: string }>();
+const DocPage: React.FC<DocPageProps> = ({ slug }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pageData, setPageData] = useState<{
@@ -275,7 +277,7 @@ const DocPage: React.FC = () => {
       </aside>
       <article className={styles.mainContent}>
         <nav className={styles.breadcrumbs}>
-          <Link to="/">All Collections</Link> &gt; <span>{title}</span>
+          <a href="/">All Collections</a> &gt; <span>{title}</span>
         </nav>
         <h1 className={styles.pageTitle}>{title}</h1>
         <div className={styles.metaInfo}>

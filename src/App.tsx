@@ -1,7 +1,13 @@
 // src/App.tsx
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import FAQ from "./components/FAQ";
 import DocPage from "./components/DocPage";
+
+// Wrapper component to extract slug from URL params
+const DocPageWrapper = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <DocPage slug={slug} />;
+};
 
 export default function App() {
   return (
@@ -19,7 +25,7 @@ export default function App() {
         />
 
         {/* Dynamic DocPage path: "/docs/:slug" */}
-        <Route path="/docs/:slug" element={<DocPage />} />
+        <Route path="/docs/:slug" element={<DocPageWrapper />} />
 
         {/* Catch-all → redirect back to FAQ (or render a 404 component) */}
         <Route path="*" element={<Navigate to="/" replace />} />

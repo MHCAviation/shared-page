@@ -1,4 +1,7 @@
 import { default as React } from 'react';
 export declare const revalidate = 15;
-declare const DocPage: React.FC;
+interface DocPageProps {
+    slug?: string;
+}
+declare const DocPage: React.FC<DocPageProps>;
 export default DocPage;
