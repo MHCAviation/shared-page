@@ -78,11 +78,13 @@ export default async function DocPageRoute({ params }) {
 ```
 
 ### Why this pattern?
+
 - **Best for SSR/SSG:** Data is fetched on the server, so your pages are fast and SEO-friendly.
 - **No client-side loading flashes:** Data is ready before the component renders.
 - **Maximum flexibility:** You control how and when data is fetched.
 
 ### Local Development
+
 For local dev (Vite, CRA, etc.), you can create a wrapper component that fetches data on the client and passes it as a prop.
 
 ---

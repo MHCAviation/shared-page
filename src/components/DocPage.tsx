@@ -41,6 +41,8 @@ interface DocPageProps {
     }[];
     body: PortableTextBlock[];
   };
+  searchTerm?: string;
+  onSearchChange?: (value: string) => void;
 }
 
 const pageQuery = `
@@ -74,10 +76,11 @@ export async function getPageData(slug: string) {
 const DocPage: React.FC<DocPageProps> = ({
   basePath = "/",
   pageData,
+  searchTerm,
+  onSearchChange,
 }) => {
-  // Only use state for searchTerm (client interaction)
-  const [searchTerm, setSearchTerm] = React.useState("");
   const data = pageData;
+  const search = searchTerm ?? "";
 
   // If no data, show error (SSR/SSG: always pass pageData)
   if (!data) {
@@ -253,8 +256,8 @@ const DocPage: React.FC<DocPageProps> = ({
         <BannerSearch
           title="Advice and answers from the team"
           description="Guides to configuring and using the platform, troubleshooting common issues, and more."
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
+          searchTerm={search}
+          onSearchChange={onSearchChange}
           placeholder="Search answer or question"
           redirectToFaq={true}
           basePath={basePath}

@@ -1,11 +1,12 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
-import FAQ from "./components/FAQ";
-import DocPage from "./components/DocPage";
+import FAQ from "./components/FAQLocalWrapper";
+import DocPage from "./components/DocPageLocalWrapper";
 
 // Wrapper component to extract slug from URL params
 const DocPageWrapper = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug } = useParams<{ slug?: string }>();
+  if (!slug) return <div>Missing slug</div>; // or render a 404 component
   return <DocPage slug={slug} />;
 };
 

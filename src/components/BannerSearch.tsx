@@ -5,7 +5,7 @@ interface BannerSearchProps {
   title: string;
   description?: string;
   searchTerm: string;
-  onSearchChange: (value: string) => void;
+  onSearchChange?: (value: string) => void;
   placeholder?: string;
   redirectToFaq?: boolean;
   basePath?: string;
@@ -60,7 +60,7 @@ const BannerSearch: React.FC<BannerSearchProps> = ({
             type="text"
             className={styles.searchInput}
             value={searchTerm}
-            onChange={(e) => onSearchChange(e.target.value)}
+            onChange={onSearchChange ? (e) => onSearchChange(e.target.value) : undefined}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
           />

@@ -3,7 +3,7 @@ interface BannerSearchProps {
     title: string;
     description?: string;
     searchTerm: string;
-    onSearchChange: (value: string) => void;
+    onSearchChange?: (value: string) => void;
     placeholder?: string;
     redirectToFaq?: boolean;
     basePath?: string;

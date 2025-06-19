@@ -20,6 +20,8 @@ interface DocPageProps {
         }[];
         body: PortableTextBlock[];
     };
+    searchTerm?: string;
+    onSearchChange?: (value: string) => void;
 }
 export declare function getPageData(slug: string): Promise<any>;
 declare const DocPage: React.FC<DocPageProps>;

@@ -1,5 +1,5 @@
 // src/components/FAQ.tsx
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import BannerSearch from "./BannerSearch";
 import styles from "./FAQ.module.css";
 import { getFaqs } from "../lib/sanity";
@@ -45,23 +45,25 @@ const FAQ: React.FC<FAQProps> = ({
   initialFaqs = defaultFaqs,
   description,
   basePath = "/",
+  searchTerm,
+  onSearchChange,
 }) => {
-  // Only use state for searchTerm and error
-  const [searchTerm, setSearchTerm] = useState("");
-
   // Use faqs prop if provided, otherwise fallback to initialFaqs
   const faqList = faqs && faqs.length > 0 ? faqs : initialFaqs;
 
+  // Use controlled searchTerm if provided, otherwise default to empty string
+  const search = searchTerm ?? "";
+
   // Filter FAQs by search term
   const filteredFaqs = useMemo(() => {
-    if (!searchTerm.trim()) return faqList;
-    const lower = searchTerm.toLowerCase();
+    if (!search.trim()) return faqList;
+    const lower = search.toLowerCase();
     return faqList.filter(
       (faq: FAQItem) =>
         faq.question.toLowerCase().includes(lower) ||
         faq.answer.toLowerCase().includes(lower)
     );
-  }, [faqList, searchTerm]);
+  }, [faqList, search]);
 
   // Group FAQs by category
   const groupedFaqs = useMemo(() => {
@@ -114,31 +116,33 @@ const FAQ: React.FC<FAQProps> = ({
         <BannerSearch
           title={title}
           description={description}
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
+          searchTerm={search}
+          onSearchChange={onSearchChange}
           basePath={basePath}
         />
         {/* FAQ Content */}
         <div className={styles.faqContent}>
-          {searchTerm.trim() && (
+          {search.trim() && (
             <div className={styles.searchResults}>
               <span>
                 {filteredFaqs.length === 0
-                  ? `No results for "${searchTerm}"`
+                  ? `No results for "${search}"`
                   : `Found ${filteredFaqs.length} result${
                       filteredFaqs.length === 1 ? "" : "s"
-                    } for "${searchTerm}"`}
+                    } for "${search}"`}
               </span>
-              <button
-                onClick={() => setSearchTerm("")}
-                className={styles.clearSearch}
-              >
-                Clear search
-              </button>
+              {onSearchChange && (
+                <button
+                  onClick={() => onSearchChange("")}
+                  className={styles.clearSearch}
+                >
+                  Clear search
+                </button>
+              )}
             </div>
           )}
           <div className={styles.faqItems}>
-            {filteredFaqs.length === 0 && searchTerm.trim() ? (
+            {filteredFaqs.length === 0 && search.trim() ? (
               <div className={styles.noResults}>
                 No matching questions found. Try adjusting your search terms.
               </div>

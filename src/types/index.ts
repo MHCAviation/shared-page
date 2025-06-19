@@ -47,4 +47,6 @@ export interface FAQProps {
   initialFaqs?: FAQItem[];
   basePath?: string;
   faqs?: FAQItem[];
+  searchTerm?: string;
+  onSearchChange?: (value: string) => void;
 }
