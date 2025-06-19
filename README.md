@@ -48,3 +48,43 @@ export default function NotFoundPage() {
   }
 }
 ```
+
+## Usage with Next.js App Router (SSR/SSG)
+
+This library is designed to work seamlessly with Next.js App Router and server components. It provides pure React components and async data-fetching helpers. You are responsible for fetching data in your own server components and passing it as props.
+
+### Example: FAQ Page
+
+```tsx
+// app/faqs/page.tsx
+import { FAQ, getFaqs } from 'shared-pages';
+
+export default async function FAQPage() {
+  const faqs = await getFaqs(); // Runs on the server
+  return <FAQ faqs={faqs} />;
+}
+```
+
+### Example: Doc Page
+
+```tsx
+// app/docs/[slug]/page.tsx
+import { DocPage, getPageData } from 'shared-pages';
+
+export default async function DocPageRoute({ params }) {
+  const pageData = await getPageData(params.slug);
+  return <DocPage pageData={pageData} />;
+}
+```
+
+### Why this pattern?
+- **Best for SSR/SSG:** Data is fetched on the server, so your pages are fast and SEO-friendly.
+- **No client-side loading flashes:** Data is ready before the component renders.
+- **Maximum flexibility:** You control how and when data is fetched.
+
+### Local Development
+For local dev (Vite, CRA, etc.), you can create a wrapper component that fetches data on the client and passes it as a prop.
+
+---
+
+**Questions?** Open an issue or check the examples above!

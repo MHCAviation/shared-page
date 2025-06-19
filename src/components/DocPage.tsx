@@ -1,5 +1,5 @@
 // src/components/DocPage.tsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import BannerSearch from "./BannerSearch";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
@@ -14,18 +14,33 @@ interface TableCell {
   content: PortableTextBlock[];
   width?: string;
 }
-interface TableRow {
+
+interface TableRowData {
   cells: TableCell[];
 }
-interface TableData {
-  columns: string[];
-  rows: TableRow[];
+
+interface TableValue {
+  rows: TableRowData[];
   layoutOrientation?: "top" | "left";
 }
 
 interface DocPageProps {
   slug?: string;
   basePath?: string;
+  pageData?: {
+    title: string;
+    authorName?: string;
+    authorImage?: string;
+    publishedAt?: string;
+    tableOfContents: {
+      _id: string;
+      title: string;
+      slug: string;
+      order: number;
+      subsections?: { title: string; slug: string }[];
+    }[];
+    body: PortableTextBlock[];
+  };
 }
 
 const pageQuery = `
@@ -52,47 +67,24 @@ const pageQuery = `
   }
 `;
 
-const DocPage: React.FC<DocPageProps> = ({ slug, basePath = "/" }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [pageData, setPageData] = useState<{
-    title: string;
-    authorName?: string;
-    authorImage?: string;
-    publishedAt?: string;
-    tableOfContents: {
-      _id: string;
-      title: string;
-      slug: string;
-      order: number;
-      subsections?: { title: string; slug: string }[];
-    }[];
-    body: PortableTextBlock[];
-  } | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+export async function getPageData(slug: string) {
+  return await client.fetch(pageQuery, { slug });
+}
 
-  useEffect(() => {
-    if (!slug) return;
-    setLoading(true);
-    client
-      .fetch(pageQuery, { slug })
-      .then((data) => {
-        if (!data) {
-          setError("Page not found.");
-          setPageData(null);
-        } else {
-          setPageData(data);
-        }
-      })
-      .catch(() => setError("Failed to load page."))
-      .finally(() => setLoading(false));
-  }, [slug]);
+const DocPage: React.FC<DocPageProps> = ({
+  basePath = "/",
+  pageData,
+}) => {
+  // Only use state for searchTerm (client interaction)
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const data = pageData;
 
-  if (loading) return <div className={styles.loading}>Loading…</div>;
-  if (error || !pageData) return <div className={styles.error}>{error}</div>;
+  // If no data, show error (SSR/SSG: always pass pageData)
+  if (!data) {
+    return <div className={styles.error}>No data found.</div>;
+  }
 
-  const { title, authorName, authorImage, publishedAt, tableOfContents, body } =
-    pageData;
+  const { title, authorName, authorImage, publishedAt, tableOfContents, body } = data;
   const formattedDate = publishedAt
     ? new Date(publishedAt).toLocaleDateString(undefined, {
         year: "numeric",
@@ -146,21 +138,18 @@ const DocPage: React.FC<DocPageProps> = ({ slug, basePath = "/" }) => {
           </h3>
         ) : null;
       },
-      table: ({ value }: { value?: TableData }) => {
+      table: ({ value }: { value?: TableValue }) => {
         if (!value?.rows?.length) return null;
-
         const layout = value.layoutOrientation === "left" ? "left" : "top";
         const cols = value.rows[0].cells.map((c) => c.column);
         const widths = value.rows[0].cells.map((c) => c.width || "auto");
-
-        // Top layout
         if (layout === "top") {
           return (
             <div className="overflow-x-auto my-6">
               <table className="min-w-full table-auto border-collapse">
                 <thead className="bg-gray-100 text-gray-700">
                   <tr>
-                    {cols.map((head, i) => (
+                    {cols.map((head: string, i: number) => (
                       <th
                         key={head + i}
                         className="px-4 py-2 border border-gray-300 text-left"
@@ -174,7 +163,7 @@ const DocPage: React.FC<DocPageProps> = ({ slug, basePath = "/" }) => {
                 <tbody>
                   {value.rows.map((row, r) => (
                     <tr key={r} className="even:bg-gray-50">
-                      {cols.map((col, ci) => {
+                      {cols.map((col: string, ci: number) => {
                         const cell = row.cells.find((c) => c.column === col);
                         return (
                           <td
@@ -200,28 +189,22 @@ const DocPage: React.FC<DocPageProps> = ({ slug, basePath = "/" }) => {
             </div>
           );
         }
-
-        // Left layout: first cell is header, second cell is content (if exists)
+        // Left layout
         return (
           <div className="overflow-x-auto my-6">
             <table className="w-full table-auto border-collapse">
               <tbody>
                 {value.rows.map((row, r) => (
                   <tr key={r} className="even:bg-gray-50">
-                    {/* Header cell */}
                     <th
                       className="px-4 py-2 border border-gray-300 text-left align-top break-words"
                       style={{ width: widths[0] }}
                     >
                       {row.cells[0]?.column || "—"}
                     </th>
-                    {/* Content cell */}
                     <td
                       className="px-4 py-2 border border-gray-300 align-top break-words"
-                      style={{
-                        width: widths[1] || "auto",
-                        minWidth: widths[1] || "auto",
-                      }}
+                      style={{ width: widths[1] || "auto", minWidth: widths[1] || "auto" }}
                     >
                       {row.cells[0]?.content ? (
                         <PortableText
@@ -232,15 +215,11 @@ const DocPage: React.FC<DocPageProps> = ({ slug, basePath = "/" }) => {
                         <span className="text-gray-400">—</span>
                       )}
                     </td>
-                    {/* If there are more cells, render them as well */}
                     {row.cells.slice(1).map((cell, ci) => (
                       <td
                         key={ci}
                         className="px-4 py-2 border border-gray-300 align-top break-words"
-                        style={{
-                          width: widths[ci + 1],
-                          minWidth: widths[ci + 1],
-                        }}
+                        style={{ width: widths[ci + 1], minWidth: widths[ci + 1] }}
                       >
                         {cell?.content ? (
                           <PortableText

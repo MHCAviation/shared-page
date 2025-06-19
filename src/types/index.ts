@@ -46,4 +46,5 @@ export interface FAQProps {
   description?: string;
   initialFaqs?: FAQItem[];
   basePath?: string;
+  faqs?: FAQItem[];
 }

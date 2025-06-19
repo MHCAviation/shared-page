@@ -1,5 +1,5 @@
 // src/components/FAQ.tsx
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import BannerSearch from "./BannerSearch";
 import styles from "./FAQ.module.css";
 import { getFaqs } from "../lib/sanity";
@@ -37,72 +37,36 @@ const ArrowIcon = () => (
   </svg>
 );
 
+export { getFaqs };
+
 const FAQ: React.FC<FAQProps> = ({
   title = "Advice and answers from the team",
+  faqs,
   initialFaqs = defaultFaqs,
   description,
   basePath = "/",
 }) => {
-  // Initialize search term without window reference
+  // Only use state for searchTerm and error
   const [searchTerm, setSearchTerm] = useState("");
-  const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  // Move URL parameter reading to useEffect for client-side only
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const searchParam = params.get("search");
-    if (searchParam) {
-      setSearchTerm(searchParam);
-    }
-  }, []);
-
-  // Update URL when search term changes (client-side only)
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (searchTerm) {
-        params.set("search", searchTerm);
-      } else {
-        params.delete("search");
-      }
-      const newUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
-      window.history.replaceState({}, "", newUrl);
-    }
-  }, [searchTerm]);
-
-  useEffect(() => {
-    const loadFaqs = async () => {
-      try {
-        setIsLoading(true);
-        const sanityFaqs = await getFaqs();
-        setFaqs(sanityFaqs || []);
-      } catch (err) {
-        setError("Failed to load Contents. Please try again later.");
-        console.error("Error loading:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadFaqs();
-  }, []);
+  // Use faqs prop if provided, otherwise fallback to initialFaqs
+  const faqList = faqs && faqs.length > 0 ? faqs : initialFaqs;
 
   // Filter FAQs by search term
   const filteredFaqs = useMemo(() => {
-    if (!searchTerm.trim()) return faqs;
+    if (!searchTerm.trim()) return faqList;
     const lower = searchTerm.toLowerCase();
-    return faqs.filter(
-      (faq) =>
+    return faqList.filter(
+      (faq: FAQItem) =>
         faq.question.toLowerCase().includes(lower) ||
         faq.answer.toLowerCase().includes(lower)
     );
-  }, [faqs, searchTerm]);
+  }, [faqList, searchTerm]);
 
   // Group FAQs by category
   const groupedFaqs = useMemo(() => {
-    if (!filteredFaqs.length) return new Map();
-    return filteredFaqs.reduce((groups, faq) => {
+    if (!filteredFaqs.length) return new Map<string, { faqs: FAQItem[]; description: string }>();
+    return filteredFaqs.reduce((groups: Map<string, { faqs: FAQItem[]; description: string }>, faq: FAQItem) => {
       const category = faq.category || { title: "Other", _id: "other" };
       const categoryTitle =
         category.title.charAt(0).toUpperCase() + category.title.slice(1);
@@ -122,17 +86,13 @@ const FAQ: React.FC<FAQProps> = ({
     if (!faq.page) {
       return `/faq/${faq._id}`;
     }
-
-    const pageSlug = faq.page.slug.current; // e.g. "getting-started"
-    const basePath = `/docs/${pageSlug}`; // e.g. "/docs/getting-started"
-
+    const pageSlug = faq.page.slug.current;
+    const basePath = `/docs/${pageSlug}`;
     if (faq.page.tableOfContents && faq.page.tableOfContents.length > 0) {
       const raw = faq.page.tableOfContents[0].slug;
-      // Remove any leading "#" characters:
-      const cleanSlug = raw.replace(/^#+/, ""); // e.g. "#installation" → "installation"
-      return `${basePath}#${cleanSlug}`; // now → "/docs/getting-started#installation"
+      const cleanSlug = raw.replace(/^#+/, "");
+      return `${basePath}#${cleanSlug}`;
     }
-
     return basePath;
   };
 
@@ -145,12 +105,10 @@ const FAQ: React.FC<FAQProps> = ({
     <div className={styles.faqRoot}>
       <div
         className={styles.faqWrapper}
-        style={
-          {
-            "--banner-image":
-              "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
-          } as React.CSSProperties
-        }
+        style={{
+          "--banner-image":
+            "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+        } as React.CSSProperties}
       >
         {/* Banner */}
         <BannerSearch
@@ -160,7 +118,6 @@ const FAQ: React.FC<FAQProps> = ({
           onSearchChange={setSearchTerm}
           basePath={basePath}
         />
-
         {/* FAQ Content */}
         <div className={styles.faqContent}>
           {searchTerm.trim() && (
@@ -180,27 +137,22 @@ const FAQ: React.FC<FAQProps> = ({
               </button>
             </div>
           )}
-
           <div className={styles.faqItems}>
-            {isLoading ? (
-              <div className={styles.loading}>Loading Contents...</div>
-            ) : error ? (
-              <div className={styles.error}>{error}</div>
-            ) : filteredFaqs.length === 0 && searchTerm.trim() ? (
+            {filteredFaqs.length === 0 && searchTerm.trim() ? (
               <div className={styles.noResults}>
                 No matching questions found. Try adjusting your search terms.
               </div>
             ) : (
               Array.from(groupedFaqs.entries()).map(
-                ([category, { faqs, description }]) => (
+                ([category, value]: [string, { faqs: FAQItem[]; description: string }]) => (
                   <div key={category} className={styles.faqCategory}>
                     <h2 className={styles.faqCategoryTitle}>{category}</h2>
-                    {description && (
+                    {value.description && (
                       <p className={styles.faqCategoryDescription}>
-                        {description}
+                        {value.description}
                       </p>
                     )}
-                    {faqs.map((faq: FAQItem) => (
+                    {value.faqs.map((faq: FAQItem) => (
                       <a
                         key={faq._id}
                         href={getFaqLink(faq)}
