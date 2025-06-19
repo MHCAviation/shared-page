@@ -25,6 +25,7 @@ interface TableData {
 
 interface DocPageProps {
   slug?: string;
+  basePath?: string;
 }
 
 const pageQuery = `
@@ -51,7 +52,7 @@ const pageQuery = `
   }
 `;
 
-const DocPage: React.FC<DocPageProps> = ({ slug }) => {
+const DocPage: React.FC<DocPageProps> = ({ slug, basePath = "/" }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [pageData, setPageData] = useState<{
@@ -277,6 +278,7 @@ const DocPage: React.FC<DocPageProps> = ({ slug }) => {
           onSearchChange={setSearchTerm}
           placeholder="Search answer or question"
           redirectToFaq={true}
+          basePath={basePath}
         />
       </div>
       <div className={styles.container}>
@@ -294,7 +296,7 @@ const DocPage: React.FC<DocPageProps> = ({ slug }) => {
         </aside>
         <article className={styles.mainContent}>
           <nav className={styles.breadcrumbs}>
-            <a href="/">All Collections</a> &gt; <span>{title}</span>
+            <a href={basePath}>All Collections</a> &gt; <span>{title}</span>
           </nav>
           <h1 className={styles.pageTitle}>{title}</h1>
           <div className={styles.metaInfo}>
