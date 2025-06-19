@@ -1,5 +1,6 @@
 // src/components/FAQ.tsx
 import React, { useState, useMemo, useEffect } from "react";
+import BannerSearch from "./BannerSearch";
 import styles from "./FAQ.module.css";
 import { getFaqs } from "../lib/sanity";
 import type { FAQItem, FAQProps } from "../types";
@@ -41,10 +42,26 @@ const FAQ: React.FC<FAQProps> = ({
   initialFaqs = defaultFaqs,
   description,
 }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  // Initialize search term from URL parameter
+  const [searchTerm, setSearchTerm] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("search") || "";
+  });
   const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Update URL when search term changes
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (searchTerm) {
+      params.set("search", searchTerm);
+    } else {
+      params.delete("search");
+    }
+    const newUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
+    window.history.replaceState({}, "", newUrl);
+  }, [searchTerm]);
 
   useEffect(() => {
     const loadFaqs = async () => {
@@ -53,8 +70,8 @@ const FAQ: React.FC<FAQProps> = ({
         const sanityFaqs = await getFaqs();
         setFaqs(sanityFaqs || []);
       } catch (err) {
-        setError("Failed to load FAQs. Please try again later.");
-        console.error("Error loading FAQs:", err);
+        setError("Failed to load Contents. Please try again later.");
+        console.error("Error loading:", err);
       } finally {
         setIsLoading(false);
       }
@@ -127,39 +144,12 @@ const FAQ: React.FC<FAQProps> = ({
         }
       >
         {/* Banner */}
-        <div className={styles.banner}>
-          <div className={styles.bannerOverlay} />
-          <div className={styles.bannerContent}>
-            <h1 className={styles.bannerTitle}>{title}</h1>
-            {description && (
-              <p className={styles.bannerDescription}>{description}</p>
-            )}
-            {/* Search Bar */}
-            <div className={styles.searchBar}>
-              <svg
-                className={styles.searchIcon}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <input
-                type="text"
-                className={styles.searchInput}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search answer or question"
-              />
-            </div>
-          </div>
-        </div>
+        <BannerSearch
+          title={title}
+          description={description}
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
 
         {/* FAQ Content */}
         <div className={styles.faqContent}>
@@ -183,7 +173,7 @@ const FAQ: React.FC<FAQProps> = ({
 
           <div className={styles.faqItems}>
             {isLoading ? (
-              <div className={styles.loading}>Loading FAQs...</div>
+              <div className={styles.loading}>Loading Contents...</div>
             ) : error ? (
               <div className={styles.error}>{error}</div>
             ) : filteredFaqs.length === 0 && searchTerm.trim() ? (

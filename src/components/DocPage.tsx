@@ -1,11 +1,10 @@
 // src/components/DocPage.tsx
 import React, { useEffect, useState } from "react";
+import BannerSearch from "./BannerSearch";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 import { client, urlFor } from "../lib/sanity";
 import styles from "./DocPage.module.css";
-
-export const revalidate = 15;
 
 // ───────────────────────────────────────────────────
 // Table Data Types
@@ -69,6 +68,7 @@ const DocPage: React.FC<DocPageProps> = ({ slug }) => {
     }[];
     body: PortableTextBlock[];
   } | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     if (!slug) return;
@@ -262,61 +262,79 @@ const DocPage: React.FC<DocPageProps> = ({ slug }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <aside className={styles.stickySidebar}>
-        <div className={styles.sidebarInner}>
-          <h3>Table Of Content</h3>
-          <ul>
-            {sortedToc.map((itm) => (
-              <li key={itm._id}>
-                <a href={`#${itm.slug.replace(/^#+/, "")}`}>{itm.title}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
-      <article className={styles.mainContent}>
-        <nav className={styles.breadcrumbs}>
-          <a href="/">All Collections</a> &gt; <span>{title}</span>
-        </nav>
-        <h1 className={styles.pageTitle}>{title}</h1>
-        <div className={styles.metaInfo}>
-          {authorImage ? (
-            <img
-              src={authorImage}
-              alt={authorName || "Author"}
-              className={styles.authorImage}
-            />
-          ) : (
-            <div className={styles.authorPlaceholder} />
-          )}
-          <div>
-            {authorName && (
-              <div className={styles.authorName}>Written by {authorName}</div>
-            )}
-            {formattedDate && (
-              <div className={styles.publishedDate}>
-                Updated {formattedDate}
-              </div>
-            )}
-          </div>
-        </div>
-        {sortedToc.length > 0 && (
-          <section className={styles.tocInContent}>
-            <h2>Table Of Content</h2>
+    <div className={styles.docPageRoot}>
+      <div
+        className={styles.docPageWrapper}
+        style={{
+          "--banner-image":
+            "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+        } as React.CSSProperties}
+      >
+        <BannerSearch
+          title="Advice and answers from the team"
+          description="Guides to configuring and using the platform, troubleshooting common issues, and more."
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          placeholder="Search answer or question"
+          redirectToFaq={true}
+        />
+      </div>
+      <div className={styles.container}>
+        <aside className={styles.stickySidebar}>
+          <div className={styles.sidebarInner}>
+            <h3>Table Of Content</h3>
             <ul>
               {sortedToc.map((itm) => (
-                <li key={itm._id} className={styles.tocItem}>
+                <li key={itm._id}>
                   <a href={`#${itm.slug.replace(/^#+/, "")}`}>{itm.title}</a>
                 </li>
               ))}
             </ul>
+          </div>
+        </aside>
+        <article className={styles.mainContent}>
+          <nav className={styles.breadcrumbs}>
+            <a href="/">All Collections</a> &gt; <span>{title}</span>
+          </nav>
+          <h1 className={styles.pageTitle}>{title}</h1>
+          <div className={styles.metaInfo}>
+            {authorImage ? (
+              <img
+                src={authorImage}
+                alt={authorName || "Author"}
+                className={styles.authorImage}
+              />
+            ) : (
+              <div className={styles.authorPlaceholder} />
+            )}
+            <div>
+              {authorName && (
+                <div className={styles.authorName}>Written by {authorName}</div>
+              )}
+              {formattedDate && (
+                <div className={styles.publishedDate}>
+                  Updated {formattedDate}
+                </div>
+              )}
+            </div>
+          </div>
+          {sortedToc.length > 0 && (
+            <section className={styles.tocInContent}>
+              <h2>Table Of Content</h2>
+              <ul>
+                {sortedToc.map((itm) => (
+                  <li key={itm._id} className={styles.tocItem}>
+                    <a href={`#${itm.slug.replace(/^#+/, "")}`}>{itm.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+          <section className={styles.bodyContent}>
+            <PortableText value={body} components={portableComponents} />
           </section>
-        )}
-        <section className={styles.bodyContent}>
-          <PortableText value={body} components={portableComponents} />
-        </section>
-      </article>
+        </article>
+      </div>
     </div>
   );
 };

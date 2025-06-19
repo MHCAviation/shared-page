@@ -19,95 +19,6 @@
   background-color: #fff;
 }
 
-.banner {
-  position: relative;
-  padding: 4rem 0;
-  background-image: var(--banner-image);
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  width: 100%;
-}
-
-.bannerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7));
-}
-
-.bannerContent {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 2rem;
-}
-
-.bannerTitle {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin: 0 0 1rem;
-}
-
-.bannerDescription {
-  font-size: 1.125rem;
-  opacity: 0.9;
-  margin: 0 0 2rem;
-}
-
-/* Search Bar */
-.searchBar {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.searchBar {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 1rem 1rem 1rem 3rem;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  color: #fff;
-  font-size: 1rem;
-  transition: all 0.2s;
-}
-
-.searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.searchInput:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-}
-
-.searchIcon {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.5rem;
-  height: 1.5rem;
-  color: white;
-  pointer-events: none;
-  z-index: 2;
-  stroke: currentColor;
-  stroke-width: 2px;
-}
-
 /* FAQ Content */
 .faqContent {
   width: 100%;
@@ -173,19 +84,6 @@
   gap: 0.25rem;
 }
 
-.arrowIcon {
-  width: 20px;
-  height: 20px;
-  color: #666;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
-}
-
-.faqItem:hover .arrowIcon {
-  transform: translateX(4px);
-  color: #2563eb;
-}
-
 /* Category selector styles */
 .faqHeaderTop {
   display: flex;
@@ -198,8 +96,6 @@
 
 .categorySelector {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .categoryButton {
