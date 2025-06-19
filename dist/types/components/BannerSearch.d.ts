@@ -6,6 +6,7 @@ interface BannerSearchProps {
     onSearchChange: (value: string) => void;
     placeholder?: string;
     redirectToFaq?: boolean;
+    basePath?: string;
 }
 declare const BannerSearch: React.FC<BannerSearchProps>;
 export default BannerSearch;

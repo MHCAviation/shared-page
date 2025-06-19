@@ -8,6 +8,7 @@ interface BannerSearchProps {
   onSearchChange: (value: string) => void;
   placeholder?: string;
   redirectToFaq?: boolean;
+  basePath?: string;
 }
 
 const BannerSearch: React.FC<BannerSearchProps> = ({
@@ -17,19 +18,19 @@ const BannerSearch: React.FC<BannerSearchProps> = ({
   onSearchChange,
   placeholder = "Search answer or question",
   redirectToFaq = false,
+  basePath = "/",
 }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (redirectToFaq && searchTerm.trim()) {
-      // Redirect to root path with search parameter since FAQ is mounted at "/"
-      window.location.assign(`/?search=${encodeURIComponent(searchTerm.trim())}`);
+      window.location.assign(`${basePath}?search=${encodeURIComponent(searchTerm.trim())}`);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && redirectToFaq && searchTerm.trim()) {
       e.preventDefault();
-      window.location.assign(`/?search=${encodeURIComponent(searchTerm.trim())}`);
+      window.location.assign(`${basePath}?search=${encodeURIComponent(searchTerm.trim())}`);
     }
   };
 

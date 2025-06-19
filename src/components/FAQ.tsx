@@ -41,6 +41,7 @@ const FAQ: React.FC<FAQProps> = ({
   title = "Advice and answers from the team",
   initialFaqs = defaultFaqs,
   description,
+  basePath = "/",
 }) => {
   // Initialize search term without window reference
   const [searchTerm, setSearchTerm] = useState("");
@@ -157,6 +158,7 @@ const FAQ: React.FC<FAQProps> = ({
           description={description}
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
+          basePath={basePath}
         />
 
         {/* FAQ Content */}

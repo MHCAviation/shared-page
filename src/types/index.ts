@@ -45,4 +45,5 @@ export interface FAQProps {
   title?: string;
   description?: string;
   initialFaqs?: FAQItem[];
+  basePath?: string;
 }
