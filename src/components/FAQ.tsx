@@ -42,25 +42,33 @@ const FAQ: React.FC<FAQProps> = ({
   initialFaqs = defaultFaqs,
   description,
 }) => {
-  // Initialize search term from URL parameter
-  const [searchTerm, setSearchTerm] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("search") || "";
-  });
+  // Initialize search term without window reference
+  const [searchTerm, setSearchTerm] = useState("");
   const [faqs, setFaqs] = useState<FAQItem[]>(initialFaqs);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Update URL when search term changes
+  // Move URL parameter reading to useEffect for client-side only
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (searchTerm) {
-      params.set("search", searchTerm);
-    } else {
-      params.delete("search");
+    const searchParam = params.get("search");
+    if (searchParam) {
+      setSearchTerm(searchParam);
     }
-    const newUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
-    window.history.replaceState({}, "", newUrl);
+  }, []);
+
+  // Update URL when search term changes (client-side only)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (searchTerm) {
+        params.set("search", searchTerm);
+      } else {
+        params.delete("search");
+      }
+      const newUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ""}`;
+      window.history.replaceState({}, "", newUrl);
+    }
   }, [searchTerm]);
 
   useEffect(() => {

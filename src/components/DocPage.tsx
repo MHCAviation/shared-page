@@ -294,7 +294,7 @@ const DocPage: React.FC<DocPageProps> = ({ slug }) => {
         </aside>
         <article className={styles.mainContent}>
           <nav className={styles.breadcrumbs}>
-            <a href="/">All Collections</a> &gt; <span>{title}</span>
+            <a href="/faqs">All Collections</a> &gt; <span>{title}</span>
           </nav>
           <h1 className={styles.pageTitle}>{title}</h1>
           <div className={styles.metaInfo}>
