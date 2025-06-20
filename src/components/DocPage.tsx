@@ -118,6 +118,28 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
         const slugId = String(children).toLowerCase().replace(/\s+/g, "-");
         return <h3 id={slugId}>{children}</h3>;
       },
+      blockquote: ({ children }) => (
+        <blockquote style={{ borderLeft: '4px solid #ccc', margin: '1em 0', padding: '0.5em 1em', color: '#555', background: '#f9f9f9' }}>{children}</blockquote>
+      ),
+      normal: ({ children }) => <p>{children}</p>,
+    },
+    list: {
+      bullet: ({ children }) => <ul style={{ paddingLeft: "1.5em", margin: 0, listStyle: "disc" }}>{children}</ul>,
+      number: ({ children }) => <ol style={{ paddingLeft: "1.5em", margin: 0 }}>{children}</ol>,
+    },
+    listItem: {
+      bullet: ({ children }) => <li>{children}</li>,
+      number: ({ children }) => <li>{children}</li>,
+    },
+    marks: {
+      strong: ({ children }) => <strong>{children}</strong>,
+      em: ({ children }) => <em>{children}</em>,
+      underline: ({ children }) => <u>{children}</u>,
+      code: ({ children }) => <code style={{ background: '#f4f4f4', padding: '0.2em 0.4em', borderRadius: '4px', fontSize: '0.95em' }}>{children}</code>,
+      link: ({ value, children }) => {
+        const href = value?.href || '';
+        return <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>{children}</a>;
+      },
     },
     types: {
       image: ({ value }) => {
