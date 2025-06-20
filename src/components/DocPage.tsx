@@ -73,14 +73,18 @@ export async function getPageData(slug: string) {
   return await client.fetch(pageQuery, { slug });
 }
 
-const DocPage: React.FC<DocPageProps> = ({
+const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
+  inputValue: string;
+  onInputChange?: (value: string) => void;
+  onSearchSubmit?: () => void;
+}> = ({
   basePath = "/",
   pageData,
-  searchTerm,
-  onSearchChange,
+  inputValue,
+  onInputChange,
+  onSearchSubmit,
 }) => {
   const data = pageData;
-  const search = searchTerm ?? "";
 
   // If no data, show error (SSR/SSG: always pass pageData)
   if (!data) {
@@ -256,8 +260,9 @@ const DocPage: React.FC<DocPageProps> = ({
         <BannerSearch
           title="Advice and answers from the team"
           description="Guides to configuring and using the platform, troubleshooting common issues, and more."
-          searchTerm={search}
-          onSearchChange={onSearchChange}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          onSearchSubmit={onSearchSubmit}
           placeholder="Search answer or question"
           redirectToFaq={true}
           basePath={basePath}

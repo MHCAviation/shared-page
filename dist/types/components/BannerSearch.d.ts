@@ -2,8 +2,9 @@ import { default as React } from 'react';
 interface BannerSearchProps {
     title: string;
     description?: string;
-    searchTerm: string;
-    onSearchChange?: (value: string) => void;
+    inputValue: string;
+    onInputChange?: (value: string) => void;
+    onSearchSubmit?: () => void;
     placeholder?: string;
     redirectToFaq?: boolean;
     basePath?: string;

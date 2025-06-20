@@ -39,7 +39,11 @@ const ArrowIcon = () => (
 
 export { getFaqs };
 
-const FAQ: React.FC<FAQProps> = ({
+const FAQ: React.FC<FAQProps & {
+  inputValue: string;
+  onInputChange?: (value: string) => void;
+  onSearchSubmit?: () => void;
+}> = ({
   title = "Advice and answers from the team",
   faqs,
   initialFaqs = defaultFaqs,
@@ -47,6 +51,9 @@ const FAQ: React.FC<FAQProps> = ({
   basePath = "/",
   searchTerm,
   onSearchChange,
+  inputValue,
+  onInputChange,
+  onSearchSubmit,
 }) => {
   // Use faqs prop if provided, otherwise fallback to initialFaqs
   const faqList = faqs && faqs.length > 0 ? faqs : initialFaqs;
@@ -116,8 +123,9 @@ const FAQ: React.FC<FAQProps> = ({
         <BannerSearch
           title={title}
           description={description}
-          searchTerm={search}
-          onSearchChange={onSearchChange}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          onSearchSubmit={onSearchSubmit}
           basePath={basePath}
         />
         {/* FAQ Content */}

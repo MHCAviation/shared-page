@@ -9,10 +9,12 @@ const FAQLocalWrapper: React.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearch
   const query = new URLSearchParams(location.search);
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState(() => query.get("search") || "");
+  const [inputValue, setInputValue] = useState(() => query.get("search") || "");
 
   // Keep state in sync with URL
   useEffect(() => {
     setSearchTerm(query.get("search") || "");
+    setInputValue(query.get("search") || "");
     // eslint-disable-next-line
   }, [location.search]);
 
@@ -32,12 +34,19 @@ const FAQLocalWrapper: React.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearch
     // eslint-disable-next-line
   }, [searchTerm]);
 
+  const handleSearchSubmit = () => {
+    setSearchTerm(inputValue);
+  };
+
   return (
     <FAQ
       {...props}
       faqs={faqs}
       searchTerm={searchTerm}
       onSearchChange={setSearchTerm}
+      inputValue={inputValue}
+      onInputChange={setInputValue}
+      onSearchSubmit={handleSearchSubmit}
     />
   );
 };

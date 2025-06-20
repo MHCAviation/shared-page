@@ -4,11 +4,14 @@ import type { PortableTextBlock } from "@portabletext/types";
 
 interface DocPageLocalWrapperProps {
   slug: string;
-  basePath?: string;
+  basePath?: string | "/";
 }
 
-const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({ slug, basePath }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({
+  slug,
+  basePath = "/",
+}) => {
+  const [inputValue, setInputValue] = useState("");
   const [pageData, setPageData] = useState<{
     title: string;
     authorName?: string;
@@ -28,15 +31,24 @@ const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({ slug, basePat
     getPageData(slug).then(setPageData);
   }, [slug]);
 
+  const handleSearchSubmit = () => {
+    if (inputValue.trim()) {
+      window.location.assign(
+        `${basePath}?search=${encodeURIComponent(inputValue.trim())}`
+      );
+    }
+  };
+
   if (!pageData) return <div>Loading…</div>;
   return (
     <DocPage
       basePath={basePath}
       pageData={pageData}
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
+      inputValue={inputValue}
+      onInputChange={setInputValue}
+      onSearchSubmit={handleSearchSubmit}
     />
   );
 };
 
-export default DocPageLocalWrapper; 
+export default DocPageLocalWrapper;

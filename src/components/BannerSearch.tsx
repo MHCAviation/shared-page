@@ -4,8 +4,9 @@ import styles from "./BannerSearch.module.css";
 interface BannerSearchProps {
   title: string;
   description?: string;
-  searchTerm: string;
-  onSearchChange?: (value: string) => void;
+  inputValue: string;
+  onInputChange?: (value: string) => void;
+  onSearchSubmit?: () => void;
   placeholder?: string;
   redirectToFaq?: boolean;
   basePath?: string;
@@ -14,23 +15,19 @@ interface BannerSearchProps {
 const BannerSearch: React.FC<BannerSearchProps> = ({
   title,
   description,
-  searchTerm,
-  onSearchChange,
+  inputValue,
+  onInputChange,
+  onSearchSubmit,
   placeholder = "Search answer or question",
   redirectToFaq = false,
   basePath = "/",
 }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (redirectToFaq && searchTerm.trim()) {
-      window.location.assign(`${basePath}?search=${encodeURIComponent(searchTerm.trim())}`);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && redirectToFaq && searchTerm.trim()) {
-      e.preventDefault();
-      window.location.assign(`${basePath}?search=${encodeURIComponent(searchTerm.trim())}`);
+    if (onSearchSubmit) {
+      onSearchSubmit();
+    } else if (redirectToFaq && inputValue.trim()) {
+      window.location.assign(`${basePath}?search=${encodeURIComponent(inputValue.trim())}`);
     }
   };
 
@@ -59,9 +56,8 @@ const BannerSearch: React.FC<BannerSearchProps> = ({
           <input
             type="text"
             className={styles.searchInput}
-            value={searchTerm}
-            onChange={onSearchChange ? (e) => onSearchChange(e.target.value) : undefined}
-            onKeyDown={handleKeyDown}
+            value={inputValue}
+            onChange={onInputChange ? (e) => onInputChange(e.target.value) : undefined}
             placeholder={placeholder}
           />
         </form>
