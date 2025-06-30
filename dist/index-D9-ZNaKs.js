@@ -5261,7 +5261,7 @@ function Re(r, e, t, n, i = {}, a = {}) {
   return u.enabled ? v.pipe(
     Or(
       b3(
-        import("./stegaEncodeSourceMap-C56cqVyD.js").then(function(x) {
+        import("./stegaEncodeSourceMap-2esi4Ddq.js").then(function(x) {
           return x.stegaEncodeSourceMap$1;
         }).then(
           ({ stegaEncodeSourceMap: x }) => x
@@ -5722,7 +5722,7 @@ function e7(r, e) {
   );
 }
 var t7 = (r, e) => Object.keys(e).concat(Object.keys(r)).reduce((t, n) => (t[n] = typeof r[n] > "u" ? e[n] : r[n], t), {});
-const r7 = (r, e) => e.reduce((t, n) => (typeof r[n] > "u" || (t[n] = r[n]), t), {}), Ke = le(() => import("./browser-DsgWbRBo.js").then((r) => r.b)).pipe(
+const r7 = (r, e) => e.reduce((t, n) => (typeof r[n] > "u" || (t[n] = r[n]), t), {}), Ke = le(() => import("./browser-DDhj2aST.js").then((r) => r.b)).pipe(
   j1(({ default: r }) => r),
   kr(1)
 );
@@ -8352,8 +8352,8 @@ const wi = ({
       normal: ({ children: g }) => /* @__PURE__ */ E.jsx("p", { children: g })
     },
     list: {
-      bullet: ({ children: g }) => /* @__PURE__ */ E.jsx("ul", { className: "list-disc list-inside ml-2 my-4", children: g }),
-      number: ({ children: g }) => /* @__PURE__ */ E.jsx("ol", { className: "list-decimal list-inside ml-2 my-4", children: g })
+      bullet: ({ children: g }) => /* @__PURE__ */ E.jsx("ul", { className: "list-disc list-inside pl-4", children: g }),
+      number: ({ children: g }) => /* @__PURE__ */ E.jsx("ol", { className: "list-decimal list-inside pl-4", children: g })
     },
     listItem: {
       bullet: ({ children: g }) => /* @__PURE__ */ E.jsx("li", { children: g }),
