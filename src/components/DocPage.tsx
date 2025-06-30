@@ -138,12 +138,10 @@ const DocPage: React.FC<
     },
     list: {
       bullet: ({ children }) => (
-        <ul style={{ paddingLeft: "1.5em", margin: 0, listStyle: "disc" }}>
-          {children}
-        </ul>
+        <ul className="list-disc list-inside ml-2 my-4">{children}</ul>
       ),
       number: ({ children }) => (
-        <ol style={{ paddingLeft: "1.5em", margin: 0 }}>{children}</ol>
+        <ol className="list-decimal list-inside ml-2 my-4">{children}</ol>
       ),
     },
     listItem: {
