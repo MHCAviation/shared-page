@@ -24,7 +24,7 @@ interface DocPageProps {
     onSearchChange?: (value: string) => void;
 }
 export declare function getPageData(slug: string): Promise<any>;
-declare const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
+declare const DocPage: React.FC<Omit<DocPageProps, "searchTerm"> & {
     inputValue: string;
     onInputChange?: (value: string) => void;
     onSearchSubmit?: () => void;

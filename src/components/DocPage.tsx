@@ -73,11 +73,13 @@ export async function getPageData(slug: string) {
   return await client.fetch(pageQuery, { slug });
 }
 
-const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
-  inputValue: string;
-  onInputChange?: (value: string) => void;
-  onSearchSubmit?: () => void;
-}> = ({
+const DocPage: React.FC<
+  Omit<DocPageProps, "searchTerm"> & {
+    inputValue: string;
+    onInputChange?: (value: string) => void;
+    onSearchSubmit?: () => void;
+  }
+> = ({
   basePath = "/",
   pageData,
   inputValue,
@@ -91,7 +93,8 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
     return <div className={styles.error}>No data found.</div>;
   }
 
-  const { title, authorName, authorImage, publishedAt, tableOfContents, body } = data;
+  const { title, authorName, authorImage, publishedAt, tableOfContents, body } =
+    data;
   const formattedDate = publishedAt
     ? new Date(publishedAt).toLocaleDateString(undefined, {
         year: "numeric",
@@ -119,13 +122,29 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
         return <h3 id={slugId}>{children}</h3>;
       },
       blockquote: ({ children }) => (
-        <blockquote style={{ borderLeft: '4px solid #ccc', margin: '1em 0', padding: '0.5em 1em', color: '#555', background: '#f9f9f9' }}>{children}</blockquote>
+        <blockquote
+          style={{
+            borderLeft: "4px solid #ccc",
+            margin: "1em 0",
+            padding: "0.5em 1em",
+            color: "#555",
+            background: "#f9f9f9",
+          }}
+        >
+          {children}
+        </blockquote>
       ),
       normal: ({ children }) => <p>{children}</p>,
     },
     list: {
-      bullet: ({ children }) => <ul style={{ paddingLeft: "1.5em", margin: 0, listStyle: "disc" }}>{children}</ul>,
-      number: ({ children }) => <ol style={{ paddingLeft: "1.5em", margin: 0 }}>{children}</ol>,
+      bullet: ({ children }) => (
+        <ul style={{ paddingLeft: "1.5em", margin: 0, listStyle: "disc" }}>
+          {children}
+        </ul>
+      ),
+      number: ({ children }) => (
+        <ol style={{ paddingLeft: "1.5em", margin: 0 }}>{children}</ol>
+      ),
     },
     listItem: {
       bullet: ({ children }) => <li>{children}</li>,
@@ -135,10 +154,30 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
       strong: ({ children }) => <strong>{children}</strong>,
       em: ({ children }) => <em>{children}</em>,
       underline: ({ children }) => <u>{children}</u>,
-      code: ({ children }) => <code style={{ background: '#f4f4f4', padding: '0.2em 0.4em', borderRadius: '4px', fontSize: '0.95em' }}>{children}</code>,
+      code: ({ children }) => (
+        <code
+          style={{
+            background: "#f4f4f4",
+            padding: "0.2em 0.4em",
+            borderRadius: "4px",
+            fontSize: "0.95em",
+          }}
+        >
+          {children}
+        </code>
+      ),
       link: ({ value, children }) => {
-        const href = value?.href || '';
-        return <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>{children}</a>;
+        const href = value?.href || "";
+        return (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#2563eb", textDecoration: "underline" }}
+          >
+            {children}
+          </a>
+        );
       },
     },
     types: {
@@ -169,9 +208,11 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
       },
       table: ({ value }: { value?: TableValue }) => {
         if (!value?.rows?.length) return null;
+
         const layout = value.layoutOrientation === "left" ? "left" : "top";
         const cols = value.rows[0].cells.map((c) => c.column);
         const widths = value.rows[0].cells.map((c) => c.width || "auto");
+
         if (layout === "top") {
           return (
             <div className="overflow-x-auto my-6">
@@ -197,7 +238,7 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
                         return (
                           <td
                             key={col + ci}
-                            className="px-4 py-2 border border-gray-300 align-top"
+                            className="px-4 py-2 border border-gray-300 align-top break-words"
                             style={{ width: widths[ci], minWidth: widths[ci] }}
                           >
                             {cell?.content ? (
@@ -218,50 +259,45 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
             </div>
           );
         }
-        // Left layout
+
+        // LEFT LAYOUT
         return (
           <div className="overflow-x-auto my-6">
             <table className="w-full table-auto border-collapse">
               <tbody>
-                {value.rows.map((row, r) => (
-                  <tr key={r} className="even:bg-gray-50">
-                    <th
-                      className="px-4 py-2 border border-gray-300 text-left align-top break-words"
-                      style={{ width: widths[0] }}
-                    >
-                      {row.cells[0]?.column || "—"}
-                    </th>
-                    <td
-                      className="px-4 py-2 border border-gray-300 align-top break-words"
-                      style={{ width: widths[1] || "auto", minWidth: widths[1] || "auto" }}
-                    >
-                      {row.cells[0]?.content ? (
-                        <PortableText
-                          value={row.cells[0].content}
-                          components={portableComponents}
-                        />
-                      ) : (
-                        <span className="text-gray-400">—</span>
-                      )}
-                    </td>
-                    {row.cells.slice(1).map((cell, ci) => (
-                      <td
-                        key={ci}
-                        className="px-4 py-2 border border-gray-300 align-top break-words"
-                        style={{ width: widths[ci + 1], minWidth: widths[ci + 1] }}
+                {value.rows.map((row, r) => {
+                  const firstCell = row.cells[0];
+                  return (
+                    <tr key={r} className="even:bg-gray-50">
+                      <th
+                        className="px-4 py-2 border border-gray-300 text-left align-top break-words"
+                        style={{ width: widths[0] }}
                       >
-                        {cell?.content ? (
-                          <PortableText
-                            value={cell.content}
-                            components={portableComponents}
-                          />
-                        ) : (
-                          <span className="text-gray-400">—</span>
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
+                        {firstCell?.column || "—"}
+                      </th>
+                      {cols.map((col, ci) => {
+                        const cell = row.cells.find((c) => c.column === col);
+                        if (ci === 0) return null; // already rendered as header
+                        return (
+                          <td
+                            key={col + ci}
+                            className="px-4 py-2 border border-gray-300 align-top break-words"
+                            style={{ width: widths[ci], minWidth: widths[ci] }}
+                          >
+                            {cell?.content ? (
+                              <PortableText
+                                value={cell.content}
+                                components={portableComponents}
+                              />
+                            ) : (
+                              <span className="text-gray-400">—</span>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -274,10 +310,12 @@ const DocPage: React.FC<Omit<DocPageProps, 'searchTerm'> & {
     <div className={styles.docPageRoot}>
       <div
         className={styles.docPageWrapper}
-        style={{
-          "--banner-image":
-            "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
-        } as React.CSSProperties}
+        style={
+          {
+            "--banner-image":
+              "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+          } as React.CSSProperties
+        }
       >
         <BannerSearch
           title="Advice and answers from the team"
