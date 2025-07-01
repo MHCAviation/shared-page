@@ -98,7 +98,7 @@ function w9() {
       switch (E) {
         case L:
           return "Fragment";
-        case f:
+        case d:
           return "Profiler";
         case R:
           return "StrictMode";
@@ -281,7 +281,7 @@ React keys must be passed directly to JSX without using spread:
     function b(E) {
       typeof E == "object" && E !== null && E.$$typeof === C && E._store && (E._store.validated = 1);
     }
-    var g = m3, C = Symbol.for("react.transitional.element"), _ = Symbol.for("react.portal"), L = Symbol.for("react.fragment"), R = Symbol.for("react.strict_mode"), f = Symbol.for("react.profiler"), P = Symbol.for("react.consumer"), j = Symbol.for("react.context"), N = Symbol.for("react.forward_ref"), F = Symbol.for("react.suspense"), A = Symbol.for("react.suspense_list"), D = Symbol.for("react.memo"), $ = Symbol.for("react.lazy"), H = Symbol.for("react.activity"), J = Symbol.for("react.client.reference"), e1 = g.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, P1 = Object.prototype.hasOwnProperty, O = Array.isArray, I1 = console.createTask ? console.createTask : function() {
+    var g = m3, C = Symbol.for("react.transitional.element"), _ = Symbol.for("react.portal"), L = Symbol.for("react.fragment"), R = Symbol.for("react.strict_mode"), d = Symbol.for("react.profiler"), P = Symbol.for("react.consumer"), j = Symbol.for("react.context"), N = Symbol.for("react.forward_ref"), F = Symbol.for("react.suspense"), A = Symbol.for("react.suspense_list"), D = Symbol.for("react.memo"), $ = Symbol.for("react.lazy"), H = Symbol.for("react.activity"), J = Symbol.for("react.client.reference"), e1 = g.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, P1 = Object.prototype.hasOwnProperty, O = Array.isArray, I1 = console.createTask ? console.createTask : function() {
       return null;
     };
     g = {
@@ -324,7 +324,7 @@ var Y3;
 function b9() {
   return Y3 || (Y3 = 1, process.env.NODE_ENV === "production" ? L2.exports = _9() : L2.exports = w9()), L2.exports;
 }
-var d = b9(), C9 = Object.defineProperty, x9 = Object.defineProperties, L9 = Object.getOwnPropertyDescriptors, P2 = Object.getOwnPropertySymbols, f0 = Object.prototype.hasOwnProperty, m0 = Object.prototype.propertyIsEnumerable, c3 = (t, e, n) => e in t ? C9(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n, o1 = (t, e) => {
+var f = b9(), C9 = Object.defineProperty, x9 = Object.defineProperties, L9 = Object.getOwnPropertyDescriptors, P2 = Object.getOwnPropertySymbols, f0 = Object.prototype.hasOwnProperty, m0 = Object.prototype.propertyIsEnumerable, c3 = (t, e, n) => e in t ? C9(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n, o1 = (t, e) => {
   for (var n in e || (e = {})) f0.call(e, n) && c3(t, n, e[n]);
   if (P2) for (var n of P2(e)) m0.call(e, n) && c3(t, n, e[n]);
   return t;
@@ -386,7 +386,7 @@ var d = b9(), C9 = Object.defineProperty, x9 = Object.defineProperties, L9 = Obj
     typeof document < "u" && document.currentScript && (x = document.currentScript.src), e && (x = e), x.startsWith("blob:") ? x = "" : x = x.substr(0, x.replace(/[?#].*/, "").lastIndexOf("/") + 1), b = (r) => fetch(r, { credentials: "same-origin" }).then((a) => a.ok ? a.arrayBuffer() : Promise.reject(Error(a.status + " : " + a.url)));
     var g = i.print || console.log.bind(console), C = i.printErr || console.error.bind(console);
     Object.assign(i, v), v = null, i.thisProgram && (p = i.thisProgram);
-    var _ = i.wasmBinary, L, R = !1, f, P, j, N, F, A, D, $, H;
+    var _ = i.wasmBinary, L, R = !1, d, P, j, N, F, A, D, $, H;
     function J() {
       var r = L.buffer;
       i.HEAP8 = P = new Int8Array(r), i.HEAP16 = N = new Int16Array(r), i.HEAPU8 = j = new Uint8Array(r), i.HEAPU16 = F = new Uint16Array(r), i.HEAP32 = A = new Int32Array(r), i.HEAPU32 = D = new Uint32Array(r), i.HEAPF32 = $ = new Float32Array(r), i.HEAPF64 = H = new Float64Array(r);
@@ -814,11 +814,11 @@ var d = b9(), C9 = Object.defineProperty, x9 = Object.defineProperties, L9 = Obj
       if (!(r instanceof x1 || r == "unwind")) throw r;
     }, A3 = (r) => {
       var a;
-      throw f = r, z1 || 0 < Q2 || ((a = i.onExit) == null || a.call(i, r), R = !0), new x1(r);
+      throw d = r, z1 || 0 < Q2 || ((a = i.onExit) == null || a.call(i, r), R = !0), new x1(r);
     }, m4 = (r) => {
       if (!R) try {
         if (r(), !(z1 || 0 < Q2)) try {
-          f = r = f, A3(r);
+          d = r = d, A3(r);
         } catch (a) {
           O3(a);
         }
@@ -2226,8 +2226,8 @@ var t0 = class H1 {
   }
 };
 W(t0, "_workerManager", new N9()), W(t0, "_wasmUrl", "");
-var W9 = ({ animationId: t, autoplay: e, backgroundColor: n, className: o, createDotLottie: i, data: u, dotLottieRefCallback: m, layout: h, loop: v, mode: p, playOnHover: x, renderConfig: b, segment: g, speed: C, src: _, style: L, themeData: R, themeId: f, useFrameInterpolation: P, workerId: j, ...N }) => {
-  let [F, A] = C1(null), D = C2(null), $ = C2(null), H = C2(m), J = { speed: C, mode: p, loop: v, useFrameInterpolation: P, segment: g, backgroundColor: n, autoplay: e, themeId: f, workerId: j, src: _, data: u, layout: h, renderConfig: b }, e1 = C2(J);
+var W9 = ({ animationId: t, autoplay: e, backgroundColor: n, className: o, createDotLottie: i, data: u, dotLottieRefCallback: m, layout: h, loop: v, mode: p, playOnHover: x, renderConfig: b, segment: g, speed: C, src: _, style: L, themeData: R, themeId: d, useFrameInterpolation: P, workerId: j, ...N }) => {
+  let [F, A] = C1(null), D = C2(null), $ = C2(null), H = C2(m), J = { speed: C, mode: p, loop: v, useFrameInterpolation: P, segment: g, backgroundColor: n, autoplay: e, themeId: d, workerId: j, src: _, data: u, layout: h, renderConfig: b }, e1 = C2(J);
   H.current = m, $.current = F, e1.current = J, K(() => {
     typeof H.current == "function" && F && H.current(F);
   }, [F]);
@@ -2284,15 +2284,15 @@ var W9 = ({ animationId: t, autoplay: e, backgroundColor: n, className: o, creat
     (O = $.current) == null || O.loadAnimation(t ?? "");
   }, [t]), K(() => {
     var O;
-    typeof f == "string" && ((O = $.current) == null || O.setTheme(f));
-  }, [f]), K(() => {
+    typeof d == "string" && ((O = $.current) == null || O.setTheme(d));
+  }, [d]), K(() => {
     var O;
     (O = $.current) == null || O.setThemeData(R ?? "");
   }, [R]), K(() => {
     var O;
     (O = $.current) == null || O.setLayout(h ?? {});
-  }, [h == null ? void 0 : h.fit, (h == null ? void 0 : h.align) && h.align[0], (h == null ? void 0 : h.align) && h.align[1]]), d.jsx("div", { className: o, ...!o && { style: { width: "100%", height: "100%", lineHeight: 0, ...L } }, children: d.jsx("canvas", { ref: P1, style: { width: "100%", height: "100%" }, ...N }) });
-}, U9 = (t) => new O9(t), q9 = (t) => d.jsx(W9, { ...t, createDotLottie: U9 });
+  }, [h == null ? void 0 : h.fit, (h == null ? void 0 : h.align) && h.align[0], (h == null ? void 0 : h.align) && h.align[1]]), f.jsx("div", { className: o, ...!o && { style: { width: "100%", height: "100%", lineHeight: 0, ...L } }, children: f.jsx("canvas", { ref: P1, style: { width: "100%", height: "100%" }, ...N }) });
+}, U9 = (t) => new O9(t), q9 = (t) => f.jsx(W9, { ...t, createDotLottie: U9 });
 const oe = ({
   message: t = "Page not found",
   styles: e = {}
@@ -2309,7 +2309,7 @@ const oe = ({
       n
     )}`);
   };
-  return /* @__PURE__ */ d.jsxs(
+  return /* @__PURE__ */ f.jsxs(
     "div",
     {
       style: {
@@ -2318,7 +2318,7 @@ const oe = ({
         fontFamily: "Arial, sans-serif"
       },
       children: [
-        /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsx(
           q9,
           {
             style: J9,
@@ -2327,10 +2327,10 @@ const oe = ({
             src: "https://lottie.host/d1f4afd3-53fc-429b-838e-93f7070b4c62/hQBV6RREpn.lottie"
           }
         ),
-        /* @__PURE__ */ d.jsx("h1", { style: { ...Y9, color: i }, children: "404" }),
-        /* @__PURE__ */ d.jsx("p", { style: K9, children: t }),
-        /* @__PURE__ */ d.jsxs("form", { style: z9, onSubmit: x, children: [
-          /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsx("h1", { style: { ...Y9, color: i }, children: "404" }),
+        /* @__PURE__ */ f.jsx("p", { style: K9, children: t }),
+        /* @__PURE__ */ f.jsxs("form", { style: z9, onSubmit: x, children: [
+          /* @__PURE__ */ f.jsx(
             "input",
             {
               type: "text",
@@ -2343,7 +2343,7 @@ const oe = ({
               }
             }
           ),
-          /* @__PURE__ */ d.jsx(
+          /* @__PURE__ */ f.jsx(
             "button",
             {
               type: "submit",
@@ -2356,7 +2356,7 @@ const oe = ({
             }
           )
         ] }),
-        /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsx(
           "button",
           {
             style: {
@@ -2368,7 +2368,7 @@ const oe = ({
             children: "Return Home"
           }
         ),
-        /* @__PURE__ */ d.jsx("style", { children: `
+        /* @__PURE__ */ f.jsx("style", { children: `
         input:focus-visible {
           outline: 2px solid ${p} !important;
           border-color: ${p};
@@ -2437,20 +2437,20 @@ const oe = ({
   const v = (p) => {
     p.preventDefault(), i ? i() : m && n.trim() && window.location.assign(`${h}?search=${encodeURIComponent(n.trim())}`);
   };
-  return /* @__PURE__ */ d.jsxs("div", { className: W1.banner, children: [
-    /* @__PURE__ */ d.jsx("div", { className: W1.bannerOverlay }),
-    /* @__PURE__ */ d.jsxs("div", { className: W1.bannerContent, children: [
-      /* @__PURE__ */ d.jsx("h1", { className: W1.bannerTitle, children: t }),
-      e && /* @__PURE__ */ d.jsx("p", { className: W1.bannerDescription, children: e }),
-      /* @__PURE__ */ d.jsxs("form", { onSubmit: v, className: W1.searchBar, children: [
-        /* @__PURE__ */ d.jsx(
+  return /* @__PURE__ */ f.jsxs("div", { className: W1.banner, children: [
+    /* @__PURE__ */ f.jsx("div", { className: W1.bannerOverlay }),
+    /* @__PURE__ */ f.jsxs("div", { className: W1.bannerContent, children: [
+      /* @__PURE__ */ f.jsx("h1", { className: W1.bannerTitle, children: t }),
+      e && /* @__PURE__ */ f.jsx("p", { className: W1.bannerDescription, children: e }),
+      /* @__PURE__ */ f.jsxs("form", { onSubmit: v, className: W1.searchBar, children: [
+        /* @__PURE__ */ f.jsx(
           "svg",
           {
             className: W1.searchIcon,
             viewBox: "0 0 24 24",
             fill: "none",
             xmlns: "http://www.w3.org/2000/svg",
-            children: /* @__PURE__ */ d.jsx(
+            children: /* @__PURE__ */ f.jsx(
               "path",
               {
                 d: "M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z",
@@ -2462,7 +2462,7 @@ const oe = ({
             )
           }
         ),
-        /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsx(
           "input",
           {
             type: "text",
@@ -2490,24 +2490,24 @@ function Q9() {
     if (L < 2)
       return _;
     const R = (C == null ? void 0 : C.decode) || x;
-    let f = 0;
+    let d = 0;
     do {
-      const P = g.indexOf("=", f);
+      const P = g.indexOf("=", d);
       if (P === -1)
         break;
-      const j = g.indexOf(";", f), N = j === -1 ? L : j;
+      const j = g.indexOf(";", d), N = j === -1 ? L : j;
       if (P > N) {
-        f = g.lastIndexOf(";", P - 1) + 1;
+        d = g.lastIndexOf(";", P - 1) + 1;
         continue;
       }
-      const F = h(g, f, P), A = v(g, P, F), D = g.slice(F, A);
+      const F = h(g, d, P), A = v(g, P, F), D = g.slice(F, A);
       if (_[D] === void 0) {
         let $ = h(g, P + 1, N), H = v(g, N, $);
         const J = R(g.slice($, H));
         _[D] = J;
       }
-      f = N + 1;
-    } while (f < L);
+      d = N + 1;
+    } while (d < L);
     return _;
   }
   function h(g, C, _) {
@@ -2533,39 +2533,39 @@ function Q9() {
     const R = L(C);
     if (!e.test(R))
       throw new TypeError(`argument val is invalid: ${C}`);
-    let f = g + "=" + R;
+    let d = g + "=" + R;
     if (!_)
-      return f;
+      return d;
     if (_.maxAge !== void 0) {
       if (!Number.isInteger(_.maxAge))
         throw new TypeError(`option maxAge is invalid: ${_.maxAge}`);
-      f += "; Max-Age=" + _.maxAge;
+      d += "; Max-Age=" + _.maxAge;
     }
     if (_.domain) {
       if (!n.test(_.domain))
         throw new TypeError(`option domain is invalid: ${_.domain}`);
-      f += "; Domain=" + _.domain;
+      d += "; Domain=" + _.domain;
     }
     if (_.path) {
       if (!o.test(_.path))
         throw new TypeError(`option path is invalid: ${_.path}`);
-      f += "; Path=" + _.path;
+      d += "; Path=" + _.path;
     }
     if (_.expires) {
       if (!b(_.expires) || !Number.isFinite(_.expires.valueOf()))
         throw new TypeError(`option expires is invalid: ${_.expires}`);
-      f += "; Expires=" + _.expires.toUTCString();
+      d += "; Expires=" + _.expires.toUTCString();
     }
-    if (_.httpOnly && (f += "; HttpOnly"), _.secure && (f += "; Secure"), _.partitioned && (f += "; Partitioned"), _.priority)
+    if (_.httpOnly && (d += "; HttpOnly"), _.secure && (d += "; Secure"), _.partitioned && (d += "; Partitioned"), _.priority)
       switch (typeof _.priority == "string" ? _.priority.toLowerCase() : void 0) {
         case "low":
-          f += "; Priority=Low";
+          d += "; Priority=Low";
           break;
         case "medium":
-          f += "; Priority=Medium";
+          d += "; Priority=Medium";
           break;
         case "high":
-          f += "; Priority=High";
+          d += "; Priority=High";
           break;
         default:
           throw new TypeError(`option priority is invalid: ${_.priority}`);
@@ -2574,18 +2574,18 @@ function Q9() {
       switch (typeof _.sameSite == "string" ? _.sameSite.toLowerCase() : _.sameSite) {
         case !0:
         case "strict":
-          f += "; SameSite=Strict";
+          d += "; SameSite=Strict";
           break;
         case "lax":
-          f += "; SameSite=Lax";
+          d += "; SameSite=Lax";
           break;
         case "none":
-          f += "; SameSite=None";
+          d += "; SameSite=None";
           break;
         default:
           throw new TypeError(`option sameSite is invalid: ${_.sameSite}`);
       }
-    return f;
+    return d;
   }
   function x(g) {
     if (g.indexOf("%") === -1)
@@ -3020,21 +3020,21 @@ function x6(t, e, n, o) {
   );
   let { navigator: i } = I.useContext(F1), { matches: u } = I.useContext(O1), m = u[u.length - 1], h = m ? m.params : {}, v = m ? m.pathname : "/", p = m ? m.pathnameBase : "/", x = m && m.route;
   {
-    let f = x && x.path || "";
+    let d = x && x.path || "";
     P0(
       v,
-      !x || f.endsWith("*") || f.endsWith("*?"),
-      `You rendered descendant <Routes> (or called \`useRoutes()\`) at "${v}" (under <Route path="${f}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
+      !x || d.endsWith("*") || d.endsWith("*?"),
+      `You rendered descendant <Routes> (or called \`useRoutes()\`) at "${v}" (under <Route path="${d}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
 
-Please change the parent <Route path="${f}"> to <Route path="${f === "/" ? "*" : `${f}/*`}">.`
+Please change the parent <Route path="${d}"> to <Route path="${d === "/" ? "*" : `${d}/*`}">.`
     );
   }
   let b = A1(), g;
   g = b;
   let C = g.pathname || "/", _ = C;
   if (p !== "/") {
-    let f = p.replace(/^\//, "").split("/");
-    _ = "/" + C.replace(/^\//, "").split("/").slice(f.length).join("/");
+    let d = p.replace(/^\//, "").split("/");
+    _ = "/" + C.replace(/^\//, "").split("/").slice(d.length).join("/");
   }
   let L = b0(t, { pathname: _ });
   return T1(
@@ -3045,17 +3045,17 @@ Please change the parent <Route path="${f}"> to <Route path="${f === "/" ? "*" :
     `Matched leaf route at location "${g.pathname}${g.search}${g.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`
   ), S6(
     L && L.map(
-      (f) => Object.assign({}, f, {
-        params: Object.assign({}, h, f.params),
+      (d) => Object.assign({}, d, {
+        params: Object.assign({}, h, d.params),
         pathname: D1([
           p,
           // Re-encode pathnames that were decoded inside matchRoutes
-          i.encodeLocation ? i.encodeLocation(f.pathname).pathname : f.pathname
+          i.encodeLocation ? i.encodeLocation(d.pathname).pathname : d.pathname
         ]),
-        pathnameBase: f.pathnameBase === "/" ? p : D1([
+        pathnameBase: d.pathnameBase === "/" ? p : D1([
           p,
           // Re-encode pathnames that were decoded inside matchRoutes
-          i.encodeLocation ? i.encodeLocation(f.pathnameBase).pathname : f.pathnameBase
+          i.encodeLocation ? i.encodeLocation(d.pathnameBase).pathname : d.pathnameBase
         ])
       })
     ),
@@ -3160,8 +3160,8 @@ function S6(t, e = [], n = null, o = null) {
       "No `HydrateFallback` element provided to render during initial hydration"
     ), g = !0, _ = null) : h === x && (g = !0, _ = p.route.hydrateFallbackElement || null)));
     let L = e.concat(i.slice(0, x + 1)), R = () => {
-      let f;
-      return b ? f = C : g ? f = _ : p.route.Component ? f = /* @__PURE__ */ I.createElement(p.route.Component, null) : p.route.element ? f = p.route.element : f = v, /* @__PURE__ */ I.createElement(
+      let d;
+      return b ? d = C : g ? d = _ : p.route.Component ? d = /* @__PURE__ */ I.createElement(p.route.Component, null) : p.route.element ? d = p.route.element : d = v, /* @__PURE__ */ I.createElement(
         E6,
         {
           match: p,
@@ -3170,7 +3170,7 @@ function S6(t, e = [], n = null, o = null) {
             matches: L,
             isDataRoute: n != null
           },
-          children: f
+          children: d
         }
       );
     };
@@ -3470,8 +3470,8 @@ function e5(t, e) {
   let n = I.useContext(x3), [o, i] = I.useState(!1), [u, m] = I.useState(!1), { onFocus: h, onBlur: v, onMouseEnter: p, onMouseLeave: x, onTouchStart: b } = e, g = I.useRef(null);
   I.useEffect(() => {
     if (t === "render" && m(!0), t === "viewport") {
-      let L = (f) => {
-        f.forEach((P) => {
+      let L = (d) => {
+        d.forEach((P) => {
           m(P.isIntersecting);
         });
       }, R = new IntersectionObserver(L, { threshold: 0.5 });
@@ -3563,16 +3563,16 @@ function r5({
     if (t === o.pathname + o.search + o.hash)
       return [];
     let _ = /* @__PURE__ */ new Set(), L = !1;
-    if (e.forEach((f) => {
+    if (e.forEach((d) => {
       var j;
-      let P = i.routes[f.route.id];
-      !P || !P.hasLoader || (!p.some((N) => N.route.id === f.route.id) && f.route.id in h && ((j = u[f.route.id]) != null && j.shouldRevalidate) || P.hasClientLoader ? L = !0 : _.add(f.route.id));
+      let P = i.routes[d.route.id];
+      !P || !P.hasLoader || (!p.some((N) => N.route.id === d.route.id) && d.route.id in h && ((j = u[d.route.id]) != null && j.shouldRevalidate) || P.hasClientLoader ? L = !0 : _.add(d.route.id));
     }), _.size === 0)
       return [];
     let R = X6(t, m);
     return L && _.size > 0 && R.searchParams.set(
       "_routes",
-      e.filter((f) => _.has(f.route.id)).map((f) => f.route.id).join(",")
+      e.filter((d) => _.has(d.route.id)).map((d) => d.route.id).join(",")
     ), [R.pathname + R.search];
   }, [
     m,
@@ -3620,11 +3620,11 @@ var T0 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i, L3 = I.forwardRef(
     viewTransition: b,
     ...g
   }, C) {
-    let { basename: _ } = I.useContext(F1), L = typeof p == "string" && T0.test(p), R, f = !1;
+    let { basename: _ } = I.useContext(F1), L = typeof p == "string" && T0.test(p), R, d = !1;
     if (typeof p == "string" && L && (R = p, D0))
       try {
         let H = new URL(window.location.href), J = p.startsWith("//") ? new URL(H.protocol + p) : new URL(p), e1 = U1(J.pathname, _);
-        J.origin === H.origin && e1 != null ? p = e1 + J.search + J.hash : f = !0;
+        J.origin === H.origin && e1 != null ? p = e1 + J.search + J.hash : d = !0;
       } catch {
         T1(
           !1,
@@ -3653,7 +3653,7 @@ var T0 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i, L3 = I.forwardRef(
           ...g,
           ...F,
           href: R || P,
-          onClick: f || u ? e : D,
+          onClick: d || u ? e : D,
           ref: a5(C, N),
           target: v,
           "data-discover": !L && n === "render" ? "true" : void 0
@@ -3678,10 +3678,10 @@ var i5 = I.forwardRef(
   }, x) {
     let b = d2(m, { relative: p.relative }), g = A1(), C = I.useContext(F2), { navigator: _, basename: L } = I.useContext(F1), R = C != null && // Conditional usage is OK here because the usage of a data router is static
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    f5(b) && h === !0, f = _.encodeLocation ? _.encodeLocation(b).pathname : b.pathname, P = g.pathname, j = C && C.navigation && C.navigation.location ? C.navigation.location.pathname : null;
-    n || (P = P.toLowerCase(), j = j ? j.toLowerCase() : null, f = f.toLowerCase()), j && L && (j = U1(j, L) || j);
-    const N = f !== "/" && f.endsWith("/") ? f.length - 1 : f.length;
-    let F = P === f || !i && P.startsWith(f) && P.charAt(N) === "/", A = j != null && (j === f || !i && j.startsWith(f) && j.charAt(f.length) === "/"), D = {
+    f5(b) && h === !0, d = _.encodeLocation ? _.encodeLocation(b).pathname : b.pathname, P = g.pathname, j = C && C.navigation && C.navigation.location ? C.navigation.location.pathname : null;
+    n || (P = P.toLowerCase(), j = j ? j.toLowerCase() : null, d = d.toLowerCase()), j && L && (j = U1(j, L) || j);
+    const N = d !== "/" && d.endsWith("/") ? d.length - 1 : d.length;
+    let F = P === d || !i && P.startsWith(d) && P.charAt(N) === "/", A = j != null && (j === d || !i && j.startsWith(d) && j.charAt(d.length) === "/"), D = {
       isActive: F,
       isPending: A,
       isTransitioning: R
@@ -3725,7 +3725,7 @@ var o5 = I.forwardRef(
     viewTransition: b,
     ...g
   }, C) => {
-    let _ = h5(), L = d5(h, { relative: p }), R = m.toLowerCase() === "get" ? "get" : "post", f = typeof h == "string" && T0.test(h), P = (j) => {
+    let _ = h5(), L = d5(h, { relative: p }), R = m.toLowerCase() === "get" ? "get" : "post", d = typeof h == "string" && T0.test(h), P = (j) => {
       if (v && v(j), j.defaultPrevented) return;
       j.preventDefault();
       let N = j.nativeEvent.submitter, F = (N == null ? void 0 : N.getAttribute("formmethod")) || m;
@@ -3748,7 +3748,7 @@ var o5 = I.forwardRef(
         action: L,
         onSubmit: o ? v : P,
         ...g,
-        "data-discover": !f && t === "render" ? "true" : void 0
+        "data-discover": !d && t === "render" ? "true" : void 0
       }
     );
   }
@@ -3870,9 +3870,9 @@ function f5(t, e = {}) {
 [
   ...Q6
 ];
-const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "breadcrumb", style: { margin: "16px 0" }, children: /* @__PURE__ */ d.jsx("ol", { style: { display: "flex", listStyle: "none", padding: 0, margin: 0, fontSize: 14, color: "#666" }, children: t.map((e, n) => /* @__PURE__ */ d.jsxs("li", { style: { display: "flex", alignItems: "center" }, children: [
-  n > 0 && /* @__PURE__ */ d.jsx("span", { style: { margin: "0 8px" }, children: "/" }),
-  n < t.length - 1 ? /* @__PURE__ */ d.jsx(L3, { to: e.to, style: { color: "#2563eb", textDecoration: "none" }, children: e.label }) : /* @__PURE__ */ d.jsx("span", { style: { color: "#111" }, children: e.label })
+const O0 = ({ items: t }) => /* @__PURE__ */ f.jsx("nav", { "aria-label": "breadcrumb", style: { margin: "16px 0" }, children: /* @__PURE__ */ f.jsx("ol", { style: { display: "flex", listStyle: "none", padding: 0, margin: 0, fontSize: 14, color: "#666" }, children: t.map((e, n) => /* @__PURE__ */ f.jsxs("li", { style: { display: "flex", alignItems: "center" }, children: [
+  n > 0 && /* @__PURE__ */ f.jsx("span", { style: { margin: "0 8px" }, children: "/" }),
+  n < t.length - 1 ? /* @__PURE__ */ f.jsx(L3, { to: e.to, style: { color: "#2563eb", textDecoration: "none" }, children: e.label }) : /* @__PURE__ */ f.jsx("span", { style: { color: "#111" }, children: e.label })
 ] }, e.to)) }) }), m5 = [
   {
     _id: "default-1",
@@ -3884,7 +3884,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
       title: "General"
     }
   }
-], p5 = () => /* @__PURE__ */ d.jsx(
+], p5 = () => /* @__PURE__ */ f.jsx(
   "svg",
   {
     className: V.arrowIcon,
@@ -3893,7 +3893,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
     viewBox: "0 0 24 24",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg",
-    children: /* @__PURE__ */ d.jsx(
+    children: /* @__PURE__ */ f.jsx(
       "path",
       {
         d: "M5 12H19M19 12L12 5M19 12L12 19",
@@ -3935,7 +3935,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
       }), (H = F.get($)) == null || H.faqs.push(A), F;
     },
     /* @__PURE__ */ new Map()
-  ) : /* @__PURE__ */ new Map(), [L]), f = (F) => {
+  ) : /* @__PURE__ */ new Map(), [L]), d = (F) => {
     if (!F.page)
       return `/faq/${F._id}`;
     const D = `/docs/${F.page.slug.current}`;
@@ -3949,7 +3949,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
   }, N = () => {
     p && p(), h.trim() && (g ? g(h.trim()) : window.location.assign(`/search?query=${encodeURIComponent(h.trim())}&from=/faq`));
   };
-  return /* @__PURE__ */ d.jsx("div", { className: V.faqRoot, children: /* @__PURE__ */ d.jsxs(
+  return /* @__PURE__ */ f.jsx("div", { className: V.faqRoot, children: /* @__PURE__ */ f.jsxs(
     "div",
     {
       className: V.faqWrapper,
@@ -3957,7 +3957,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
         "--banner-image": "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')"
       },
       children: [
-        /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsx(
           T2,
           {
             title: t,
@@ -3968,30 +3968,30 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
             basePath: i
           }
         ),
-        /* @__PURE__ */ d.jsxs("div", { className: V.faqContent, children: [
-          /* @__PURE__ */ d.jsx("div", { className: V.breadcrumbs, children: x && /* @__PURE__ */ d.jsx(O0, { items: x }) }),
-          /* @__PURE__ */ d.jsx("div", { className: V.faqItems, children: L.length === 0 && _.trim() ? /* @__PURE__ */ d.jsx("div", { className: V.noResults, children: "No matching questions found. Try adjusting your search terms." }) : Array.from(R.entries()).map(
-            ([F, A]) => /* @__PURE__ */ d.jsxs("div", { className: V.faqCategoryList, children: [
-              /* @__PURE__ */ d.jsx("h2", { className: V.faqCategoryTitle, children: F }),
-              A.description && /* @__PURE__ */ d.jsx("p", { className: V.faqCategoryDescription, children: A.description }),
-              A.faqs.map((D) => /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsxs("div", { className: V.faqContent, children: [
+          /* @__PURE__ */ f.jsx("div", { className: V.breadcrumbs, children: x && /* @__PURE__ */ f.jsx(O0, { items: x }) }),
+          /* @__PURE__ */ f.jsx("div", { className: V.faqItems, children: L.length === 0 && _.trim() ? /* @__PURE__ */ f.jsx("div", { className: V.noResults, children: "No matching questions found. Try adjusting your search terms." }) : Array.from(R.entries()).map(
+            ([F, A]) => /* @__PURE__ */ f.jsxs("div", { className: V.faqCategoryList, children: [
+              /* @__PURE__ */ f.jsx("h2", { className: V.faqCategoryTitle, children: F }),
+              A.description && /* @__PURE__ */ f.jsx("p", { className: V.faqCategoryDescription, children: A.description }),
+              A.faqs.map((D) => /* @__PURE__ */ f.jsx(
                 "a",
                 {
-                  href: f(D),
+                  href: d(D),
                   className: V.faqItem,
-                  children: /* @__PURE__ */ d.jsxs("div", { className: V.faqItemContent, children: [
-                    /* @__PURE__ */ d.jsxs("div", { className: V.faqItemMain, children: [
-                      /* @__PURE__ */ d.jsx("h3", { className: V.faqQuestion, children: D.question }),
-                      /* @__PURE__ */ d.jsx("p", { className: V.faqDescription, children: P(D) })
+                  children: /* @__PURE__ */ f.jsxs("div", { className: V.faqItemContent, children: [
+                    /* @__PURE__ */ f.jsxs("div", { className: V.faqItemMain, children: [
+                      /* @__PURE__ */ f.jsx("h3", { className: V.faqQuestion, children: D.question }),
+                      /* @__PURE__ */ f.jsx("p", { className: V.faqDescription, children: P(D) })
                     ] }),
-                    /* @__PURE__ */ d.jsx(p5, {})
+                    /* @__PURE__ */ f.jsx(p5, {})
                   ] })
                 },
                 D._id
               ))
             ] }, F)
           ) }),
-          m && /* @__PURE__ */ d.jsx(
+          m && /* @__PURE__ */ f.jsx(
             "button",
             {
               onClick: j,
@@ -4003,7 +4003,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
       ]
     }
   ) });
-}, g5 = "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')", y5 = "Advice and answers from the team", _5 = "Guides to configuring and using the platform, troubleshooting common issues, and more.", w5 = () => /* @__PURE__ */ d.jsxs(
+}, g5 = "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')", y5 = "Advice and answers from the team", _5 = "Guides to configuring and using the platform, troubleshooting common issues, and more.", w5 = () => /* @__PURE__ */ f.jsxs(
   "svg",
   {
     width: "32",
@@ -4015,7 +4015,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
     strokeLinecap: "round",
     strokeLinejoin: "round",
     children: [
-      /* @__PURE__ */ d.jsx(
+      /* @__PURE__ */ f.jsx(
         "rect",
         {
           x: "3",
@@ -4028,7 +4028,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
           fill: "#f3f4f6"
         }
       ),
-      /* @__PURE__ */ d.jsx("path", { d: "M3 9h18M9 21V9" })
+      /* @__PURE__ */ f.jsx("path", { d: "M3 9h18M9 21V9" })
     ]
   }
 ), se = ({ onNavigate: t, onSearch: e, searchValue: n }) => {
@@ -4043,11 +4043,11 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
   const p = m3.useMemo(() => {
     const C = /* @__PURE__ */ new Map();
     return o.forEach((_) => {
-      var R, f;
+      var R, d;
       const L = ((R = _.category) == null ? void 0 : R.title) || "General";
       C.has(L) ? C.get(L).count++ : C.set(L, {
         title: L,
-        description: ((f = _.category) == null ? void 0 : f.description) || "",
+        description: ((d = _.category) == null ? void 0 : d.description) || "",
         count: 1
       });
     }), Array.from(C.values());
@@ -4061,8 +4061,8 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
   }, g = () => {
     h.trim() && (e ? e(h.trim()) : window.location.assign(`/search?query=${encodeURIComponent(h.trim())}&from=/`));
   };
-  return /* @__PURE__ */ d.jsxs("div", { children: [
-    /* @__PURE__ */ d.jsx(
+  return /* @__PURE__ */ f.jsxs("div", { children: [
+    /* @__PURE__ */ f.jsx(
       "div",
       {
         className: V.faqWrapper,
@@ -4071,7 +4071,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
           padding: 0,
           minHeight: 0
         },
-        children: /* @__PURE__ */ d.jsx(
+        children: /* @__PURE__ */ f.jsx(
           T2,
           {
             title: y5,
@@ -4084,7 +4084,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
         )
       }
     ),
-    /* @__PURE__ */ d.jsx(
+    /* @__PURE__ */ f.jsx(
       "div",
       {
         style: {
@@ -4096,15 +4096,15 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
           marginLeft: "auto",
           marginRight: "auto"
         },
-        children: u ? /* @__PURE__ */ d.jsx("div", { children: "Loading..." }) : p.map((C) => /* @__PURE__ */ d.jsxs(
+        children: u ? /* @__PURE__ */ f.jsx("div", { children: "Loading..." }) : p.map((C) => /* @__PURE__ */ f.jsxs(
           "div",
           {
             className: V.faqCategory,
             onClick: () => b(C.title),
             children: [
-              /* @__PURE__ */ d.jsx("div", { style: { marginBottom: 16 }, children: /* @__PURE__ */ d.jsx(w5, {}) }),
-              /* @__PURE__ */ d.jsx("h2", { className: V.faqCategoryTitle, style: { margin: 0 }, children: x(C.title) }),
-              /* @__PURE__ */ d.jsx(
+              /* @__PURE__ */ f.jsx("div", { style: { marginBottom: 16 }, children: /* @__PURE__ */ f.jsx(w5, {}) }),
+              /* @__PURE__ */ f.jsx("h2", { className: V.faqCategoryTitle, style: { margin: 0 }, children: x(C.title) }),
+              /* @__PURE__ */ f.jsx(
                 "p",
                 {
                   className: V.faqCategoryDescription,
@@ -4112,7 +4112,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
                   children: C.description || "All articles in this category."
                 }
               ),
-              /* @__PURE__ */ d.jsxs("div", { className: V.faqCategoryCount, children: [
+              /* @__PURE__ */ f.jsxs("div", { className: V.faqCategoryCount, children: [
                 C.count,
                 " articles"
               ] })
@@ -4136,7 +4136,7 @@ const O0 = ({ items: t }) => /* @__PURE__ */ d.jsx("nav", { "aria-label": "bread
   const b = () => {
     h(v);
   };
-  return /* @__PURE__ */ d.jsx(
+  return /* @__PURE__ */ f.jsx(
     v5,
     {
       ...t,
@@ -4264,7 +4264,7 @@ function I5(t) {
     let g = h[h.length - 1];
     if (g) {
       for (const C of x) {
-        const _ = i == null ? void 0 : i.find((f) => f._key === C), L = _ ? _._type : C, R = {
+        const _ = i == null ? void 0 : i.find((d) => d._key === C), L = _ ? _._type : C, R = {
           _type: "@span",
           _key: p._key,
           children: [],
@@ -4429,22 +4429,22 @@ function O5(t, e) {
 const A5 = {
   number: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("ol", {
+  }) => /* @__PURE__ */ f.jsx("ol", {
     children: t
   }),
   bullet: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("ul", {
+  }) => /* @__PURE__ */ f.jsx("ul", {
     children: t
   })
 }, $5 = ({
   children: t
-}) => /* @__PURE__ */ d.jsx("li", {
+}) => /* @__PURE__ */ f.jsx("li", {
   children: t
 }), N5 = ({
   children: t,
   value: e
-}) => /* @__PURE__ */ d.jsx("a", {
+}) => /* @__PURE__ */ f.jsx("a", {
   href: e == null ? void 0 : e.href,
   children: t
 }), W5 = {
@@ -4452,28 +4452,28 @@ const A5 = {
 }, U5 = {
   em: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("em", {
+  }) => /* @__PURE__ */ f.jsx("em", {
     children: t
   }),
   strong: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("strong", {
+  }) => /* @__PURE__ */ f.jsx("strong", {
     children: t
   }),
   code: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("code", {
+  }) => /* @__PURE__ */ f.jsx("code", {
     children: t
   }),
   underline: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("span", {
+  }) => /* @__PURE__ */ f.jsx("span", {
     style: W5,
     children: t
   }),
   "strike-through": ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("del", {
+  }) => /* @__PURE__ */ f.jsx("del", {
     children: t
   }),
   link: N5
@@ -4488,70 +4488,70 @@ const c0 = {
   isInline: e
 }) => {
   const n = z0(t._type);
-  return e ? /* @__PURE__ */ d.jsx("span", {
+  return e ? /* @__PURE__ */ f.jsx("span", {
     style: c0,
     children: n
-  }) : /* @__PURE__ */ d.jsx("div", {
+  }) : /* @__PURE__ */ f.jsx("div", {
     style: c0,
     children: n
   });
 }, J5 = ({
   markType: t,
   children: e
-}) => /* @__PURE__ */ d.jsx("span", {
+}) => /* @__PURE__ */ f.jsx("span", {
   className: `unknown__pt__mark__${t}`,
   children: e
 }), Y5 = ({
   children: t
-}) => /* @__PURE__ */ d.jsx("p", {
+}) => /* @__PURE__ */ f.jsx("p", {
   children: t
 }), K5 = ({
   children: t
-}) => /* @__PURE__ */ d.jsx("ul", {
+}) => /* @__PURE__ */ f.jsx("ul", {
   children: t
 }), Q5 = ({
   children: t
-}) => /* @__PURE__ */ d.jsx("li", {
+}) => /* @__PURE__ */ f.jsx("li", {
   children: t
-}), X5 = () => /* @__PURE__ */ d.jsx("br", {}), Z5 = {
+}), X5 = () => /* @__PURE__ */ f.jsx("br", {}), Z5 = {
   normal: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("p", {
+  }) => /* @__PURE__ */ f.jsx("p", {
     children: t
   }),
   blockquote: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("blockquote", {
+  }) => /* @__PURE__ */ f.jsx("blockquote", {
     children: t
   }),
   h1: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("h1", {
+  }) => /* @__PURE__ */ f.jsx("h1", {
     children: t
   }),
   h2: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("h2", {
+  }) => /* @__PURE__ */ f.jsx("h2", {
     children: t
   }),
   h3: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("h3", {
+  }) => /* @__PURE__ */ f.jsx("h3", {
     children: t
   }),
   h4: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("h4", {
+  }) => /* @__PURE__ */ f.jsx("h4", {
     children: t
   }),
   h5: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("h5", {
+  }) => /* @__PURE__ */ f.jsx("h5", {
     children: t
   }),
   h6: ({
     children: t
-  }) => /* @__PURE__ */ d.jsx("h6", {
+  }) => /* @__PURE__ */ f.jsx("h6", {
     children: t
   })
 }, h0 = {
@@ -4599,7 +4599,7 @@ function u3({
     isInline: !1,
     renderNode: v
   }));
-  return /* @__PURE__ */ d.jsx(d.Fragment, {
+  return /* @__PURE__ */ f.jsx(f.Fragment, {
     children: p
   });
 }
@@ -4629,41 +4629,41 @@ const te = (t, e) => {
         nodeType: "listItemStyle"
       });
     }
-    let f = _.children;
+    let d = _.children;
     if (b.style && b.style !== "normal") {
       const {
         listItem: P
       } = b, j = f3(b, j5);
-      f = n({
+      d = n({
         node: j,
         index: g,
         isInline: !1
       });
     }
-    return /* @__PURE__ */ d.jsx(R, {
+    return /* @__PURE__ */ f.jsx(R, {
       value: b,
       index: g,
       isInline: !1,
       renderNode: n,
-      children: f
+      children: d
     }, C);
   }
   function u(b, g, C) {
-    const _ = b.children.map((f, P) => n({
-      node: f._key ? f : E1(E1({}, f), {}, {
+    const _ = b.children.map((d, P) => n({
+      node: d._key ? d : E1(E1({}, d), {}, {
         _key: `li-${g}-${P}`
       }),
       index: P,
       isInline: !1
     })), L = t.list, R = (typeof L == "function" ? L : L[b.listItem]) || t.unknownList;
     if (R === t.unknownList) {
-      const f = b.listItem || "bullet";
-      e(B5(f), {
+      const d = b.listItem || "bullet";
+      e(B5(d), {
         nodeType: "listStyle",
-        type: f
+        type: d
       });
     }
-    return /* @__PURE__ */ d.jsx(R, {
+    return /* @__PURE__ */ f.jsx(R, {
       value: b,
       index: g,
       isInline: !1,
@@ -4676,15 +4676,15 @@ const te = (t, e) => {
       markDef: _,
       markType: L,
       markKey: R
-    } = b, f = t.marks[L] || t.unknownMark, P = b.children.map((j, N) => n({
+    } = b, d = t.marks[L] || t.unknownMark, P = b.children.map((j, N) => n({
       node: j,
       index: N,
       isInline: !0
     }));
-    return f === t.unknownMark && e(q5(L), {
+    return d === t.unknownMark && e(q5(L), {
       nodeType: "mark",
       type: L
-    }), /* @__PURE__ */ d.jsx(f, {
+    }), /* @__PURE__ */ f.jsx(d, {
       text: q0(b),
       value: _,
       markType: L,
@@ -4701,12 +4701,12 @@ const te = (t, e) => {
       renderNode: n
     }), {
       _key: R
-    } = L, f = f3(L, R5), P = f.node.style || "normal", j = (typeof t.block == "function" ? t.block : t.block[P]) || t.unknownBlockStyle;
+    } = L, d = f3(L, R5), P = d.node.style || "normal", j = (typeof t.block == "function" ? t.block : t.block[P]) || t.unknownBlockStyle;
     return j === t.unknownBlockStyle && e(z5(P), {
       nodeType: "blockStyle",
       type: P
-    }), /* @__PURE__ */ d.jsx(j, E1(E1({}, f), {}, {
-      value: f.node,
+    }), /* @__PURE__ */ f.jsx(j, E1(E1({}, d), {}, {
+      value: d.node,
       renderNode: n
     }), C);
   }
@@ -4714,7 +4714,7 @@ const te = (t, e) => {
     if (b.text === `
 `) {
       const C = t.hardBreak;
-      return C ? /* @__PURE__ */ d.jsx(C, {}, g) : `
+      return C ? /* @__PURE__ */ f.jsx(C, {}, g) : `
 `;
     }
     return b.text;
@@ -4731,7 +4731,7 @@ const te = (t, e) => {
       type: b._type
     });
     const R = t.unknownType;
-    return /* @__PURE__ */ d.jsx(R, E1({}, L), C);
+    return /* @__PURE__ */ f.jsx(R, E1({}, L), C);
   }
   function x(b, g, C, _) {
     const L = {
@@ -4740,7 +4740,7 @@ const te = (t, e) => {
       index: g,
       renderNode: n
     }, R = t.types[b._type];
-    return R ? /* @__PURE__ */ d.jsx(R, E1({}, L), C) : null;
+    return R ? /* @__PURE__ */ f.jsx(R, E1({}, L), C) : null;
   }
   return n;
 };
@@ -4776,27 +4776,27 @@ const re = ({
 }) => {
   const m = e;
   if (!m)
-    return /* @__PURE__ */ d.jsx("div", { className: r1.error, children: "No data found." });
+    return /* @__PURE__ */ f.jsx("div", { className: r1.error, children: "No data found." });
   const { title: h, authorName: v, authorImage: p, publishedAt: x, tableOfContents: b, body: g } = m, C = x ? new Date(x).toLocaleDateString(void 0, {
     year: "numeric",
     month: "long",
     day: "numeric"
-  }) : null, _ = [...b].sort((f, P) => f.order - P.order), L = new Map(
-    _.map((f) => [
-      f._id,
-      { title: f.title, slug: f.slug.replace(/^#+/, "") }
+  }) : null, _ = [...b].sort((d, P) => d.order - P.order), L = new Map(
+    _.map((d) => [
+      d._id,
+      { title: d.title, slug: d.slug.replace(/^#+/, "") }
     ])
   ), R = {
     block: {
-      h2: ({ children: f }) => {
-        const P = String(f).toLowerCase().replace(/\s+/g, "-");
-        return /* @__PURE__ */ d.jsx("h2", { id: P, children: f });
+      h2: ({ children: d }) => {
+        const P = String(d).toLowerCase().replace(/\s+/g, "-");
+        return /* @__PURE__ */ f.jsx("h2", { id: P, children: d });
       },
-      h3: ({ children: f }) => {
-        const P = String(f).toLowerCase().replace(/\s+/g, "-");
-        return /* @__PURE__ */ d.jsx("h3", { id: P, children: f });
+      h3: ({ children: d }) => {
+        const P = String(d).toLowerCase().replace(/\s+/g, "-");
+        return /* @__PURE__ */ f.jsx("h3", { id: P, children: d });
       },
-      blockquote: ({ children: f }) => /* @__PURE__ */ d.jsx(
+      blockquote: ({ children: d }) => /* @__PURE__ */ f.jsx(
         "blockquote",
         {
           style: {
@@ -4806,24 +4806,24 @@ const re = ({
             color: "#555",
             background: "#f9f9f9"
           },
-          children: f
+          children: d
         }
       ),
-      normal: ({ children: f }) => /* @__PURE__ */ d.jsx("p", { children: f })
+      normal: ({ children: d }) => /* @__PURE__ */ f.jsx("p", { children: d })
     },
     list: {
-      bullet: ({ children: f }) => /* @__PURE__ */ d.jsx("ul", { className: "list-disc list-inside pl-4", children: f }),
-      number: ({ children: f }) => /* @__PURE__ */ d.jsx("ol", { className: "list-decimal list-inside pl-4", children: f })
+      bullet: ({ children: d }) => /* @__PURE__ */ f.jsx("ul", { className: "list-disc list-inside pl-4", children: d }),
+      number: ({ children: d }) => /* @__PURE__ */ f.jsx("ol", { className: "list-decimal list-inside pl-4", children: d })
     },
     listItem: {
-      bullet: ({ children: f }) => /* @__PURE__ */ d.jsx("li", { children: f }),
-      number: ({ children: f }) => /* @__PURE__ */ d.jsx("li", { children: f })
+      bullet: ({ children: d }) => /* @__PURE__ */ f.jsx("li", { children: d }),
+      number: ({ children: d }) => /* @__PURE__ */ f.jsx("li", { children: d })
     },
     marks: {
-      strong: ({ children: f }) => /* @__PURE__ */ d.jsx("strong", { children: f }),
-      em: ({ children: f }) => /* @__PURE__ */ d.jsx("em", { children: f }),
-      underline: ({ children: f }) => /* @__PURE__ */ d.jsx("u", { children: f }),
-      code: ({ children: f }) => /* @__PURE__ */ d.jsx(
+      strong: ({ children: d }) => /* @__PURE__ */ f.jsx("strong", { children: d }),
+      em: ({ children: d }) => /* @__PURE__ */ f.jsx("em", { children: d }),
+      underline: ({ children: d }) => /* @__PURE__ */ f.jsx("u", { children: d }),
+      code: ({ children: d }) => /* @__PURE__ */ f.jsx(
         "code",
         {
           style: {
@@ -4832,12 +4832,12 @@ const re = ({
             borderRadius: "4px",
             fontSize: "0.95em"
           },
-          children: f
+          children: d
         }
       ),
-      link: ({ value: f, children: P }) => {
-        const j = (f == null ? void 0 : f.href) || "";
-        return /* @__PURE__ */ d.jsx(
+      link: ({ value: d, children: P }) => {
+        const j = (d == null ? void 0 : d.href) || "";
+        return /* @__PURE__ */ f.jsx(
           "a",
           {
             href: j,
@@ -4850,32 +4850,32 @@ const re = ({
       }
     },
     types: {
-      image: ({ value: f }) => {
+      image: ({ value: d }) => {
         var A;
-        if (!((A = f == null ? void 0 : f.asset) != null && A._ref)) return null;
-        const P = x2(f).width(320).auto("format").url(), j = x2(f).width(640).auto("format").url(), N = x2(f).width(800).auto("format").url(), F = x2(f).width(1200).auto("format").url();
-        return /* @__PURE__ */ d.jsx(
+        if (!((A = d == null ? void 0 : d.asset) != null && A._ref)) return null;
+        const P = x2(d).width(320).auto("format").url(), j = x2(d).width(640).auto("format").url(), N = x2(d).width(800).auto("format").url(), F = x2(d).width(1200).auto("format").url();
+        return /* @__PURE__ */ f.jsx(
           "img",
           {
             src: N,
             srcSet: `${P} 320w, ${j} 640w, ${N} 800w, ${F} 1200w`,
             sizes: "(max-width: 600px) 90vw, (max-width: 1200px) 60vw, 50vw",
-            alt: f.alt || f.caption || "Image",
+            alt: d.alt || d.caption || "Image",
             className: r1.portableImage
           }
         );
       },
-      reference: ({ value: f }) => {
-        if (!f._ref) return null;
-        const P = L.get(f._ref);
-        return P ? /* @__PURE__ */ d.jsx("h3", { className: r1.sectionReferenceLink, id: P.slug, children: P.title }) : null;
+      reference: ({ value: d }) => {
+        if (!d._ref) return null;
+        const P = L.get(d._ref);
+        return P ? /* @__PURE__ */ f.jsx("h3", { className: r1.sectionReferenceLink, id: P.slug, children: P.title }) : null;
       },
-      table: ({ value: f }) => {
+      table: ({ value: d }) => {
         var F;
-        if (!((F = f == null ? void 0 : f.rows) != null && F.length)) return null;
-        const P = f.layoutOrientation === "left" ? "left" : "top", j = f.rows[0].cells.map((A) => A.column), N = f.rows[0].cells.map((A) => A.width || "auto");
-        return P === "top" ? /* @__PURE__ */ d.jsx("div", { className: "overflow-x-auto my-6", children: /* @__PURE__ */ d.jsxs("table", { className: "min-w-full table-auto border-collapse", children: [
-          /* @__PURE__ */ d.jsx("thead", { className: "bg-gray-100 text-gray-700", children: /* @__PURE__ */ d.jsx("tr", { children: j.map((A, D) => /* @__PURE__ */ d.jsx(
+        if (!((F = d == null ? void 0 : d.rows) != null && F.length)) return null;
+        const P = d.layoutOrientation === "left" ? "left" : "top", j = d.rows[0].cells.map((A) => A.column), N = d.rows[0].cells.map((A) => A.width || "auto");
+        return P === "top" ? /* @__PURE__ */ f.jsx("div", { className: "overflow-x-auto my-6", children: /* @__PURE__ */ f.jsxs("table", { className: "min-w-full table-auto border-collapse", children: [
+          /* @__PURE__ */ f.jsx("thead", { className: "bg-gray-100 text-gray-700", children: /* @__PURE__ */ f.jsx("tr", { children: j.map((A, D) => /* @__PURE__ */ f.jsx(
             "th",
             {
               className: "px-4 py-2 border border-gray-300 text-left",
@@ -4884,28 +4884,28 @@ const re = ({
             },
             A + D
           )) }) }),
-          /* @__PURE__ */ d.jsx("tbody", { children: f.rows.map((A, D) => /* @__PURE__ */ d.jsx("tr", { className: "even:bg-gray-50", children: j.map(($, H) => {
+          /* @__PURE__ */ f.jsx("tbody", { children: d.rows.map((A, D) => /* @__PURE__ */ f.jsx("tr", { className: "even:bg-gray-50", children: j.map(($, H) => {
             const J = A.cells.find((e1) => e1.column === $);
-            return /* @__PURE__ */ d.jsx(
+            return /* @__PURE__ */ f.jsx(
               "td",
               {
                 className: "px-4 py-2 border border-gray-300 align-top break-words",
                 style: { width: N[H], minWidth: N[H] },
-                children: J != null && J.content ? /* @__PURE__ */ d.jsx(
+                children: J != null && J.content ? /* @__PURE__ */ f.jsx(
                   u3,
                   {
                     value: J.content,
                     components: R
                   }
-                ) : /* @__PURE__ */ d.jsx("span", { className: "text-gray-400", children: "—" })
+                ) : /* @__PURE__ */ f.jsx("span", { className: "text-gray-400", children: "—" })
               },
               $ + H
             );
           }) }, D)) })
-        ] }) }) : /* @__PURE__ */ d.jsx("div", { className: "overflow-x-auto my-6", children: /* @__PURE__ */ d.jsx("table", { className: "w-full table-auto border-collapse", children: /* @__PURE__ */ d.jsx("tbody", { children: f.rows.map((A, D) => {
+        ] }) }) : /* @__PURE__ */ f.jsx("div", { className: "overflow-x-auto my-6", children: /* @__PURE__ */ f.jsx("table", { className: "w-full table-auto border-collapse", children: /* @__PURE__ */ f.jsx("tbody", { children: d.rows.map((A, D) => {
           const $ = A.cells[0];
-          return /* @__PURE__ */ d.jsxs("tr", { className: "even:bg-gray-50", children: [
-            /* @__PURE__ */ d.jsx(
+          return /* @__PURE__ */ f.jsxs("tr", { className: "even:bg-gray-50", children: [
+            /* @__PURE__ */ f.jsx(
               "th",
               {
                 className: "px-4 py-2 border border-gray-300 text-left align-top break-words",
@@ -4915,18 +4915,18 @@ const re = ({
             ),
             j.map((H, J) => {
               const e1 = A.cells.find((P1) => P1.column === H);
-              return J === 0 ? null : /* @__PURE__ */ d.jsx(
+              return J === 0 ? null : /* @__PURE__ */ f.jsx(
                 "td",
                 {
                   className: "px-4 py-2 border border-gray-300 align-top break-words",
                   style: { width: N[J], minWidth: N[J] },
-                  children: e1 != null && e1.content ? /* @__PURE__ */ d.jsx(
+                  children: e1 != null && e1.content ? /* @__PURE__ */ f.jsx(
                     u3,
                     {
                       value: e1.content,
                       components: R
                     }
-                  ) : /* @__PURE__ */ d.jsx("span", { className: "text-gray-400", children: "—" })
+                  ) : /* @__PURE__ */ f.jsx("span", { className: "text-gray-400", children: "—" })
                 },
                 H + J
               );
@@ -4936,15 +4936,15 @@ const re = ({
       }
     }
   };
-  return /* @__PURE__ */ d.jsxs("div", { className: r1.docPageRoot, children: [
-    /* @__PURE__ */ d.jsx(
+  return /* @__PURE__ */ f.jsxs("div", { className: r1.docPageRoot, children: [
+    /* @__PURE__ */ f.jsx(
       "div",
       {
         className: r1.bannerWrapper,
         style: {
           "--banner-image": "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')"
         },
-        children: /* @__PURE__ */ d.jsx(
+        children: /* @__PURE__ */ f.jsx(
           T2,
           {
             title: "Advice and answers from the team",
@@ -4957,39 +4957,39 @@ const re = ({
         )
       }
     ),
-    /* @__PURE__ */ d.jsxs("div", { className: r1.container, children: [
-      /* @__PURE__ */ d.jsx("aside", { className: r1.stickySidebar, children: /* @__PURE__ */ d.jsxs("div", { className: r1.sidebarInner, children: [
-        /* @__PURE__ */ d.jsx("h3", { children: "Table Of Content" }),
-        /* @__PURE__ */ d.jsx("ul", { children: _.map((f) => /* @__PURE__ */ d.jsx("li", { children: /* @__PURE__ */ d.jsx("a", { href: `#${f.slug.replace(/^#+/, "")}`, children: f.title }) }, f._id)) })
+    /* @__PURE__ */ f.jsxs("div", { className: r1.container, children: [
+      /* @__PURE__ */ f.jsx("aside", { className: r1.stickySidebar, children: /* @__PURE__ */ f.jsxs("div", { className: r1.sidebarInner, children: [
+        /* @__PURE__ */ f.jsx("h3", { children: "Table Of Content" }),
+        /* @__PURE__ */ f.jsx("ul", { children: _.map((d) => /* @__PURE__ */ f.jsx("li", { children: /* @__PURE__ */ f.jsx("a", { href: `#${d.slug.replace(/^#+/, "")}`, children: d.title }) }, d._id)) })
       ] }) }),
-      /* @__PURE__ */ d.jsxs("article", { className: r1.mainContent, children: [
-        /* @__PURE__ */ d.jsx("div", { className: r1.breadcrumbs, children: u && /* @__PURE__ */ d.jsx(O0, { items: u }) }),
-        /* @__PURE__ */ d.jsx("h1", { className: r1.pageTitle, children: h }),
-        /* @__PURE__ */ d.jsxs("div", { className: r1.metaInfo, children: [
-          p ? /* @__PURE__ */ d.jsx(
+      /* @__PURE__ */ f.jsxs("article", { className: r1.mainContent, children: [
+        /* @__PURE__ */ f.jsx("div", { className: r1.breadcrumbs, children: u && /* @__PURE__ */ f.jsx(O0, { items: u }) }),
+        /* @__PURE__ */ f.jsx("h1", { className: r1.pageTitle, children: h }),
+        /* @__PURE__ */ f.jsxs("div", { className: r1.metaInfo, children: [
+          p ? /* @__PURE__ */ f.jsx(
             "img",
             {
               src: p,
               alt: v || "Author",
               className: r1.authorImage
             }
-          ) : /* @__PURE__ */ d.jsx("div", { className: r1.authorPlaceholder }),
-          /* @__PURE__ */ d.jsxs("div", { children: [
-            v && /* @__PURE__ */ d.jsxs("div", { className: r1.authorName, children: [
+          ) : /* @__PURE__ */ f.jsx("div", { className: r1.authorPlaceholder }),
+          /* @__PURE__ */ f.jsxs("div", { children: [
+            v && /* @__PURE__ */ f.jsxs("div", { className: r1.authorName, children: [
               "Written by ",
               v
             ] }),
-            C && /* @__PURE__ */ d.jsxs("div", { className: r1.publishedDate, children: [
+            C && /* @__PURE__ */ f.jsxs("div", { className: r1.publishedDate, children: [
               "Updated ",
               C
             ] })
           ] })
         ] }),
-        _.length > 0 && /* @__PURE__ */ d.jsxs("section", { className: r1.tocInContent, children: [
-          /* @__PURE__ */ d.jsx("h2", { children: "Table Of Content" }),
-          /* @__PURE__ */ d.jsx("ul", { children: _.map((f) => /* @__PURE__ */ d.jsx("li", { className: r1.tocItem, children: /* @__PURE__ */ d.jsx("a", { href: `#${f.slug.replace(/^#+/, "")}`, children: f.title }) }, f._id)) })
+        _.length > 0 && /* @__PURE__ */ f.jsxs("section", { className: r1.tocInContent, children: [
+          /* @__PURE__ */ f.jsx("h2", { children: "Table Of Content" }),
+          /* @__PURE__ */ f.jsx("ul", { children: _.map((d) => /* @__PURE__ */ f.jsx("li", { className: r1.tocItem, children: /* @__PURE__ */ f.jsx("a", { href: `#${d.slug.replace(/^#+/, "")}`, children: d.title }) }, d._id)) })
         ] }),
-        /* @__PURE__ */ d.jsx("section", { className: r1.bodyContent, children: /* @__PURE__ */ d.jsx(u3, { value: g, components: R }) })
+        /* @__PURE__ */ f.jsx("section", { className: r1.bodyContent, children: /* @__PURE__ */ f.jsx(u3, { value: g, components: R }) })
       ] })
     ] })
   ] });
@@ -5005,7 +5005,7 @@ const re = ({
   const v = () => {
     n.trim() && h(`/search?query=${encodeURIComponent(n.trim())}&from=/docs/${t}`);
   };
-  if (!i) return /* @__PURE__ */ d.jsx("div", { children: "Loading…" });
+  if (!i) return /* @__PURE__ */ f.jsx("div", { children: "Loading…" });
   let p = (x = i.categories) == null ? void 0 : x[0];
   if (p)
     p.title && (p.title = p.title.charAt(0).toUpperCase() + p.title.slice(1));
@@ -5016,7 +5016,7 @@ const re = ({
       p = { title: C.charAt(0).toUpperCase() + C.slice(1), slug: { current: g[1] } };
     }
   }
-  return /* @__PURE__ */ d.jsx(d.Fragment, { children: /* @__PURE__ */ d.jsx(
+  return /* @__PURE__ */ f.jsx(f.Fragment, { children: /* @__PURE__ */ f.jsx(
     re,
     {
       basePath: e,
@@ -5065,7 +5065,7 @@ const re = ({
       )}&from=${encodeURIComponent(u || "/")}`
     ));
   };
-  return /* @__PURE__ */ d.jsx("div", { className: V.faqRoot, children: /* @__PURE__ */ d.jsxs(
+  return /* @__PURE__ */ f.jsx("div", { className: V.faqRoot, children: /* @__PURE__ */ f.jsxs(
     "div",
     {
       className: V.faqWrapper,
@@ -5073,7 +5073,7 @@ const re = ({
         "--banner-image": "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')"
       },
       children: [
-        /* @__PURE__ */ d.jsx("form", { onSubmit: _, style: { marginBottom: 24 }, children: /* @__PURE__ */ d.jsx(
+        /* @__PURE__ */ f.jsx(
           T2,
           {
             title: "Advice and answers from the team",
@@ -5083,9 +5083,9 @@ const re = ({
             onSearchSubmit: _,
             basePath: "/search"
           }
-        ) }),
-        /* @__PURE__ */ d.jsxs("div", { className: V.faqContent, children: [
-          /* @__PURE__ */ d.jsx(
+        ),
+        /* @__PURE__ */ f.jsxs("div", { className: V.faqContent, children: [
+          /* @__PURE__ */ f.jsx(
             "button",
             {
               onClick: C,
@@ -5094,7 +5094,7 @@ const re = ({
               children: "Clear search"
             }
           ),
-          x.trim() && !v && /* @__PURE__ */ d.jsxs("div", { className: V.searchResults, children: [
+          x.trim() && !v && /* @__PURE__ */ f.jsxs("div", { className: V.searchResults, children: [
             'Search for "',
             x,
             '" has ',
@@ -5102,21 +5102,21 @@ const re = ({
             " result",
             g.length !== 1 ? "s" : ""
           ] }),
-          v ? /* @__PURE__ */ d.jsx("div", { children: "Loading..." }) : g.length === 0 ? /* @__PURE__ */ d.jsx("div", { children: "No results found." }) : /* @__PURE__ */ d.jsx("div", { className: V.faqItems, children: g.map((L) => /* @__PURE__ */ d.jsx(
+          v ? /* @__PURE__ */ f.jsx("div", { children: "Loading..." }) : g.length === 0 ? /* @__PURE__ */ f.jsx("div", { children: "No results found." }) : /* @__PURE__ */ f.jsx("div", { className: V.faqItems, children: g.map((L) => /* @__PURE__ */ f.jsx(
             "a",
             {
               href: L.page ? `/docs/${L.page.slug.current}` : `/faq/${L._id}`,
               className: V.faqItem,
               style: { textDecoration: "none" },
-              children: /* @__PURE__ */ d.jsxs("div", { className: V.faqItemContent, children: [
-                /* @__PURE__ */ d.jsxs("div", { className: V.faqItemMain, children: [
-                  /* @__PURE__ */ d.jsx("h3", { className: V.faqQuestion, children: L.question }),
-                  /* @__PURE__ */ d.jsxs("p", { className: V.faqDescription, children: [
+              children: /* @__PURE__ */ f.jsxs("div", { className: V.faqItemContent, children: [
+                /* @__PURE__ */ f.jsxs("div", { className: V.faqItemMain, children: [
+                  /* @__PURE__ */ f.jsx("h3", { className: V.faqQuestion, children: L.question }),
+                  /* @__PURE__ */ f.jsxs("p", { className: V.faqDescription, children: [
                     L.answer.substring(0, 120),
                     L.answer.length > 120 ? "..." : ""
                   ] })
                 ] }),
-                /* @__PURE__ */ d.jsx(
+                /* @__PURE__ */ f.jsx(
                   "svg",
                   {
                     className: V.arrowIcon,
@@ -5125,7 +5125,7 @@ const re = ({
                     viewBox: "0 0 24 24",
                     fill: "none",
                     xmlns: "http://www.w3.org/2000/svg",
-                    children: /* @__PURE__ */ d.jsx(
+                    children: /* @__PURE__ */ f.jsx(
                       "path",
                       {
                         d: "M5 12H19M19 12L12 5M19 12L12 19",

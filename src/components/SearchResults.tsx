@@ -85,16 +85,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({
           } as React.CSSProperties
         }
       >
-        <form onSubmit={handleSearchSubmit} style={{ marginBottom: 24 }}>
-          <BannerSearch
-            title="Advice and answers from the team"
-            description="Guides to configuring and using the platform, troubleshooting common issues, and more."
-            inputValue={searchValue}
-            onInputChange={setSearchValue}
-            onSearchSubmit={handleSearchSubmit}
-            basePath="/search"
-          />
-        </form>
+        <BannerSearch
+          title="Advice and answers from the team"
+          description="Guides to configuring and using the platform, troubleshooting common issues, and more."
+          inputValue={searchValue}
+          onInputChange={setSearchValue}
+          onSearchSubmit={handleSearchSubmit}
+          basePath="/search"
+        />
         <div className={styles.faqContent}>
           <button
             onClick={handleClearSearch}
