@@ -9,13 +9,17 @@ export default defineConfig({
       entryRoot: 'src',
       outDir: 'dist/types',
       insertTypesEntry: true,
+      rollupTypes: true,
     }),
   ],
   build: {
     lib: {
-      entry: "src/index.ts",
+      entry: {
+        client: "src/client.ts",
+        server: "src/server.ts",
+      },
       name: "SharedPages",
-      fileName: (format) => `index.${format}.js`,
+      fileName: (format, entryName) => `index.${entryName}.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],

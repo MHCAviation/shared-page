@@ -1,0 +1,1 @@
+export { getFaqs, getPageData } from "./lib/sanity"; 

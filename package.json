@@ -1,52 +1,59 @@
 {
-    "name": "shared-pages",
-    "private": true,
-    "version": "0.1.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "tsc -b && vite build",
-        "lint": "eslint .",
-        "preview": "vite preview",
-        "prepack": "npm run build"
+  "name": "shared-pages",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.13.3",
+    "@portabletext/react": "^3.2.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@sanity/client": "^7.4.1",
+    "@sanity/image-url": "^1.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3"
+  },
+  "exports": {
+    "./client": {
+      "import": "./dist/index.client.es.js",
+      "require": "./dist/index.client.umd.js",
+      "types": "./dist/types/client.d.ts"
     },
-    "dependencies": {
-        "@lottiefiles/dotlottie-react": "^0.13.3",
-        "@portabletext/react": "^3.2.1",
-        "@rollup/plugin-replace": "^6.0.2",
-        "@sanity/client": "^7.4.1",
-        "@sanity/image-url": "^1.1.0"
+    "./server": {
+      "import": "./dist/index.server.es.js",
+      "require": "./dist/index.server.umd.js",
+      "types": "./dist/types/server.d.ts"
     },
-    "peerDependencies": {
-        "react": "^18.0.0 || ^19.0.0",
-        "react-dom": "^18.0.0 || ^19.0.0"
+    ".": {
+      "import": "./dist/index.client.es.js",
+      "require": "./dist/index.client.umd.js",
+      "types": "./dist/types/client.d.ts"
     },
-    "devDependencies": {
-        "@eslint/js": "^9.21.0",
-        "@types/react": "^19.0.10",
-        "@types/react-dom": "^19.0.4",
-        "@vitejs/plugin-react": "^4.3.4",
-        "eslint": "^9.21.0",
-        "eslint-plugin-react-hooks": "^5.1.0",
-        "eslint-plugin-react-refresh": "^0.4.19",
-        "globals": "^15.15.0",
-        "typescript": "~5.7.2",
-        "typescript-eslint": "^8.24.1",
-        "vite": "^6.2.0",
-        "vite-plugin-dts": "^4.5.3"
-    },
-    "main": "./dist/index.umd.js",
-    "module": "./dist/index.es.js",
-    "types": "./dist/types/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./dist/index.es.js",
-            "require": "./dist/index.umd.js",
-            "types": "./dist/types/index.d.ts"
-        },
-        "./style.css": "./dist/style.css"
-    },
-    "files": [
-        "dist"
-    ]
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ]
 }
