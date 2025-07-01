@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { getFaqs } from "../lib/sanity";
 import type { FAQItem } from "../types";
 import styles from "./FAQ.module.css";
 import BannerSearch from "./BannerSearch";
 
-const SearchResults: React.FC = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const params = new URLSearchParams(location.search);
-  const initialQuery = params.get("query") || "";
-  const from = params.get("from") || "/";
+interface SearchResultsProps {
+  query?: string;
+  from?: string;
+  onNavigate?: (url: string) => void;
+  onSearch?: (query: string) => void;
+}
+
+const SearchResults: React.FC<SearchResultsProps> = ({
+  query: queryProp,
+  from: fromProp,
+  onNavigate,
+  onSearch,
+}) => {
+  // Fallback to window.location for query/from if not provided
+  let query = queryProp;
+  let from = fromProp;
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search);
+    if (!query) query = params.get("query") || "";
+    if (!from) from = params.get("from") || "/";
+  }
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchValue, setSearchValue] = useState(initialQuery);
+  const [searchValue, setSearchValue] = useState(query || "");
+
+  useEffect(() => {
+    setSearchValue(query || "");
+  }, [query]);
 
   useEffect(() => {
     getFaqs().then((data) => {
@@ -21,11 +39,6 @@ const SearchResults: React.FC = () => {
       setLoading(false);
     });
   }, []);
-
-  // Update searchValue if URL changes (e.g., browser back/forward)
-  useEffect(() => {
-    setSearchValue(initialQuery);
-  }, [initialQuery]);
 
   const filteredFaqs = React.useMemo(() => {
     if (!searchValue.trim()) return [];
@@ -39,13 +52,25 @@ const SearchResults: React.FC = () => {
 
   const handleClearSearch = () => {
     setSearchValue("");
-    navigate(from, { replace: true });
+    if (onNavigate) {
+      onNavigate(from || "/");
+    } else {
+      window.location.assign(from || "/");
+    }
   };
 
   const handleSearchSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (searchValue.trim()) {
-      navigate(`/search?query=${encodeURIComponent(searchValue.trim())}&from=${encodeURIComponent(from)}`);
+      if (onSearch) {
+        onSearch(searchValue.trim());
+      } else {
+        window.location.assign(
+          `/search?query=${encodeURIComponent(
+            searchValue.trim()
+          )}&from=${encodeURIComponent(from || "/")}`
+        );
+      }
     }
   };
 
@@ -53,10 +78,12 @@ const SearchResults: React.FC = () => {
     <div className={styles.faqRoot}>
       <div
         className={styles.faqWrapper}
-        style={{
-          "--banner-image":
-            "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
-        } as React.CSSProperties}
+        style={
+          {
+            "--banner-image":
+              "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+          } as React.CSSProperties
+        }
       >
         <form onSubmit={handleSearchSubmit} style={{ marginBottom: 24 }}>
           <BannerSearch
@@ -69,14 +96,17 @@ const SearchResults: React.FC = () => {
           />
         </form>
         <div className={styles.faqContent}>
-          <div style={{ marginBottom: 24 }}>
-            <button onClick={handleClearSearch} className={styles.clearSearch} type="button">
-              Clear search
-            </button>
-          </div>
+          <button
+            onClick={handleClearSearch}
+            className={styles.clearSearch}
+            type="button"
+          >
+            Clear search
+          </button>
           {searchValue.trim() && !loading && (
-            <div style={{ marginBottom: 16, color: '#666', fontSize: 16 }}>
-              Search for "{searchValue}" has {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''}
+            <div className={styles.searchResults}>
+              Search for "{searchValue}" has {filteredFaqs.length} result
+              {filteredFaqs.length !== 1 ? "s" : ""}
             </div>
           )}
           {loading ? (
@@ -88,7 +118,11 @@ const SearchResults: React.FC = () => {
               {filteredFaqs.map((faq) => (
                 <a
                   key={faq._id}
-                  href={faq.page ? `/docs/${faq.page.slug.current}` : `/faq/${faq._id}`}
+                  href={
+                    faq.page
+                      ? `/docs/${faq.page.slug.current}`
+                      : `/faq/${faq._id}`
+                  }
                   className={styles.faqItem}
                   style={{ textDecoration: "none" }}
                 >
@@ -96,7 +130,8 @@ const SearchResults: React.FC = () => {
                     <div className={styles.faqItemMain}>
                       <h3 className={styles.faqQuestion}>{faq.question}</h3>
                       <p className={styles.faqDescription}>
-                        {faq.answer.substring(0, 120)}{faq.answer.length > 120 ? "..." : ""}
+                        {faq.answer.substring(0, 120)}
+                        {faq.answer.length > 120 ? "..." : ""}
                       </p>
                     </div>
                     <svg
@@ -126,4 +161,4 @@ const SearchResults: React.FC = () => {
   );
 };
 
-export default SearchResults; 
+export default SearchResults;

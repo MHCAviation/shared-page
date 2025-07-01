@@ -136,7 +136,14 @@ declare interface Page {
     tableOfContents?: TableOfContentsSection[];
 }
 
-export declare const SearchResults: default_2.FC;
+export declare const SearchResults: default_2.FC<SearchResultsProps>;
+
+declare interface SearchResultsProps {
+    query?: string;
+    from?: string;
+    onNavigate?: (url: string) => void;
+    onSearch?: (query: string) => void;
+}
 
 declare interface TableOfContentsSection {
     _id: string;
