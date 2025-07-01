@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import FAQ, { getFaqs } from "./FAQ";
+import { getFaqs } from "../lib/sanity";
 import type { FAQItem, FAQProps } from "../types";
+import FAQ from "./FAQ";
 
 const FAQLocalWrapper: React.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearchChange">> = (props) => {
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
@@ -10,6 +11,7 @@ const FAQLocalWrapper: React.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearch
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState(() => query.get("search") || "");
   const [inputValue, setInputValue] = useState(() => query.get("search") || "");
+  const category = query.get("category") || location.pathname.split("/").pop();
 
   // Keep state in sync with URL
   useEffect(() => {
@@ -47,6 +49,10 @@ const FAQLocalWrapper: React.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearch
       inputValue={inputValue}
       onInputChange={setInputValue}
       onSearchSubmit={handleSearchSubmit}
+      breadcrumbItems={[
+        { label: "All Collections", to: "/collection" },
+        ...(category ? [{ label: category.charAt(0).toUpperCase() + category.slice(1), to: location.pathname + location.search }] : [])
+      ]}
     />
   );
 };

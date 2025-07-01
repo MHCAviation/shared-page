@@ -3,8 +3,9 @@ import React from "react";
 import BannerSearch from "./BannerSearch";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
-import { client, urlFor } from "../lib/sanity";
+import { urlFor } from "../lib/sanity";
 import styles from "./DocPage.module.css";
+import Breadcrumb, { BreadcrumbItem } from "./Breadcrumb";
 
 // ───────────────────────────────────────────────────
 // Table Data Types
@@ -43,34 +44,7 @@ interface DocPageProps {
   };
   searchTerm?: string;
   onSearchChange?: (value: string) => void;
-}
-
-const pageQuery = `
-  *[_type == "page" && slug.current == $slug][0] {
-    title,
-    "authorName": author->name,
-    "authorImage": author->image.asset->url,
-    "publishedAt": publishedAt,
-    tableOfContents[]->{
-      _id,
-      title,
-      order,
-      "slug": slug.current,
-      subsections[]{ title, "slug": slug.current }
-    },
-    body[]{
-      _type == "table" => {
-        _type,
-        layoutOrientation,
-        rows[]{ cells[]{ column, content, width } }
-      },
-      _type != "table" => @
-    }
-  }
-`;
-
-export async function getPageData(slug: string) {
-  return await client.fetch(pageQuery, { slug });
+  breadcrumbItems?: BreadcrumbItem[];
 }
 
 const DocPage: React.FC<
@@ -78,6 +52,7 @@ const DocPage: React.FC<
     inputValue: string;
     onInputChange?: (value: string) => void;
     onSearchSubmit?: () => void;
+    breadcrumbItems?: BreadcrumbItem[];
   }
 > = ({
   basePath = "/",
@@ -85,6 +60,7 @@ const DocPage: React.FC<
   inputValue,
   onInputChange,
   onSearchSubmit,
+  breadcrumbItems,
 }) => {
   const data = pageData;
 
@@ -307,7 +283,7 @@ const DocPage: React.FC<
   return (
     <div className={styles.docPageRoot}>
       <div
-        className={styles.docPageWrapper}
+        className={styles.bannerWrapper}
         style={
           {
             "--banner-image":
@@ -321,8 +297,6 @@ const DocPage: React.FC<
           inputValue={inputValue}
           onInputChange={onInputChange}
           onSearchSubmit={onSearchSubmit}
-          placeholder="Search answer or question"
-          redirectToFaq={true}
           basePath={basePath}
         />
       </div>
@@ -340,9 +314,9 @@ const DocPage: React.FC<
           </div>
         </aside>
         <article className={styles.mainContent}>
-          <nav className={styles.breadcrumbs}>
-            <a href={basePath}>All Collections</a> &gt; <span>{title}</span>
-          </nav>
+          <div className={styles.breadcrumbs}>
+            {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
+          </div>
           <h1 className={styles.pageTitle}>{title}</h1>
           <div className={styles.metaInfo}>
             {authorImage ? (

@@ -1,5 +1,6 @@
 import { default as React } from 'react';
 import { PortableTextBlock } from '@portabletext/types';
+import { BreadcrumbItem } from './Breadcrumb';
 interface DocPageProps {
     slug?: string;
     basePath?: string;
@@ -22,11 +23,12 @@ interface DocPageProps {
     };
     searchTerm?: string;
     onSearchChange?: (value: string) => void;
+    breadcrumbItems?: BreadcrumbItem[];
 }
-export declare function getPageData(slug: string): Promise<any>;
 declare const DocPage: React.FC<Omit<DocPageProps, "searchTerm"> & {
     inputValue: string;
     onInputChange?: (value: string) => void;
     onSearchSubmit?: () => void;
+    breadcrumbItems?: BreadcrumbItem[];
 }>;
 export default DocPage;

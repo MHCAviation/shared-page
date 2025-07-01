@@ -52,3 +52,29 @@ export const getFaqs = async (): Promise<FAQItem[]> => {
     throw error;
   }
 };
+
+export const getPageData = async (slug: string) => {
+  const query = `*[_type == "page" && slug.current == $slug][0] {
+    title,
+    "authorName": author->name,
+    "authorImage": author->image.asset->url,
+    "publishedAt": publishedAt,
+    categories[]->{ title, slug },
+    tableOfContents[]->{
+      _id,
+      title,
+      order,
+      "slug": slug.current,
+      subsections[]{ title, "slug": slug.current }
+    },
+    body[]{
+      _type == "table" => {
+        _type,
+        layoutOrientation,
+        rows[]{ cells[]{ column, content, width } }
+      },
+      _type != "table" => @
+    }
+  }`;
+  return await client.fetch(query, { slug });
+};

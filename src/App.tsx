@@ -1,7 +1,10 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
-import FAQ from "./components/FAQLocalWrapper";
+// import FAQ from "./components/FAQLocalWrapper";
 import DocPage from "./components/DocPageLocalWrapper";
+import FAQCard from "./components/FAQCard";
+import FAQ from "./components/FAQLocalWrapper";
+import SearchResults from "./components/SearchResults";
 
 // Wrapper component to extract slug from URL params
 const DocPageWrapper = () => {
@@ -14,21 +17,24 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Root path ("/") → FAQ page */}
+        {/* Root path ("/") → FAQCard only */}
         <Route
           path="/"
           element={
-            <FAQ
-              title="Advice and answers from the team"
-              description="Guides to configuring and using the platform, troubleshooting common issues, and more."
-            />
+            <div>
+              <FAQCard />
+            </div>
           }
         />
-
+        {/* FAQ page route */}
+        <Route path="/faq" element={<FAQ />} />
+        {/* FAQ collection page route */}
+        <Route path="/collection/:faq" element={<FAQ />} />
         {/* Dynamic DocPage path: "/docs/:slug" */}
         <Route path="/docs/:slug" element={<DocPageWrapper />} />
-
-        {/* Catch-all → redirect back to FAQ (or render a 404 component) */}
+        {/* Search results page route */}
+        <Route path="/search" element={<SearchResults />} />
+        {/* Catch-all → redirect back to FAQCard */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

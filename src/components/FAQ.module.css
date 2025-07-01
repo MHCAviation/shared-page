@@ -121,7 +121,26 @@
 
 /* FAQ Category styles */
 .faqCategory {
-  margin-bottom: 3rem;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  cursor: pointer;
+}
+
+.faqCategory:hover {
+  border-color: #2563eb;
+  background-color: #fcfdfd;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.faqCategory:hover svg {
+  stroke: #2563eb ;
+}
+
+.faqCategory:hover rect {
+  stroke: #2563eb ;
 }
 
 .faqCategoryTitle {
@@ -131,6 +150,10 @@
   margin: 0 0 0.75rem;
 }
 
+.faqCategory:hover .faqCategoryTitle {
+  color: #2563eb;
+}
+
 .faqCategoryDescription {
   font-size: 1rem;
   color: #666;
@@ -138,6 +161,11 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #e5e7eb;
   line-height: 1.5;
+}
+
+.faqCategoryCount {
+  color: #666;
+  font-size: 15px;
 }
 
 /* Loading and error states */

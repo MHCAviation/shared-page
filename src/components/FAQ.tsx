@@ -2,8 +2,9 @@
 import React, { useMemo } from "react";
 import BannerSearch from "./BannerSearch";
 import styles from "./FAQ.module.css";
-import { getFaqs } from "../lib/sanity";
 import type { FAQItem, FAQProps } from "../types";
+import Breadcrumb, { BreadcrumbItem } from "./Breadcrumb";
+import { useNavigate } from "react-router-dom";
 
 const defaultFaqs: FAQItem[] = [
   {
@@ -37,24 +38,26 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export { getFaqs };
-
-const FAQ: React.FC<FAQProps & {
-  inputValue: string;
-  onInputChange?: (value: string) => void;
-  onSearchSubmit?: () => void;
-}> = ({
+const FAQ: React.FC<
+  FAQProps & {
+    inputValue: string;
+    onInputChange?: (value: string) => void;
+    onSearchSubmit?: () => void;
+    breadcrumbItems?: BreadcrumbItem[];
+  }
+> = ({
   title = "Advice and answers from the team",
   faqs,
   initialFaqs = defaultFaqs,
-  description,
+  description = "Guides to configuring and using the platform, troubleshooting common issues, and more.",
   basePath = "/",
   searchTerm,
-  onSearchChange,
   inputValue,
   onInputChange,
-  onSearchSubmit,
+  breadcrumbItems,
 }) => {
+  const navigate = useNavigate();
+
   // Use faqs prop if provided, otherwise fallback to initialFaqs
   const faqList = faqs && faqs.length > 0 ? faqs : initialFaqs;
 
@@ -74,20 +77,27 @@ const FAQ: React.FC<FAQProps & {
 
   // Group FAQs by category
   const groupedFaqs = useMemo(() => {
-    if (!filteredFaqs.length) return new Map<string, { faqs: FAQItem[]; description: string }>();
-    return filteredFaqs.reduce((groups: Map<string, { faqs: FAQItem[]; description: string }>, faq: FAQItem) => {
-      const category = faq.category || { title: "Other", _id: "other" };
-      const categoryTitle =
-        category.title.charAt(0).toUpperCase() + category.title.slice(1);
-      if (!groups.has(categoryTitle)) {
-        groups.set(categoryTitle, {
-          faqs: [],
-          description: category.description || "",
-        });
-      }
-      groups.get(categoryTitle)?.faqs.push(faq);
-      return groups;
-    }, new Map<string, { faqs: FAQItem[]; description: string }>());
+    if (!filteredFaqs.length)
+      return new Map<string, { faqs: FAQItem[]; description: string }>();
+    return filteredFaqs.reduce(
+      (
+        groups: Map<string, { faqs: FAQItem[]; description: string }>,
+        faq: FAQItem
+      ) => {
+        const category = faq.category || { title: "Other", _id: "other" };
+        const categoryTitle =
+          category.title.charAt(0).toUpperCase() + category.title.slice(1);
+        if (!groups.has(categoryTitle)) {
+          groups.set(categoryTitle, {
+            faqs: [],
+            description: category.description || "",
+          });
+        }
+        groups.get(categoryTitle)?.faqs.push(faq);
+        return groups;
+      },
+      new Map<string, { faqs: FAQItem[]; description: string }>()
+    );
   }, [filteredFaqs]);
 
   // Generate FAQ link based on page and table of contents
@@ -107,17 +117,29 @@ const FAQ: React.FC<FAQProps & {
 
   // Get description text for FAQ link
   const getFaqLinkText = (faq: FAQItem): string => {
-    return faq.answer.substring(0, 120) + (faq.answer.length > 120 ? "..." : "");
+    return (
+      faq.answer.substring(0, 120) + (faq.answer.length > 120 ? "..." : "")
+    );
+  };
+
+  const handleSearchSubmit = () => {
+    if (inputValue.trim()) {
+      navigate(
+        `/search?query=${encodeURIComponent(inputValue.trim())}&from=/faq`
+      );
+    }
   };
 
   return (
     <div className={styles.faqRoot}>
       <div
         className={styles.faqWrapper}
-        style={{
-          "--banner-image":
-            "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
-        } as React.CSSProperties}
+        style={
+          {
+            "--banner-image":
+              "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+          } as React.CSSProperties
+        }
       >
         {/* Banner */}
         <BannerSearch
@@ -125,30 +147,14 @@ const FAQ: React.FC<FAQProps & {
           description={description}
           inputValue={inputValue}
           onInputChange={onInputChange}
-          onSearchSubmit={onSearchSubmit}
+          onSearchSubmit={handleSearchSubmit}
           basePath={basePath}
         />
         {/* FAQ Content */}
         <div className={styles.faqContent}>
-          {search.trim() && (
-            <div className={styles.searchResults}>
-              <span>
-                {filteredFaqs.length === 0
-                  ? `No results for "${search}"`
-                  : `Found ${filteredFaqs.length} result${
-                      filteredFaqs.length === 1 ? "" : "s"
-                    } for "${search}"`}
-              </span>
-              {onSearchChange && (
-                <button
-                  onClick={() => onSearchChange("")}
-                  className={styles.clearSearch}
-                >
-                  Clear search
-                </button>
-              )}
-            </div>
-          )}
+          <div className={styles.breadcrumbs}>
+            {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
+          </div>
           <div className={styles.faqItems}>
             {filteredFaqs.length === 0 && search.trim() ? (
               <div className={styles.noResults}>
@@ -156,8 +162,11 @@ const FAQ: React.FC<FAQProps & {
               </div>
             ) : (
               Array.from(groupedFaqs.entries()).map(
-                ([category, value]: [string, { faqs: FAQItem[]; description: string }]) => (
-                  <div key={category} className={styles.faqCategory}>
+                ([category, value]: [
+                  string,
+                  { faqs: FAQItem[]; description: string }
+                ]) => (
+                  <div key={category} className={styles.faqCategoryList}>
                     <h2 className={styles.faqCategoryTitle}>{category}</h2>
                     {value.description && (
                       <p className={styles.faqCategoryDescription}>
