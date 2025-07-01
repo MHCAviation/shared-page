@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./FAQ.module.css";
 import BannerSearch from "./BannerSearch";
 import { getFaqs } from "../lib/sanity";
@@ -36,19 +35,20 @@ const GeneralIcon = () => (
   </svg>
 );
 
-const FAQCard: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+interface FAQCardProps {
+  onNavigate?: (url: string) => void;
+  onSearch?: (query: string) => void;
+  searchValue?: string;
+}
+
+const FAQCard: React.FC<FAQCardProps> = ({ onNavigate, onSearch, searchValue: searchValueProp }) => {
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(searchValueProp || "");
 
-  // Sync search input with URL search param
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const search = params.get("search") || "";
-    setSearchValue(search);
-  }, [location.search]);
+    setSearchValue(searchValueProp || "");
+  }, [searchValueProp]);
 
   useEffect(() => {
     getFaqs().then((data) => {
@@ -81,14 +81,21 @@ const FAQCard: React.FC = () => {
   }
 
   const handleClick = (category: string) => {
-    navigate(`/collection/${encodeURIComponent(category.toLowerCase())}`);
+    const url = `/collection/${encodeURIComponent(category.toLowerCase())}`;
+    if (onNavigate) {
+      onNavigate(url);
+    } else {
+      window.location.assign(url);
+    }
   };
 
   const handleSearchSubmit = () => {
     if (searchValue.trim()) {
-      navigate(
-        `/search?query=${encodeURIComponent(searchValue.trim())}&from=/`
-      );
+      if (onSearch) {
+        onSearch(searchValue.trim());
+      } else {
+        window.location.assign(`/search?query=${encodeURIComponent(searchValue.trim())}&from=/`);
+      }
     }
   };
 

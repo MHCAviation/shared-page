@@ -73,14 +73,24 @@ declare interface DocPageProps {
     breadcrumbItems?: BreadcrumbItem[];
 }
 
-export declare const FAQ: default_2.FC<FAQProps & {
+export declare const FAQ: default_2.FC<FAQComponentProps>;
+
+export declare const FAQCard: default_2.FC<FAQCardProps>;
+
+declare interface FAQCardProps {
+    onNavigate?: (url: string) => void;
+    onSearch?: (query: string) => void;
+    searchValue?: string;
+}
+
+declare interface FAQComponentProps extends FAQProps {
     inputValue: string;
     onInputChange?: (value: string) => void;
     onSearchSubmit?: () => void;
     breadcrumbItems?: BreadcrumbItem[];
-}>;
-
-export declare const FAQCard: default_2.FC;
+    onNavigate?: (url: string) => void;
+    onSearch?: (query: string) => void;
+}
 
 declare interface FAQItem {
     _id: string;

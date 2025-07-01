@@ -4,7 +4,6 @@ import BannerSearch from "./BannerSearch";
 import styles from "./FAQ.module.css";
 import type { FAQItem, FAQProps } from "../types";
 import Breadcrumb, { BreadcrumbItem } from "./Breadcrumb";
-import { useNavigate } from "react-router-dom";
 
 const defaultFaqs: FAQItem[] = [
   {
@@ -38,26 +37,30 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const FAQ: React.FC<
-  FAQProps & {
-    inputValue: string;
-    onInputChange?: (value: string) => void;
-    onSearchSubmit?: () => void;
-    breadcrumbItems?: BreadcrumbItem[];
-  }
-> = ({
+interface FAQComponentProps extends FAQProps {
+  inputValue: string;
+  onInputChange?: (value: string) => void;
+  onSearchSubmit?: () => void;
+  breadcrumbItems?: BreadcrumbItem[];
+  onNavigate?: (url: string) => void;
+  onSearch?: (query: string) => void;
+}
+
+const FAQ: React.FC<FAQComponentProps> = ({
   title = "Advice and answers from the team",
   faqs,
   initialFaqs = defaultFaqs,
   description = "Guides to configuring and using the platform, troubleshooting common issues, and more.",
   basePath = "/",
   searchTerm,
+  onSearchChange,
   inputValue,
   onInputChange,
+  onSearchSubmit,
   breadcrumbItems,
+  onNavigate,
+  onSearch,
 }) => {
-  const navigate = useNavigate();
-
   // Use faqs prop if provided, otherwise fallback to initialFaqs
   const faqList = faqs && faqs.length > 0 ? faqs : initialFaqs;
 
@@ -122,11 +125,23 @@ const FAQ: React.FC<
     );
   };
 
+  const handleClearSearch = () => {
+    if (onSearchChange) onSearchChange("");
+    if (onNavigate) {
+      onNavigate("/");
+    } else {
+      window.location.assign("/");
+    }
+  };
+
   const handleSearchSubmit = () => {
+    if (onSearchSubmit) onSearchSubmit();
     if (inputValue.trim()) {
-      navigate(
-        `/search?query=${encodeURIComponent(inputValue.trim())}&from=/faq`
-      );
+      if (onSearch) {
+        onSearch(inputValue.trim());
+      } else {
+        window.location.assign(`/search?query=${encodeURIComponent(inputValue.trim())}&from=/faq`);
+      }
     }
   };
 
@@ -134,12 +149,10 @@ const FAQ: React.FC<
     <div className={styles.faqRoot}>
       <div
         className={styles.faqWrapper}
-        style={
-          {
-            "--banner-image":
-              "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
-          } as React.CSSProperties
-        }
+        style={{
+          "--banner-image":
+            "url('https://images.unsplash.com/photo-1507812984078-917a274065be?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0')",
+        } as React.CSSProperties}
       >
         {/* Banner */}
         <BannerSearch
@@ -197,6 +210,14 @@ const FAQ: React.FC<
               )
             )}
           </div>
+          {onSearchChange && (
+            <button
+              onClick={handleClearSearch}
+              className={styles.clearSearch}
+            >
+              Clear search
+            </button>
+          )}
         </div>
       </div>
     </div>
