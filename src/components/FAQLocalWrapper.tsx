@@ -4,57 +4,47 @@ import { getFaqs } from "../lib/sanity";
 import type { FAQItem, FAQProps } from "../types";
 import FAQ from "./FAQ";
 
-const FAQLocalWrapper: React.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearchChange">> = (props) => {
+const FAQLocalWrapper: React.FC<FAQProps> = ({ basePath = "collection" }) => {
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState(() => query.get("search") || "");
-  const [inputValue, setInputValue] = useState(() => query.get("search") || "");
+  const [inputValue, setInputValue] = useState("");
   const category = query.get("category") || location.pathname.split("/").pop();
-
-  // Keep state in sync with URL
-  useEffect(() => {
-    setSearchTerm(query.get("search") || "");
-    setInputValue(query.get("search") || "");
-    // eslint-disable-next-line
-  }, [location.search]);
 
   useEffect(() => {
     getFaqs().then(setFaqs);
   }, []);
 
-  // Update URL when searchTerm changes
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    if (searchTerm) {
-      params.set("search", searchTerm);
-    } else {
-      params.delete("search");
-    }
-    navigate({ search: params.toString() }, { replace: true });
-    // eslint-disable-next-line
-  }, [searchTerm]);
-
   const handleSearchSubmit = () => {
-    setSearchTerm(inputValue);
+    if (inputValue.trim()) {
+      navigate(
+        `/search?query=${encodeURIComponent(
+          inputValue.trim()
+        )}&from=${basePath}/${encodeURIComponent((category || "").toLowerCase())}`
+      );
+    }
   };
 
   return (
     <FAQ
-      {...props}
       faqs={faqs}
-      searchTerm={searchTerm}
-      onSearchChange={setSearchTerm}
       inputValue={inputValue}
       onInputChange={setInputValue}
       onSearchSubmit={handleSearchSubmit}
       breadcrumbItems={[
         { label: "All Collections", to: "/collection" },
-        ...(category ? [{ label: category.charAt(0).toUpperCase() + category.slice(1), to: location.pathname + location.search }] : [])
+        ...(category
+          ? [
+              {
+                label: category.charAt(0).toUpperCase() + category.slice(1),
+                to: location.pathname + location.search,
+              },
+            ]
+          : []),
       ]}
     />
   );
 };
 
-export default FAQLocalWrapper; 
+export default FAQLocalWrapper;

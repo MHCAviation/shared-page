@@ -44,6 +44,7 @@ interface FAQComponentProps extends FAQProps {
   breadcrumbItems?: BreadcrumbItem[];
   onNavigate?: (url: string) => void;
   onSearch?: (query: string) => void;
+  basePath?: string;
 }
 
 const FAQ: React.FC<FAQComponentProps> = ({
@@ -52,31 +53,18 @@ const FAQ: React.FC<FAQComponentProps> = ({
   initialFaqs = defaultFaqs,
   description = "Guides to configuring and using the platform, troubleshooting common issues, and more.",
   basePath = "/",
-  searchTerm,
   onSearchChange,
   inputValue,
   onInputChange,
   onSearchSubmit,
   breadcrumbItems,
   onNavigate,
-  onSearch,
 }) => {
   // Use faqs prop if provided, otherwise fallback to initialFaqs
   const faqList = faqs && faqs.length > 0 ? faqs : initialFaqs;
 
-  // Use controlled searchTerm if provided, otherwise default to empty string
-  const search = searchTerm ?? "";
-
   // Filter FAQs by search term
-  const filteredFaqs = useMemo(() => {
-    if (!search.trim()) return faqList;
-    const lower = search.toLowerCase();
-    return faqList.filter(
-      (faq: FAQItem) =>
-        faq.question.toLowerCase().includes(lower) ||
-        faq.answer.toLowerCase().includes(lower)
-    );
-  }, [faqList, search]);
+  const filteredFaqs = useMemo(() => faqList, [faqList]);
 
   // Group FAQs by category
   const groupedFaqs = useMemo(() => {
@@ -134,17 +122,6 @@ const FAQ: React.FC<FAQComponentProps> = ({
     }
   };
 
-  const handleSearchSubmit = () => {
-    if (onSearchSubmit) onSearchSubmit();
-    if (inputValue.trim()) {
-      if (onSearch) {
-        onSearch(inputValue.trim());
-      } else {
-        window.location.assign(`/search?query=${encodeURIComponent(inputValue.trim())}&from=/faq`);
-      }
-    }
-  };
-
   return (
     <div className={styles.faqRoot}>
       <div
@@ -160,7 +137,7 @@ const FAQ: React.FC<FAQComponentProps> = ({
           description={description}
           inputValue={inputValue}
           onInputChange={onInputChange}
-          onSearchSubmit={handleSearchSubmit}
+          onSearchSubmit={onSearchSubmit}
           basePath={basePath}
         />
         {/* FAQ Content */}
@@ -169,7 +146,7 @@ const FAQ: React.FC<FAQComponentProps> = ({
             {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
           </div>
           <div className={styles.faqItems}>
-            {filteredFaqs.length === 0 && search.trim() ? (
+            {filteredFaqs.length === 0 ? (
               <div className={styles.noResults}>
                 No matching questions found. Try adjusting your search terms.
               </div>

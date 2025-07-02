@@ -39,9 +39,15 @@ interface FAQCardProps {
   onNavigate?: (url: string) => void;
   onSearch?: (query: string) => void;
   searchValue?: string;
+  basePath?: string;
 }
 
-const FAQCard: React.FC<FAQCardProps> = ({ onNavigate, onSearch, searchValue: searchValueProp }) => {
+const FAQCard: React.FC<FAQCardProps> = ({
+  onNavigate,
+  onSearch,
+  basePath = "/",
+  searchValue: searchValueProp,
+}) => {
   const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState(searchValueProp || "");
@@ -94,7 +100,11 @@ const FAQCard: React.FC<FAQCardProps> = ({ onNavigate, onSearch, searchValue: se
       if (onSearch) {
         onSearch(searchValue.trim());
       } else {
-        window.location.assign(`/search?query=${encodeURIComponent(searchValue.trim())}&from=/`);
+        window.location.assign(
+          `/search?query=${encodeURIComponent(
+            searchValue.trim()
+          )}&from=${basePath}`
+        );
       }
     }
   };

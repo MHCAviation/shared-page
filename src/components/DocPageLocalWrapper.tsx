@@ -39,7 +39,11 @@ const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({
 
   const handleSearchSubmit = () => {
     if (inputValue.trim()) {
-      navigate(`/search?query=${encodeURIComponent(inputValue.trim())}&from=/docs/${slug}`);
+      navigate(
+        `/search?query=${encodeURIComponent(
+          inputValue.trim()
+        )}&from=/docs/${slug}`
+      );
     }
   };
 
@@ -50,11 +54,15 @@ const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({
     // Try to extract from URL: e.g. /collection/:faq/...
     const match = location.pathname.match(/\/collection\/([^/]+)/);
     if (match) {
-      const raw = decodeURIComponent(match[1]).replace(/-/g, ' ');
-      category = { title: raw.charAt(0).toUpperCase() + raw.slice(1), slug: { current: match[1] } };
+      const raw = decodeURIComponent(match[1]).replace(/-/g, " ");
+      category = {
+        title: raw.charAt(0).toUpperCase() + raw.slice(1),
+        slug: { current: match[1] },
+      };
     }
   } else if (category.title) {
-    category.title = category.title.charAt(0).toUpperCase() + category.title.slice(1);
+    category.title =
+      category.title.charAt(0).toUpperCase() + category.title.slice(1);
   }
   return (
     <>
@@ -66,8 +74,15 @@ const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({
         onSearchSubmit={handleSearchSubmit}
         breadcrumbItems={[
           { label: "All Collections", to: "/collection" },
-          ...(category ? [{ label: category.title, to: `/collection/${category.slug?.current || ""}` }] : []),
-          { label: pageData.title, to: `/docs/${slug}` }
+          ...(category
+            ? [
+                {
+                  label: category.title,
+                  to: `/collection/${category.slug?.current || ""}`,
+                },
+              ]
+            : []),
+          { label: pageData.title, to: `/docs/${slug}` },
         ]}
       />
     </>

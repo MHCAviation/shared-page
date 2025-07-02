@@ -81,6 +81,7 @@ declare interface FAQCardProps {
     onNavigate?: (url: string) => void;
     onSearch?: (query: string) => void;
     searchValue?: string;
+    basePath?: string;
 }
 
 declare interface FAQComponentProps extends FAQProps {
@@ -90,6 +91,7 @@ declare interface FAQComponentProps extends FAQProps {
     breadcrumbItems?: BreadcrumbItem[];
     onNavigate?: (url: string) => void;
     onSearch?: (query: string) => void;
+    basePath?: string;
 }
 
 declare interface FAQItem {
@@ -101,7 +103,7 @@ declare interface FAQItem {
     page?: Page;
 }
 
-export declare const FAQLocalWrapper: default_2.FC<Omit<FAQProps, "faqs" | "searchTerm" | "onSearchChange">>;
+export declare const FAQLocalWrapper: default_2.FC<FAQProps>;
 
 declare interface FAQProps {
     title?: string;
