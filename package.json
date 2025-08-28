@@ -40,17 +40,17 @@
   "exports": {
     "./client": {
       "import": "./dist/index.client.es.js",
-      "require": "./dist/index.client.umd.js",
+      "require": "./dist/index.client.cjs.js",
       "types": "./dist/types/client.d.ts"
     },
     "./server": {
       "import": "./dist/index.server.es.js",
-      "require": "./dist/index.server.umd.js",
+      "require": "./dist/index.server.cjs.js",
       "types": "./dist/types/server.d.ts"
     },
     ".": {
       "import": "./dist/index.client.es.js",
-      "require": "./dist/index.client.umd.js",
+      "require": "./dist/index.client.cjs.js",
       "types": "./dist/types/client.d.ts"
     },
     "./style.css": "./dist/style.css"
