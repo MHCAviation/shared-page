@@ -101,18 +101,19 @@ function Br(t, e) {
 var dr, pr, gi = /* @__PURE__ */ zr(function() {
   if (pr) return dr;
   pr = 1;
-  var t = function(e) {
-    return e.replace(/^\s+|\s+$/g, "");
+  var t = function(r) {
+    return r.replace(/^\s+|\s+$/g, "");
+  }, e = function(r) {
+    return Object.prototype.toString.call(r) === "[object Array]";
   };
-  return dr = function(e) {
-    if (!e) return {};
-    for (var r = {}, n = t(e).split(`
-`), i = 0; i < n.length; i++) {
-      var s = n[i], o = s.indexOf(":"), a = t(s.slice(0, o)).toLowerCase(), l = t(s.slice(o + 1));
-      typeof r[a] > "u" ? r[a] = l : (c = r[a], Object.prototype.toString.call(c) === "[object Array]" ? r[a].push(l) : r[a] = [r[a], l]);
+  return dr = function(r) {
+    if (!r) return {};
+    for (var n = /* @__PURE__ */ Object.create(null), i = t(r).split(`
+`), s = 0; s < i.length; s++) {
+      var o = i[s], a = o.indexOf(":"), l = t(o.slice(0, a)).toLowerCase(), c = t(o.slice(a + 1));
+      typeof n[l] > "u" ? n[l] = c : e(n[l]) ? n[l].push(c) : n[l] = [n[l], c];
     }
-    var c;
-    return r;
+    return n;
   };
 }()), Qe, Je, qe, Ye, ne, Xe, Ze, Lr;
 let Lt = (Lr = class {
@@ -229,7 +230,7 @@ br || (br = 1, function(t, e) {
   }, e.load = function() {
     let n;
     try {
-      n = e.storage.getItem("debug");
+      n = e.storage.getItem("debug") || e.storage.getItem("DEBUG");
     } catch {
     }
     return !n && typeof process < "u" && "env" in process && (n = process.env.DEBUG), n;
@@ -293,7 +294,7 @@ br || (br = 1, function(t, e) {
       return i.enable(""), a;
     }, i.enable = function(a) {
       i.save(a), i.namespaces = a, i.names = [], i.skips = [];
-      const l = (typeof a == "string" ? a : "").trim().replace(" ", ",").split(",").filter(Boolean);
+      const l = (typeof a == "string" ? a : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
       for (const c of l) c[0] === "-" ? i.skips.push(c.slice(1)) : i.names.push(c);
     }, i.enabled = function(a) {
       for (const l of i.skips) if (o(a, l)) return !1;
@@ -440,11 +441,11 @@ function $i() {
   } };
 }
 var Wr = (t, e, r) => (r.method === "GET" || r.method === "HEAD") && (t.isNetworkError || !1);
-function Ti(t) {
+function ji(t) {
   return 100 * Math.pow(2, t) + 100 * Math.random();
 }
 const Bt = (t = {}) => ((e) => {
-  const r = e.maxRetries || 5, n = e.retryDelay || Ti, i = e.shouldRetry;
+  const r = e.maxRetries || 5, n = e.retryDelay || ji, i = e.shouldRetry;
   return { onError: (s, o) => {
     const a = o.options, l = a.maxRetries || r, c = a.retryDelay || n, y = a.shouldRetry || i, m = a.attemptNumber || 0;
     if ((w = a.body) !== null && typeof w == "object" && typeof w.pipe == "function" || !y(s, m, a) || m >= l) return s;
@@ -470,7 +471,7 @@ function fe(t, e) {
   }
   t.prototype = e === null ? Object.create(e) : (r.prototype = e.prototype, new r());
 }
-function ji(t, e, r, n) {
+function Ti(t, e, r, n) {
   function i(s) {
     return s instanceof r ? s : new r(function(o) {
       o(s);
@@ -1390,7 +1391,7 @@ function ss(t) {
 }
 function os(t, e) {
   var r, n, i, s;
-  return ji(this, void 0, void 0, function() {
+  return Ti(this, void 0, void 0, function() {
     var o, a;
     return Gr(this, function(l) {
       switch (l.label) {
@@ -1677,7 +1678,7 @@ function vn(t) {
 }
 function Es(t, e, r) {
   return r === void 0 && (r = Yi), new D(function(n) {
-    var i = ps(t) ? 1e3 - r.now() : t;
+    var i = ps(t) ? +t - r.now() : t;
     i < 0 && (i = 0);
     var s = 0;
     return r.schedule(function() {
@@ -1826,10 +1827,10 @@ function $s(t) {
     return Array.from(n.toString(4).padStart(4, "0")).map((i) => String.fromCodePoint(er[i])).join("");
   }).join("")}`;
 }
-function Ts(t) {
+function js(t) {
   return !Number.isNaN(Number(t)) || /[a-z]/i.test(t) && !/\d+(?:[-:\/]\d+){2}(?:T\d+(?:[-:\/]\d+){1,2}(\.\d+)?Z?)?/.test(t) ? !1 : !!Date.parse(t);
 }
-function js(t) {
+function Ts(t) {
   try {
     new URL(t, t.startsWith("/") ? "https://acme.com" : void 0);
   } catch {
@@ -1838,7 +1839,7 @@ function js(t) {
   return !0;
 }
 function Ia(t, e, r = "auto") {
-  return r === !0 || r === "auto" && (Ts(t) || js(t)) ? t : `${t}${$s(e)}`;
+  return r === !0 || r === "auto" && (js(t) || Ts(t)) ? t : `${t}${$s(e)}`;
 }
 Object.fromEntries(Object.entries(er).map((t) => t.reverse()));
 Object.fromEntries(Object.entries(Cn).map((t) => t.reverse()));
@@ -1891,13 +1892,13 @@ let ks = (t) => crypto.getRandomValues(new Uint8Array(t)), Ls = (t, e, r) => {
     }
   };
 }, Vs = (t, e = 21) => Ls(t, e, ks);
-const Tr = /\r\n|[\n\r\u2028\u2029]/;
+const jr = /\r\n|[\n\r\u2028\u2029]/;
 function Ns(t, e, r) {
-  const n = t.split(Tr), i = {
-    start: jr(e.start, n),
-    end: e.end ? jr(e.end, n) : void 0
+  const n = t.split(jr), i = {
+    start: Tr(e.start, n),
+    end: e.end ? Tr(e.end, n) : void 0
   }, { start: s, end: o, markerLines: a } = Hs(i, n), l = `${o}`.length;
-  return t.split(Tr, o).slice(s, o).map((c, y) => {
+  return t.split(jr, o).slice(s, o).map((c, y) => {
     const m = s + 1 + y, w = ` ${` ${m}`.slice(-l)} |`, f = a[m], b = !a[m + 1];
     if (!f)
       return ` ${w}${c.length > 0 ? ` ${c}` : ""}`;
@@ -1941,7 +1942,7 @@ function Hs(t, e) {
     a === c ? a ? f[o] = [a, 0] : f[o] = !0 : f[o] = [a, c - a];
   return { start: y, end: m, markerLines: f };
 }
-function jr(t, e) {
+function Tr(t, e) {
   var n;
   let r = 0;
   for (let i = 0; i < e.length; i++) {
@@ -2124,7 +2125,7 @@ const Pr = ["image", "file"], qr = ["before", "after", "replace"], _n = (t) => {
 }, no = (t, e) => {
   if (typeof e != "string")
     throw new Error(`\`${t}()\`: \`${e}\` is not a valid document type`);
-}, Tn = (t, e) => {
+}, jn = (t, e) => {
   if (!e._type)
     throw new Error(`\`${t}()\` requires that the document contains a type (\`_type\` property)`);
   no(t, e._type);
@@ -2147,7 +2148,7 @@ const Pr = ["image", "file"], qr = ["before", "after", "replace"], _n = (t) => {
   if (!t.dataset)
     throw new Error("`dataset` must be provided to perform queries");
   return t.dataset || "";
-}, jn = (t) => {
+}, Tn = (t) => {
   if (typeof t != "string" || !/^[a-z0-9._-]{1,75}$/i.test(t))
     throw new Error(
       "Tag can only contain alphanumeric characters, underscores, dashes and dots, and be between one and 75 characters long."
@@ -2260,7 +2261,7 @@ const qn = (t, e) => {
       `stega.studioUrl must be a string or a function, received ${n.stega.studioUrl}`
     );
   const s = typeof window < "u" && window.location && window.location.hostname, o = s && vo(window.location.hostname), a = !!n.token;
-  n.withCredentials && a && (ho(), n.withCredentials = !1), s && o && a && n.ignoreBrowserTokenWarning !== !0 ? fo() : typeof n.useCdn > "u" && uo(), i && to(n.projectId), n.dataset && _n(n.dataset), "requestTagPrefix" in n && (n.requestTagPrefix = n.requestTagPrefix ? jn(n.requestTagPrefix).replace(/\.+$/, "") : void 0), n.apiVersion = `${n.apiVersion}`.replace(/^v/, ""), n.isDefaultApi = n.apiHost === Ge.apiHost, n.useCdn === !0 && n.withCredentials && ao(), n.useCdn = n.useCdn !== !1 && !n.withCredentials, go(n.apiVersion);
+  n.withCredentials && a && (ho(), n.withCredentials = !1), s && o && a && n.ignoreBrowserTokenWarning !== !0 ? fo() : typeof n.useCdn > "u" && uo(), i && to(n.projectId), n.dataset && _n(n.dataset), "requestTagPrefix" in n && (n.requestTagPrefix = n.requestTagPrefix ? Tn(n.requestTagPrefix).replace(/\.+$/, "") : void 0), n.apiVersion = `${n.apiVersion}`.replace(/^v/, ""), n.isDefaultApi = n.apiHost === Ge.apiHost, n.useCdn === !0 && n.withCredentials && ao(), n.useCdn = n.useCdn !== !1 && !n.withCredentials, go(n.apiVersion);
   const l = n.apiHost.split("://", 2), c = l[0], y = l[1], m = n.isDefaultApi ? yo : y;
   return i ? (n.url = `${c}://${n.projectId}.${y}/v${n.apiVersion}`, n.cdnUrl = `${c}://${n.projectId}.${m}/v${n.apiVersion}`) : (n.url = `${n.apiHost}/v${n.apiVersion}`, n.cdnUrl = n.url), n;
 };
@@ -2767,7 +2768,7 @@ const Vn = ({
   visibility: t.visibility || "sync",
   autoGenerateArrayKeys: t.autoGenerateArrayKeys,
   skipCrossDatasetReferenceValidation: t.skipCrossDatasetReferenceValidation
-}), rr = (t) => t.type === "response", To = (t) => t.body, jo = (t, e) => t.reduce((r, n) => (r[e(n)] = n, r), /* @__PURE__ */ Object.create(null)), Ro = 11264;
+}), rr = (t) => t.type === "response", jo = (t) => t.body, To = (t, e) => t.reduce((r, n) => (r[e(n)] = n, r), /* @__PURE__ */ Object.create(null)), Ro = 11264;
 function Nn(t, e, r, n, i = {}, s = {}) {
   const o = "stega" in s ? {
     ...r || {},
@@ -2782,11 +2783,11 @@ function Nn(t, e, r, n, i = {}, s = {}) {
     // Default to not returning the query, unless `filterResponse` is `false`,
     // or `returnQuery` is explicitly set. `true` is the default in Content Lake, so skip if truthy
     returnQuery: s.filterResponse === !1 && s.returnQuery !== !1
-  }, w = typeof c < "u" || typeof y < "u" ? { ...m, fetch: { cache: c, next: y } } : m, f = Te(t, e, "query", { query: n, params: a }, w);
+  }, w = typeof c < "u" || typeof y < "u" ? { ...m, fetch: { cache: c, next: y } } : m, f = je(t, e, "query", { query: n, params: a }, w);
   return o.enabled ? f.pipe(
     Os(
       ut(
-        import("./stegaEncodeSourceMap-BwYXHysC.js").then(function(b) {
+        import("./stegaEncodeSourceMap-BJORIZL8.js").then(function(b) {
           return b.stegaEncodeSourceMap$1;
         }).then(
           ({ stegaEncodeSourceMap: b }) => b
@@ -2839,13 +2840,13 @@ function Hn(t, e, r, n = {}) {
   return ft(t, e, i).pipe(
     Ve(rr),
     k((s) => {
-      const o = jo(s.body.documents || [], (a) => a._id);
+      const o = To(s.body.documents || [], (a) => a._id);
       return r.map((a) => o[a] || null);
     })
   );
 }
 function zn(t, e, r, n = {}) {
-  return Te(
+  return je(
     t,
     e,
     "query",
@@ -2859,20 +2860,20 @@ function zn(t, e, r, n = {}) {
   );
 }
 function Bn(t, e, r, n) {
-  return Le("createIfNotExists", r), Tt(t, e, r, "createIfNotExists", n);
+  return Le("createIfNotExists", r), jt(t, e, r, "createIfNotExists", n);
 }
 function Wn(t, e, r, n) {
-  return Le("createOrReplace", r), Tt(t, e, r, "createOrReplace", n);
+  return Le("createOrReplace", r), jt(t, e, r, "createOrReplace", n);
 }
 function Gn(t, e, r, n, i) {
-  return Le("createVersion", r), Tn("createVersion", r), F(t, e, {
+  return Le("createVersion", r), jn("createVersion", r), F(t, e, {
     actionType: "sanity.action.document.version.create",
     publishedId: n,
     document: r
   }, i);
 }
 function Qn(t, e, r, n) {
-  return Te(
+  return je(
     t,
     e,
     "mutate",
@@ -2888,7 +2889,7 @@ function Jn(t, e, r, n = !1, i) {
   }, i);
 }
 function Yn(t, e, r, n) {
-  return Le("replaceVersion", r), Tn("replaceVersion", r), F(t, e, {
+  return Le("replaceVersion", r), jn("replaceVersion", r), F(t, e, {
     actionType: "sanity.action.document.version.replace",
     document: r
   }, n);
@@ -2904,11 +2905,11 @@ function Zn(t, e, r, n) {
   let i;
   r instanceof be || r instanceof Ae ? i = { patch: r.serialize() } : r instanceof vt || r instanceof gt ? i = r.serialize() : i = r;
   const s = Array.isArray(i) ? i : [i], o = n && n.transactionId || void 0;
-  return Te(t, e, "mutate", { mutations: s, transactionId: o }, n);
+  return je(t, e, "mutate", { mutations: s, transactionId: o }, n);
 }
 function F(t, e, r, n) {
   const i = Array.isArray(r) ? r : [r], s = n && n.transactionId || void 0, o = n && n.skipCrossDatasetReferenceValidation || void 0, a = n && n.dryRun || void 0;
-  return Te(
+  return je(
     t,
     e,
     "actions",
@@ -2916,7 +2917,7 @@ function F(t, e, r, n) {
     n
   );
 }
-function Te(t, e, r, n, i = {}) {
+function je(t, e, r, n, i = {}) {
   const s = r === "mutate", o = r === "actions", a = r === "query", l = s || o ? "" : Vn(n), c = !s && !o && l.length < Ro, y = c ? l : "", m = i.returnFirst, { timeout: w, token: f, tag: b, headers: d, returnQuery: S, lastLiveEventId: _, cacheMode: x } = i, A = Y(t, r, y), q = {
     method: c ? "GET" : "POST",
     uri: A,
@@ -2940,32 +2941,32 @@ function Te(t, e, r, n, i = {}) {
   };
   return ft(t, e, q).pipe(
     Ve(rr),
-    k(To),
+    k(jo),
     k((U) => {
       if (!s)
         return U;
       const N = U.results || [];
       if (i.returnDocuments)
         return m ? N[0] && N[0].document : N.map((Ne) => Ne.document);
-      const jt = m ? "documentId" : "documentIds", Rt = m ? N[0] && N[0].id : N.map((Ne) => Ne.id);
+      const Tt = m ? "documentId" : "documentIds", Rt = m ? N[0] && N[0].id : N.map((Ne) => Ne.id);
       return {
         transactionId: U.transactionId,
         results: N,
-        [jt]: Rt
+        [Tt]: Rt
       };
     })
   );
 }
-function Tt(t, e, r, n, i = {}) {
+function jt(t, e, r, n, i = {}) {
   const s = { [n]: r }, o = Object.assign({ returnFirst: !0, returnDocuments: !0 }, i);
-  return Te(t, e, "mutate", { mutations: [s] }, o);
+  return je(t, e, "mutate", { mutations: [s] }, o);
 }
 const lt = (t) => t.config().dataset !== void 0 && t.config().projectId !== void 0 || t.config()["~experimental_resource"] !== void 0, Kn = (t, e) => lt(t) && e.startsWith(Y(t, "query")), Po = (t, e) => lt(t) && e.startsWith(Y(t, "mutate")), qo = (t, e) => lt(t) && e.startsWith(Y(t, "doc", "")), Mo = (t, e) => lt(t) && e.startsWith(Y(t, "listen")), Fo = (t, e) => lt(t) && e.startsWith(Y(t, "history", "")), Do = (t, e) => e.startsWith("/data/") || Kn(t, e) || Po(t, e) || qo(t, e) || Mo(t, e) || Fo(t, e);
 function ft(t, e, r) {
   const n = r.url || r.uri, i = t.config(), s = typeof r.canUseCdn > "u" ? ["GET", "HEAD"].indexOf(r.method || "GET") >= 0 && Do(t, n) : r.canUseCdn;
   let o = (r.useCdn ?? i.useCdn) && s;
   const a = r.tag && i.requestTagPrefix ? [i.requestTagPrefix, r.tag].join(".") : r.tag || i.requestTagPrefix;
-  if (a && r.tag !== null && (r.query = { tag: jn(a), ...r.query }), ["GET", "HEAD", "POST"].indexOf(r.method || "GET") >= 0 && Kn(t, n)) {
+  if (a && r.tag !== null && (r.query = { tag: Tn(a), ...r.query }), ["GET", "HEAD", "POST"].indexOf(r.method || "GET") >= 0 && Kn(t, n)) {
     const y = r.resultSourceMap ?? i.resultSourceMap;
     y !== void 0 && y !== !1 && (r.query = { resultSourceMap: y, ...r.query });
     const m = r.perspective || i.perspective;
@@ -3247,7 +3248,7 @@ function Jo(t, e) {
   );
 }
 var Yo = (t, e) => Object.keys(e).concat(Object.keys(t)).reduce((r, n) => (r[n] = typeof t[n] > "u" ? e[n] : t[n], r), {});
-const Xo = (t, e) => e.reduce((r, n) => (typeof t[n] > "u" || (r[n] = t[n]), r), {}), ii = vn(() => import("./browser-BQ6MHEtJ.js").then((t) => t.b)).pipe(
+const Xo = (t, e) => e.reduce((r, n) => (typeof t[n] > "u" || (r[n] = t[n]), r), {}), ii = vn(() => import("./browser-CAoy7NlX.js").then((t) => t.b)).pipe(
   k(({ default: t }) => t),
   xs(1)
 );
@@ -4172,7 +4173,7 @@ const Et = class Et {
     return Hn(this, u(this, P), e, r);
   }
   create(e, r) {
-    return Tt(this, u(this, P), e, "create", r);
+    return jt(this, u(this, P), e, "create", r);
   }
   createIfNotExists(e, r) {
     return Bn(this, u(this, P), e, r);
@@ -4329,7 +4330,7 @@ const Et = class Et {
 };
 ae = new WeakMap(), P = new WeakMap();
 let Ht = Et;
-var ue, j;
+var ue, T;
 const Ct = class Ct {
   constructor(e, r = Ge) {
     C(this, "assets");
@@ -4347,20 +4348,20 @@ const Ct = class Ct {
      * Private properties
      */
     O(this, ue);
-    O(this, j);
+    O(this, T);
     /**
      * Instance properties
      */
     C(this, "listen", oi);
-    this.config(r), I(this, j, e), this.assets = new Go(this, u(this, j)), this.datasets = new sa(this, u(this, j)), this.live = new ai(this), this.projects = new aa(this, u(this, j)), this.users = new ha(this, u(this, j)), this.agent = {
-      action: new Bo(this, u(this, j))
-    }, this.releases = new la(this, u(this, j)), this.observable = new Ht(e, r);
+    this.config(r), I(this, T, e), this.assets = new Go(this, u(this, T)), this.datasets = new sa(this, u(this, T)), this.live = new ai(this), this.projects = new aa(this, u(this, T)), this.users = new ha(this, u(this, T)), this.agent = {
+      action: new Bo(this, u(this, T))
+    }, this.releases = new la(this, u(this, T)), this.observable = new Ht(e, r);
   }
   /**
    * Clone the client - returns a new instance
    */
   clone() {
-    return new Ct(u(this, j), this.config());
+    return new Ct(u(this, T), this.config());
   }
   config(e) {
     if (e === void 0)
@@ -4378,7 +4379,7 @@ const Ct = class Ct {
    */
   withConfig(e) {
     const r = this.config();
-    return new Ct(u(this, j), {
+    return new Ct(u(this, T), {
       ...r,
       ...e,
       stega: {
@@ -4391,7 +4392,7 @@ const Ct = class Ct {
     return $(
       Nn(
         this,
-        u(this, j),
+        u(this, T),
         u(this, ue).stega,
         e,
         r,
@@ -4406,7 +4407,7 @@ const Ct = class Ct {
    * @param options - Request options
    */
   getDocument(e, r) {
-    return $($t(this, u(this, j), e, r));
+    return $($t(this, u(this, T), e, r));
   }
   /**
    * Fetch multiple documents in one request.
@@ -4418,21 +4419,21 @@ const Ct = class Ct {
    * @param options - Request options
    */
   getDocuments(e, r) {
-    return $(Hn(this, u(this, j), e, r));
+    return $(Hn(this, u(this, T), e, r));
   }
   create(e, r) {
     return $(
-      Tt(this, u(this, j), e, "create", r)
+      jt(this, u(this, T), e, "create", r)
     );
   }
   createIfNotExists(e, r) {
     return $(
-      Bn(this, u(this, j), e, r)
+      Bn(this, u(this, T), e, r)
     );
   }
   createOrReplace(e, r) {
     return $(
-      Wn(this, u(this, j), e, r)
+      Wn(this, u(this, T), e, r)
     );
   }
   createVersion({
@@ -4448,7 +4449,7 @@ const Ct = class Ct {
     return Ar(
       Gn(
         this,
-        u(this, j),
+        u(this, T),
         o,
         a,
         i
@@ -4456,7 +4457,7 @@ const Ct = class Ct {
     );
   }
   delete(e, r) {
-    return $(Qn(this, u(this, j), e, r));
+    return $(Qn(this, u(this, T), e, r));
   }
   /**
    * @public
@@ -4489,7 +4490,7 @@ const Ct = class Ct {
   discardVersion({ releaseId: e, publishedId: r }, n, i) {
     const s = bt(r, e);
     return $(
-      Jn(this, u(this, j), s, n, i)
+      Jn(this, u(this, T), s, n, i)
     );
   }
   replaceVersion({
@@ -4503,7 +4504,7 @@ const Ct = class Ct {
       releaseId: n
     }), o = { ...e, _id: s };
     return Ar(
-      Yn(this, u(this, j), o, i)
+      Yn(this, u(this, T), o, i)
     );
   }
   /**
@@ -4530,11 +4531,11 @@ const Ct = class Ct {
   unpublishVersion({ releaseId: e, publishedId: r }, n) {
     const i = At(r, e);
     return $(
-      Xn(this, u(this, j), i, r, n)
+      Xn(this, u(this, T), i, r, n)
     );
   }
   mutate(e, r) {
-    return $(Zn(this, u(this, j), e, r));
+    return $(Zn(this, u(this, T), e, r));
   }
   /**
    * Create a new buildable patch of operations to perform
@@ -4562,7 +4563,7 @@ const Ct = class Ct {
    * @param options - Action options
    */
   action(e, r) {
-    return $(F(this, u(this, j), e, r));
+    return $(F(this, u(this, T), e, r));
   }
   /**
    * Perform a request against the Sanity API
@@ -4572,7 +4573,7 @@ const Ct = class Ct {
    * @returns Promise resolving to the response body
    */
   request(e) {
-    return $(L(this, u(this, j), e));
+    return $(L(this, u(this, T), e));
   }
   /**
    * Perform an HTTP request a `/data` sub-endpoint
@@ -4585,7 +4586,7 @@ const Ct = class Ct {
    * @internal
    */
   dataRequest(e, r, n) {
-    return $(Te(this, u(this, j), e, r, n));
+    return $(je(this, u(this, T), e, r, n));
   }
   /**
    * Get a Sanity API URL for the URI provided
@@ -4606,7 +4607,7 @@ const Ct = class Ct {
     return Y(this, e, r);
   }
 };
-ue = new WeakMap(), j = new WeakMap();
+ue = new WeakMap(), T = new WeakMap();
 let zt = Ct;
 function da(t, e) {
   return { requester: Rr(t), createClient: (r) => {
@@ -4676,7 +4677,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         var v = p.split("-"), g = v[1], h = v[2], R = v[3];
         if (!g || !h || !R)
           throw new Error("Malformed asset _ref '" + p + `'. Expected an id like "` + o + '".');
-        var E = h.split("x"), T = E[0], V = E[1], X = +T, Q = +V, H = isFinite(X) && isFinite(Q);
+        var E = h.split("x"), j = E[0], V = E[1], X = +j, Q = +V, H = isFinite(X) && isFinite(Q);
         if (!H)
           throw new Error("Malformed asset _ref '" + p + `'. Expected an id like "` + o + '".');
         return {
@@ -4765,15 +4766,15 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         var h = m(g);
         if (!h)
           throw new Error("Unable to resolve image URL from source (" + JSON.stringify(g) + ")");
-        var R = h.asset._ref || h.asset._id || "", E = a(R), T = Math.round(h.crop.left * E.width), V = Math.round(h.crop.top * E.height), X = {
-          left: T,
+        var R = h.asset._ref || h.asset._id || "", E = a(R), j = Math.round(h.crop.left * E.width), V = Math.round(h.crop.top * E.height), X = {
+          left: j,
           top: V,
-          width: Math.round(E.width - h.crop.right * E.width - T),
+          width: Math.round(E.width - h.crop.right * E.width - j),
           height: Math.round(E.height - h.crop.bottom * E.height - V)
-        }, Q = h.hotspot.height * E.height / 2, H = h.hotspot.width * E.width / 2, je = h.hotspot.x * E.width, Ee = h.hotspot.y * E.height, Z = {
-          left: je - H,
+        }, Q = h.hotspot.height * E.height / 2, H = h.hotspot.width * E.width / 2, Te = h.hotspot.x * E.width, Ee = h.hotspot.y * E.height, Z = {
+          left: Te - H,
           top: Ee - Q,
-          right: je + H,
+          right: Te + H,
           bottom: Ee + Q
         };
         return v.rect || v.focalPoint || v.ignoreImageParams || v.crop || (v = r({}, v, x({
@@ -4786,8 +4787,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       function _(p) {
         var v = (p.baseUrl || "https://cdn.sanity.io").replace(/\/+$/, ""), g = p.vanityName ? "/" + p.vanityName : "", h = p.asset.id + "-" + p.asset.width + "x" + p.asset.height + "." + p.asset.format + g, R = v + "/images/" + p.projectId + "/" + p.dataset + "/" + h, E = [];
         if (p.rect) {
-          var T = p.rect, V = T.left, X = T.top, Q = T.width, H = T.height, je = V !== 0 || X !== 0 || H !== p.asset.height || Q !== p.asset.width;
-          je && E.push("rect=" + V + "," + X + "," + Q + "," + H);
+          var j = p.rect, V = j.left, X = j.top, Q = j.width, H = j.height, Te = V !== 0 || X !== 0 || H !== p.asset.height || Q !== p.asset.width;
+          Te && E.push("rect=" + V + "," + X + "," + Q + "," + H);
         }
         p.bg && E.push("bg=" + p.bg), p.focalPoint && (E.push("fp-x=" + p.focalPoint.x), E.push("fp-y=" + p.focalPoint.y));
         var Ee = [p.flipHorizontal && "h", p.flipVertical && "v"].filter(Boolean).join("");
@@ -4804,17 +4805,17 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             height: R,
             rect: p.crop
           };
-        var E = p.crop, T = p.hotspot, V = h / R, X = E.width / E.height;
+        var E = p.crop, j = p.hotspot, V = h / R, X = E.width / E.height;
         if (X > V) {
-          var Q = Math.round(E.height), H = Math.round(Q * V), je = Math.max(0, Math.round(E.top)), Ee = Math.round((T.right - T.left) / 2 + T.left), Z = Math.max(0, Math.round(Ee - H / 2));
+          var Q = Math.round(E.height), H = Math.round(Q * V), Te = Math.max(0, Math.round(E.top)), Ee = Math.round((j.right - j.left) / 2 + j.left), Z = Math.max(0, Math.round(Ee - H / 2));
           Z < E.left ? Z = E.left : Z + H > E.left + E.width && (Z = E.left + E.width - H), g = {
             left: Z,
-            top: je,
+            top: Te,
             width: H,
             height: Q
           };
         } else {
-          var He = E.width, re = Math.round(He / V), ci = Math.max(0, Math.round(E.left)), li = Math.round((T.bottom - T.top) / 2 + T.top), ze = Math.max(0, Math.round(li - re / 2));
+          var He = E.width, re = Math.round(He / V), ci = Math.max(0, Math.round(E.left)), li = Math.round((j.bottom - j.top) / 2 + j.top), ze = Math.max(0, Math.round(li - re / 2));
           ze < E.top ? ze = E.top : ze + re > E.top + E.height && (ze = E.top + E.height - re), g = {
             left: ci,
             top: ze,
@@ -4832,13 +4833,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       function N(p) {
         return p && "config" in p ? typeof p.config == "function" : !1;
       }
-      function jt(p) {
+      function Tt(p) {
         return p && "clientConfig" in p ? typeof p.clientConfig == "object" : !1;
       }
       function Rt(p) {
         for (var v = d, g = s(v), h; !(h = g()).done; ) {
-          var R = h.value, E = R[0], T = R[1];
-          if (p === E || p === T)
+          var R = h.value, E = R[0], j = R[1];
+          if (p === E || p === j)
             return E;
         }
         return p;
@@ -4852,8 +4853,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             dataset: R
           });
         }
-        if (jt(p)) {
-          var T = p.clientConfig, V = T.apiHost, X = T.projectId, Q = T.dataset, H = V || "https://api.sanity.io";
+        if (Tt(p)) {
+          var j = p.clientConfig, V = j.apiHost, X = j.projectId, Q = j.dataset, H = V || "https://api.sanity.io";
           return new Pt(null, {
             baseUrl: H.replace(/^https:\/\/api\./, "https://cdn."),
             projectId: X,
@@ -4871,10 +4872,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           var R = h.baseUrl || this.options.baseUrl, E = {
             baseUrl: R
           };
-          for (var T in h)
-            if (h.hasOwnProperty(T)) {
-              var V = Rt(T);
-              E[V] = h[T];
+          for (var j in h)
+            if (h.hasOwnProperty(j)) {
+              var V = Rt(j);
+              E[V] = h[j];
             }
           return new p(this, r({
             baseUrl: R
@@ -4943,13 +4944,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           return this.withOptions({
             sharpen: h
           });
-        }, v.rect = function(h, R, E, T) {
+        }, v.rect = function(h, R, E, j) {
           return this.withOptions({
             rect: {
               left: h,
               top: R,
               width: E,
-              height: T
+              height: j
             }
           });
         }, v.format = function(h) {
