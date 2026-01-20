@@ -30,8 +30,8 @@ export default function App() {
         <Route path="/faq" element={<FAQ />} />
         {/* FAQ collection page route */}
         <Route path="/collection/:faq" element={<FAQ />} />
-        {/* Dynamic DocPage path: "/docs/:slug" */}
-        <Route path="/docs/:slug" element={<DocPageWrapper />} />
+        {/* Dynamic DocPage path: "/faqs/:slug" */}
+        <Route path="/faqs/:slug" element={<DocPageWrapper />} />
         {/* Search results page route */}
         <Route path="/search" element={<SearchResults />} />
         {/* Catch-all → redirect back to FAQCard */}

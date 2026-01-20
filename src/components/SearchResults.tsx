@@ -118,7 +118,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
                   key={faq._id}
                   href={
                     faq.page
-                      ? `/docs/${faq.page.slug.current}`
+                      ? `/faqs/${faq.page.slug.current}`
                       : `/faq/${faq._id}`
                   }
                   className={styles.faqItem}

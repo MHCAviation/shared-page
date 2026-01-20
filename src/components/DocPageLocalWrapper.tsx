@@ -42,7 +42,7 @@ const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({
       navigate(
         `/search?query=${encodeURIComponent(
           inputValue.trim()
-        )}&from=/docs/${slug}`
+        )}&from=/faqs/${slug}`
       );
     }
   };
@@ -82,7 +82,7 @@ const DocPageLocalWrapper: React.FC<DocPageLocalWrapperProps> = ({
                 },
               ]
             : []),
-          { label: pageData.title, to: `/docs/${slug}` },
+          { label: pageData.title, to: `/faqs/${slug}` },
         ]}
       />
     </>
