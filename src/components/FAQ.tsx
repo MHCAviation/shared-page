@@ -97,7 +97,7 @@ const FAQ: React.FC<FAQComponentProps> = ({
       return `/faq/${faq._id}`;
     }
     const pageSlug = faq.page.slug.current;
-    const basePath = `/docs/${pageSlug}`;
+    const basePath = `/faqs/${pageSlug}`;
     if (faq.page.tableOfContents && faq.page.tableOfContents.length > 0) {
       const raw = faq.page.tableOfContents[0].slug;
       const cleanSlug = raw.replace(/^#+/, "");
