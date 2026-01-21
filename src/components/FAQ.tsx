@@ -91,19 +91,23 @@ const FAQ: React.FC<FAQComponentProps> = ({
     );
   }, [filteredFaqs]);
 
+  const normalizedBasePath = basePath.endsWith("/")
+    ? basePath.slice(0, -1)
+    : basePath;
+
   // Generate FAQ link based on page and table of contents
   const getFaqLink = (faq: FAQItem): string => {
     if (!faq.page) {
       return `/faq/${faq._id}`;
     }
     const pageSlug = faq.page.slug.current;
-    const basePath = `/faqs/${pageSlug}`;
+    const pagePath = `${normalizedBasePath}/${pageSlug}`;
     if (faq.page.tableOfContents && faq.page.tableOfContents.length > 0) {
       const raw = faq.page.tableOfContents[0].slug;
       const cleanSlug = raw.replace(/^#+/, "");
-      return `${basePath}#${cleanSlug}`;
+      return `${pagePath}#${cleanSlug}`;
     }
-    return basePath;
+    return pagePath;
   };
 
   // Get description text for FAQ link
